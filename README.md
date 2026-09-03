@@ -2,9 +2,9 @@
 
 Production-oriented prototype of the **EuroSTOXX Bank Valuation Agent**.
 
-It compares public bank reports and market observations for Crédit Agricole,
-BNP Paribas, and Deutsche Bank, while preserving evidence, timestamps, and
-comparability controls.
+It is designed for all 23 EURO STOXX Banks constituents. The current pilot
+contains real observations for Crédit Agricole, BNP Paribas, and Deutsche Bank;
+the remaining banks are added only after official report URLs are verified.
 
 ## Workflow
 
@@ -30,6 +30,19 @@ streamlit run .\\pilot_dashboard.py
 - Missing-data exclusion and freshness gates
 - Evidence validation and weight sensitivity analysis
 - Governance disclosures and human-review checklist
+
+## Expand the universe
+
+`bank_master.json` contains the 23-bank universe and `report_registry.json`
+contains official report locations. Run the downloader to process every entry:
+
+```powershell
+& ".\\venv\\Scripts\\python.exe" .\\download_registered_reports.py
+```
+
+The resulting `download_manifest.json` records downloaded, pending, and failed
+entries. No bank is scored until its metrics pass the comparability and evidence
+gates.
 
 ## Streamlit deployment
 

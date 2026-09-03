@@ -1,0 +1,63 @@
+{
+  "registry_name": "EURO STOXX Banks public report registry",
+  "retrieved_on": "2026-09-02",
+  "source_policy": "Use official issuer investor-relations pages; verify each document URL before downloading.",
+  "banks": [
+    {
+      "bank_name": "Crédit Agricole S.A.",
+      "ticker": "ACA",
+      "country": "France",
+      "official_ir_url": "https://www.credit-agricole.com/en/finance",
+      "annual_reports_url": "https://www.credit-agricole.com/en/finance/financial-publications",
+      "quarterly_results_url": "https://www.credit-agricole.com/en/finance/financial-information",
+      "pillar3_url": "https://www.credit-agricole.com/en/finance/financial-information",
+      "download_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+      "filename": "ACA_2026_H1_results_en.pdf",
+      "last_checked": "2026-09-02"
+    },
+    {
+      "bank_name": "BNP Paribas S.A.",
+      "ticker": "BNP",
+      "country": "France",
+      "official_ir_url": "https://invest.bnpparibas/en/",
+      "annual_reports_url": "https://invest.bnpparibas/en/search/reports/documents/financial-reports",
+      "quarterly_results_url": "https://invest.bnpparibas/en/search/reports/documents/financial-reports",
+      "pillar3_url": "https://invest.bnpparibas/en/search/reports/documents/financial-reports",
+      "download_url": "https://cdn-group.bnpparibas.com/uploads/file/universal-registration-document-annual-financial-report-2025.pdf",
+      "filename": "BNP_2025_annual_report_en.pdf",
+      "last_checked": "2026-09-02"
+    },
+    {
+      "bank_name": "Deutsche Bank AG",
+      "ticker": "DBK",
+      "country": "Germany",
+      "official_ir_url": "https://investorrelations.db.com/",
+      "annual_reports_url": "https://investorrelations.db.com/reports-and-events/annual-reports/",
+      "quarterly_results_url": "https://investorrelations.db.com/reports-and-events/quarterly-results?language_id=1",
+      "pillar3_url": "https://investorrelations.db.com/reports-and-events/",
+      "download_url": "https://investorrelations.db.com/files/documents/annual-reports/2024/Annual-Report-2024.pdf?language_id=1",
+      "filename": "DBK_2024_annual_report_en.pdf",
+      "last_checked": "2026-09-02"
+    },
+    {"bank_name": "Banco Santander S.A.", "ticker": "SAN", "country": "Spain", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "ING Groep N.V.", "ticker": "INGA", "country": "Netherlands", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Banco Bilbao Vizcaya Argentaria S.A.", "ticker": "BBVA", "country": "Spain", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Intesa Sanpaolo S.p.A.", "ticker": "ISP", "country": "Italy", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "UniCredit S.p.A.", "ticker": "UCG", "country": "Italy", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Nordea Bank Abp", "ticker": "NDA-FI", "country": "Finland", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Société Générale S.A.", "ticker": "GLE", "country": "France", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "KBC Group N.V.", "ticker": "KBC", "country": "Belgium", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "CaixaBank S.A.", "ticker": "CABK", "country": "Spain", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Commerzbank AG", "ticker": "CBK", "country": "Germany", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Erste Group Bank AG", "ticker": "EBS", "country": "Austria", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Bank of Ireland Group plc", "ticker": "BIRG", "country": "Ireland", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "FinecoBank S.p.A.", "ticker": "FBK", "country": "Italy", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "ABN AMRO Bank N.V.", "ticker": "ABN", "country": "Netherlands", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Banco BPM S.p.A.", "ticker": "BAMI", "country": "Italy", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Banco de Sabadell S.A.", "ticker": "SAB", "country": "Spain", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "AIB Group plc", "ticker": "AIBG", "country": "Ireland", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "Bankinter S.A.", "ticker": "BKT", "country": "Spain", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "BAWAG Group AG", "ticker": "BG", "country": "Austria", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"},
+    {"bank_name": "BPER Banca S.p.A.", "ticker": "BPE", "country": "Italy", "official_ir_url": null, "annual_reports_url": null, "quarterly_results_url": null, "pillar3_url": null, "last_checked": null, "status": "pending verification"}
+  ]
+}

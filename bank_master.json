@@ -1,0 +1,32 @@
+{
+  "index_name": "EURO STOXX Banks",
+  "index_symbol": "SX7U",
+  "source_url": "https://www.stoxx.com/document/Bookmarks/CurrentComponents/SX7GT.pdf",
+  "component_file_note": "Weights based on the last periodic review implementation shown in the STOXX component file.",
+  "retrieved_on": "2026-09-02",
+  "constituents": [
+    {"rank": 1, "stoxx_name": "BNP PARIBAS", "bank_name": "BNP Paribas S.A.", "country": "France", "ticker": "BNP", "isin": null, "weight_percent": 13.60, "active": true},
+    {"rank": 2, "stoxx_name": "BCO SANTANDER", "bank_name": "Banco Santander S.A.", "country": "Spain", "ticker": "SAN", "isin": null, "weight_percent": 11.43, "active": true},
+    {"rank": 3, "stoxx_name": "ING GRP", "bank_name": "ING Groep N.V.", "country": "Netherlands", "ticker": "INGA", "isin": null, "weight_percent": 9.68, "active": true},
+    {"rank": 4, "stoxx_name": "BCO BILBAO VIZCAYA ARGENTARIA", "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.", "country": "Spain", "ticker": "BBVA", "isin": null, "weight_percent": 8.65, "active": true},
+    {"rank": 5, "stoxx_name": "INTESA SANPAOLO", "bank_name": "Intesa Sanpaolo S.p.A.", "country": "Italy", "ticker": "ISP", "isin": null, "weight_percent": 8.45, "active": true},
+    {"rank": 6, "stoxx_name": "UNICREDIT", "bank_name": "UniCredit S.p.A.", "country": "Italy", "ticker": "UCG", "isin": null, "weight_percent": 7.88, "active": true},
+    {"rank": 7, "stoxx_name": "NORDEA BANK", "bank_name": "Nordea Bank Abp", "country": "Finland", "ticker": "NDA-FI", "isin": null, "weight_percent": 7.60, "active": true},
+    {"rank": 8, "stoxx_name": "DEUTSCHE BANK", "bank_name": "Deutsche Bank AG", "country": "Germany", "ticker": "DBK", "isin": null, "weight_percent": 4.10, "active": true},
+    {"rank": 9, "stoxx_name": "GRP SOCIETE GENERALE", "bank_name": "Société Générale S.A.", "country": "France", "ticker": "GLE", "isin": null, "weight_percent": 3.97, "active": true},
+    {"rank": 10, "stoxx_name": "KBC GRP", "bank_name": "KBC Group N.V.", "country": "Belgium", "ticker": "KBC", "isin": null, "weight_percent": 3.29, "active": true},
+    {"rank": 11, "stoxx_name": "CAIXABANK", "bank_name": "CaixaBank S.A.", "country": "Spain", "ticker": "CABK", "isin": null, "weight_percent": 3.20, "active": true},
+    {"rank": 12, "stoxx_name": "CREDIT AGRICOLE", "bank_name": "Crédit Agricole S.A.", "country": "France", "ticker": "ACA", "isin": null, "weight_percent": 2.97, "active": true},
+    {"rank": 13, "stoxx_name": "COMMERZBANK", "bank_name": "Commerzbank AG", "country": "Germany", "ticker": "CBK", "isin": null, "weight_percent": 2.29, "active": true},
+    {"rank": 14, "stoxx_name": "ERSTE GROUP BANK", "bank_name": "Erste Group Bank AG", "country": "Austria", "ticker": "EBS", "isin": null, "weight_percent": 2.20, "active": true},
+    {"rank": 15, "stoxx_name": "BANK OF IRELAND GROUP", "bank_name": "Bank of Ireland Group plc", "country": "Ireland", "ticker": "BIRG", "isin": null, "weight_percent": 2.12, "active": true},
+    {"rank": 16, "stoxx_name": "FINECOBANK", "bank_name": "FinecoBank S.p.A.", "country": "Italy", "ticker": "FBK", "isin": null, "weight_percent": 1.64, "active": true},
+    {"rank": 17, "stoxx_name": "ABN AMRO BANK", "bank_name": "ABN AMRO Bank N.V.", "country": "Netherlands", "ticker": "ABN", "isin": null, "weight_percent": 1.34, "active": true},
+    {"rank": 18, "stoxx_name": "BANCO BPM", "bank_name": "Banco BPM S.p.A.", "country": "Italy", "ticker": "BAMI", "isin": null, "weight_percent": 1.28, "active": true},
+    {"rank": 19, "stoxx_name": "BCO SABADELL", "bank_name": "Banco de Sabadell S.A.", "country": "Spain", "ticker": "SAB", "isin": null, "weight_percent": 1.21, "active": true},
+    {"rank": 20, "stoxx_name": "AIB GROUP", "bank_name": "AIB Group plc", "country": "Ireland", "ticker": "AIBG", "isin": null, "weight_percent": 0.99, "active": true},
+    {"rank": 21, "stoxx_name": "BANKINTER", "bank_name": "Bankinter S.A.", "country": "Spain", "ticker": "BKT", "isin": null, "weight_percent": 0.78, "active": true},
+    {"rank": 22, "stoxx_name": "BAWAG GROUP AG", "bank_name": "BAWAG Group AG", "country": "Austria", "ticker": "BG", "isin": null, "weight_percent": 0.77, "active": true},
+    {"rank": 23, "stoxx_name": "BPER Banca", "bank_name": "BPER Banca S.p.A.", "country": "Italy", "ticker": "BPE", "isin": null, "weight_percent": 0.54, "active": true}
+  ]
+}
