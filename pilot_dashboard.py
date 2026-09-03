@@ -12,10 +12,12 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).with_name(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent
-COUNTRY_DISPLAY = {
-    "Austria": "🇦🇹 AT", "Belgium": "🇧🇪 BE", "Finland": "🇫🇮 FI",
-    "France": "🇫🇷 FR", "Germany": "🇩🇪 DE", "Ireland": "🇮🇪 IE",
-    "Italy": "🇮🇹 IT", "Netherlands": "🇳🇱 NL", "Spain": "🇪🇸 ES",
+COUNTRY_INFO = {
+    "Austria": ("AT", "at"), "Belgium": ("BE", "be"),
+    "Finland": ("FI", "fi"), "France": ("FR", "fr"),
+    "Germany": ("DE", "de"), "Ireland": ("IE", "ie"),
+    "Italy": ("IT", "it"), "Netherlands": ("NL", "nl"),
+    "Spain": ("ES", "es"),
 }
 
 
@@ -44,10 +46,10 @@ def short_comment(score):
     if score is None:
         return "Insufficient comparable data"
     if score >= 67:
-        return "Strong relative screen; verify report risks"
+        return "Strong relative screen"
     if score >= 45:
-        return "Mixed signals; broadly mid-pack"
-    return "Weak relative screen; review valuation and returns"
+        return "Mixed; broadly mid-pack"
+    return "Weak relative screen"
 
 
 st.set_page_config(page_title="EU Banks Picker", page_icon="🏦", layout="wide")
@@ -75,18 +77,42 @@ with ranking_tab:
         observed = datetime.fromisoformat(latest.replace("Z", "+00:00")).date()
         age = (date.today() - observed).days
         (st.error if age > 3 else st.info)(f"Provider data retrieved: {observed} ({age} day(s) old)." + (" Refresh before analysis." if age > 3 else ""))
-    st.dataframe([
-        {
+    ranking_rows = []
+    for i, row in enumerate((item for item in scores if item["status"] == "ranked"), 1):
+        bank = banks[row["ticker"]]
+        metrics = bank.get("metrics", {})
+        country_code, flag_code = COUNTRY_INFO.get(bank["country"], (bank["country"], ""))
+        ranking_rows.append({
             "Rank": i,
+            "Flag": f"https://flagcdn.com/w40/{flag_code}.png" if flag_code else "",
+            "Country": country_code,
             "Bank": row["bank_name"],
-            "Country": COUNTRY_DISPLAY.get(banks[row["ticker"]]["country"], banks[row["ticker"]]["country"]),
-            "Current price": f"€{banks[row['ticker']].get('metrics', {}).get('price'):,.2f}" if banks[row["ticker"]].get("metrics", {}).get("price") is not None else "N/A",
-            "P/E": multiple(banks[row["ticker"]].get("metrics", {}).get("price_to_earnings")),
-            "Screening score": row["score"],
+            "Ticker": row["ticker"],
+            "Index weight": bank.get("weight_percent"),
+            "Current price": metrics.get("price"),
+            "P/E": metrics.get("price_to_earnings"),
+            "P/B": metrics.get("price_to_book"),
+            "ROE": metrics.get("return_on_equity") * 100 if metrics.get("return_on_equity") is not None else None,
+            "Div. yield": metrics.get("dividend_yield") * 100 if metrics.get("dividend_yield") is not None else None,
+            "Score": row["score"],
             "Comment": short_comment(row["score"]),
-        }
-        for i, row in enumerate((item for item in scores if item["status"] == "ranked"), 1)
-    ], use_container_width=True, hide_index=True, height=845)
+        })
+    st.dataframe(
+        ranking_rows,
+        use_container_width=True,
+        hide_index=True,
+        height=845,
+        column_config={
+            "Flag": st.column_config.ImageColumn("", width="small"),
+            "Index weight": st.column_config.NumberColumn("Index wt.", format="%.2f%%"),
+            "Current price": st.column_config.NumberColumn("Price", format="€%.2f"),
+            "P/E": st.column_config.NumberColumn("P/E", format="%.2fx"),
+            "P/B": st.column_config.NumberColumn("P/B", format="%.2fx"),
+            "ROE": st.column_config.NumberColumn("ROE", format="%.1f%%"),
+            "Div. yield": st.column_config.NumberColumn("Div. yield", format="%.1f%%"),
+            "Score": st.column_config.NumberColumn("Score", format="%.1f"),
+        },
+    )
     st.warning("A higher score indicates stronger relative inputs under this methodology; it is not a buy or sell recommendation.")
 
 with details_tab:
@@ -135,13 +161,25 @@ with coverage_tab:
 
 with evidence_tab:
     st.subheader("Official financial reports")
-    selected = st.selectbox("Select a bank", [row["ticker"] for row in universe], key="evidence_bank")
-    selected_bank = banks[selected]
-    st.markdown(f"### {selected_bank['bank_name']}")
-    annual_col, quarterly_col = st.columns(2)
-    annual_col.link_button("Latest annual report", report_pages[selected]["annual"], use_container_width=True)
-    quarterly_col.link_button("Latest quarterly / interim report", report_pages[selected]["quarterly"], use_container_width=True)
     st.caption("Links open official issuer reporting pages where the latest publication is maintained.")
+    st.dataframe(
+        [
+            {
+                "Bank": row["bank_name"],
+                "Ticker": row["ticker"],
+                "Annual report": report_pages[row["ticker"]]["annual"],
+                "Quarterly / interim": report_pages[row["ticker"]]["quarterly"],
+            }
+            for row in universe
+        ],
+        use_container_width=True,
+        hide_index=True,
+        height=845,
+        column_config={
+            "Annual report": st.column_config.LinkColumn("Latest annual report", display_text="Open annual reports"),
+            "Quarterly / interim": st.column_config.LinkColumn("Latest quarterly / interim", display_text="Open results"),
+        },
+    )
 
 with methodology_tab:
     st.subheader("Methodology and controls")

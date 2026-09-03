@@ -12,9 +12,10 @@ margin, payout ratio, market capitalisation, and beta. Official prudential
 metrics are added as a separate evidence-backed overlay as report coverage
 expands, and every bank has an official investor-relations link.
 
-The dark-mode dashboard presents all 23 ranking rows without pagination,
-including country flags/codes, euro-denominated prices, P/E, scores, concise
-comments, and separate official annual and quarterly-report links.
+The dark-mode dashboard presents all 23 ranking rows at once. It includes flag
+images, country codes, tickers, index weights, euro-denominated prices, P/E,
+P/B, ROE, dividend yield, scores, and concise comments. The Evidence tab is a
+complete 23-bank directory of official annual and quarterly-report links.
 
 ## Inputs
 
