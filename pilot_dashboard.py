@@ -20,7 +20,9 @@ def load_data():
         banks = {row["ticker"]: row for row in json.load(handle)}
     with (BASE_DIR / "pilot_scores.json").open(encoding="utf-8") as handle:
         scores = json.load(handle)
-    return banks, scores
+    with (BASE_DIR / "bank_master.json").open(encoding="utf-8") as handle:
+        universe = json.load(handle)
+    return banks, scores, universe
 
 
 def percent(value):
@@ -45,8 +47,8 @@ if st.button("Refresh data"):
         status.update(label="Refresh failed", state="error")
         st.code(result.stderr or result.stdout)
 
-banks, scores = load_data()
-ranking_tab, details_tab, evidence_tab, methodology_tab = st.tabs(["Relative ranking", "Bank details", "Evidence", "Methodology"])
+banks, scores, universe = load_data()
+ranking_tab, details_tab, coverage_tab, evidence_tab, methodology_tab = st.tabs(["Relative ranking", "Bank details", "Universe coverage", "Evidence", "Methodology"])
 
 with ranking_tab:
     st.subheader("Relative ranking")
@@ -62,9 +64,9 @@ with ranking_tab:
     st.warning("A higher score indicates stronger relative inputs under this methodology; it is not a buy or sell recommendation.")
 
 with details_tab:
-    selected = st.selectbox("Select a bank", [row["ticker"] for row in scores])
-    bank = banks[selected]
-    score = next(row for row in scores if row["ticker"] == selected)
+    selected = st.selectbox("Select a bank", [row["ticker"] for row in universe])
+    bank = banks.get(selected, next((row for row in universe if row["ticker"] == selected), {"bank_name": selected, "period": "Not available", "report_date": "Not available", "metrics": {}}))
+    score = next((row for row in scores if row["ticker"] == selected), {"score": None, "metrics_used": [], "contributions": {}})
     st.subheader(f"{bank['bank_name']} ({selected})")
     st.write(f"Reporting period: **{bank['period']}** · date: **{bank['report_date']}**")
     metrics = bank.get("metrics", {})
@@ -81,10 +83,19 @@ with details_tab:
         for metric, detail in score.get("contributions", {}).items()
     ], use_container_width=True, hide_index=True)
 
+with coverage_tab:
+    st.subheader("EURO STOXX Banks universe")
+    scored = {row["ticker"] for row in scores}
+    st.caption(f"{len(scored)} of {len(universe)} banks currently have validated scoring data.")
+    st.dataframe([
+        {"Bank": row.get("bank_name"), "Ticker": row.get("ticker"), "Country": row.get("country"), "Status": "Scored pilot" if row.get("ticker") in scored else "Awaiting official report/metrics"}
+        for row in universe
+    ], use_container_width=True, hide_index=True)
+
 with evidence_tab:
     st.subheader("Source evidence")
-    selected = st.selectbox("Select a bank for evidence", [row["ticker"] for row in scores], key="evidence_bank")
-    bank = banks[selected]
+    selected = st.selectbox("Select a bank for evidence", [row["ticker"] for row in universe], key="evidence_bank")
+    bank = banks.get(selected, {"evidence": []})
     for item in bank.get("evidence", []):
         st.markdown(f"**{item['metric']}** — {item.get('note', 'Source observation')}  ")
         st.markdown(f"[Open official source]({item['source_url']})")
