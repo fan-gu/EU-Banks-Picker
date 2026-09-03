@@ -1,0 +1,86 @@
+[
+  {
+    "ticker": "DBK",
+    "bank_name": "Deutsche Bank AG",
+    "score": 0.6839,
+    "metrics_used": [
+      "cet1_ratio",
+      "price_to_book",
+      "price_to_earnings"
+    ],
+    "contributions": {
+      "cet1_ratio": {
+        "raw_value": 0.139,
+        "normalized_score": 1.0,
+        "weight": 0.4
+      },
+      "price_to_book": {
+        "raw_value": 0.82943976,
+        "normalized_score": 0.8111,
+        "weight": 0.35
+      },
+      "price_to_earnings": {
+        "raw_value": 10.575988,
+        "normalized_score": 0.0,
+        "weight": 0.25
+      }
+    },
+    "status": "screening_score_only"
+  },
+  {
+    "ticker": "ACA",
+    "bank_name": "Crédit Agricole S.A.",
+    "score": 0.5536,
+    "metrics_used": [
+      "cet1_ratio",
+      "price_to_book",
+      "price_to_earnings"
+    ],
+    "contributions": {
+      "cet1_ratio": {
+        "raw_value": 0.113,
+        "normalized_score": 0.0,
+        "weight": 0.4
+      },
+      "price_to_book": {
+        "raw_value": 0.8034482,
+        "normalized_score": 1.0,
+        "weight": 0.35
+      },
+      "price_to_earnings": {
+        "raw_value": 9.227722,
+        "normalized_score": 0.8144,
+        "weight": 0.25
+      }
+    },
+    "status": "screening_score_only"
+  },
+  {
+    "ticker": "BNP",
+    "bank_name": "BNP Paribas S.A.",
+    "score": 0.5115,
+    "metrics_used": [
+      "cet1_ratio",
+      "price_to_book",
+      "price_to_earnings"
+    ],
+    "contributions": {
+      "cet1_ratio": {
+        "raw_value": 0.13,
+        "normalized_score": 0.6538,
+        "weight": 0.4
+      },
+      "price_to_book": {
+        "raw_value": 0.94104767,
+        "normalized_score": 0.0,
+        "weight": 0.35
+      },
+      "price_to_earnings": {
+        "raw_value": 8.920415,
+        "normalized_score": 1.0,
+        "weight": 0.25
+      }
+    },
+    "status": "screening_score_only"
+  }
+]

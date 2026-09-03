@@ -1,0 +1,5 @@
+python-dotenv
+pypdf
+pdfplumber
+streamlit
+yfinance

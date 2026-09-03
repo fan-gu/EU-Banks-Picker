@@ -1,2 +1,40 @@
-# EU-Banks-Picker
-Compare public financial information for EURO STOXX Banks constituents and identify potentially attractive or expensive banks relative to peers.
+# EU Banks Picker
+
+Production-oriented prototype of the **EuroSTOXX Bank Valuation Agent**.
+
+It compares public bank reports and market observations for Crédit Agricole,
+BNP Paribas, and Deutsche Bank, while preserving evidence, timestamps, and
+comparability controls.
+
+## Workflow
+
+```text
+Official reports -> PDF text/tables -> provenance archive
+Market prices ---------------------> comparable dataset
+                       -> quality/freshness gates
+                       -> weighted peer score
+                       -> cited report and Streamlit dashboard
+```
+
+## Run locally
+
+```powershell
+& ".\\venv\\Scripts\\python.exe" .\\run_pilot_pipeline.py
+streamlit run .\\pilot_dashboard.py
+```
+
+## Production controls
+
+- SHA-256 file hashes and page-level provenance
+- Period and definition comparability checks
+- Missing-data exclusion and freshness gates
+- Evidence validation and weight sensitivity analysis
+- Governance disclosures and human-review checklist
+
+## Streamlit deployment
+
+Deploy `pilot_dashboard.py` from this repository using Streamlit Community
+Cloud. Set the app entrypoint to `pilot_dashboard.py` and install dependencies
+from `requirements.txt`.
+
+This is a research screening tool, not personalized investment advice.

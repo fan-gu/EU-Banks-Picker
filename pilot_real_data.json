@@ -1,0 +1,99 @@
+[
+  {
+    "bank_name": "Crédit Agricole S.A.",
+    "ticker": "ACA",
+    "index_symbol": "SX7U",
+    "report_date": "2026-06-30",
+    "period": "H1-2026",
+    "report_type": "interim_results",
+    "metrics": {
+      "cet1_ratio": 0.113,
+      "rote": 0.143
+    },
+    "evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.113,
+        "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+        "page": 4,
+        "note": "Crédit Agricole S.A.; 30 June 2026"
+      },
+      {
+        "metric": "rote",
+        "value": 0.143,
+        "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+        "page": 4,
+        "note": "Crédit Agricole S.A.; H1-2026 annualised ROTE"
+      }
+    ],
+    "status": "verified_source_extracted"
+  },
+  {
+    "bank_name": "BNP Paribas S.A.",
+    "ticker": "BNP",
+    "index_symbol": "SX7U",
+    "report_date": "2026-06-30",
+    "period": "Q2-2026",
+    "report_type": "quarterly_results",
+    "metrics": {
+      "cet1_ratio": 0.130,
+      "cost_income_ratio": 0.567
+    },
+    "evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.130,
+        "source_url": "https://invest.bnpparibas/en/document/second-quarter-2026-results-transcript",
+        "note": "CET1 at 30 June 2026"
+      },
+      {
+        "metric": "cost_income_ratio",
+        "value": 0.567,
+        "source_url": "https://invest.bnpparibas/en/results",
+        "note": "Group Q2-2026 cost-income ratio"
+      }
+    ],
+    "status": "verified_source_extracted"
+  },
+  {
+    "bank_name": "Deutsche Bank AG",
+    "ticker": "DBK",
+    "index_symbol": "SX7U",
+    "report_date": "2026-06-30",
+    "period": "Q2-2026",
+    "report_type": "quarterly_results",
+    "metrics": {
+      "cet1_ratio": 0.139,
+      "rote": 0.110,
+      "roe": 0.098,
+      "cost_income_ratio": 0.630
+    },
+    "evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.139,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "CET1 at end of June 2026"
+      },
+      {
+        "metric": "rote",
+        "value": 0.110,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 post-tax RoTE"
+      },
+      {
+        "metric": "roe",
+        "value": 0.098,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 post-tax RoE"
+      },
+      {
+        "metric": "cost_income_ratio",
+        "value": 0.630,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 cost/income ratio"
+      }
+    ],
+    "status": "verified_source_extracted"
+  }
+]

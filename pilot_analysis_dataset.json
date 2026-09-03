@@ -1,0 +1,171 @@
+[
+  {
+    "bank_name": "Crédit Agricole S.A.",
+    "ticker": "ACA",
+    "index_symbol": "SX7U",
+    "report_date": "2026-06-30",
+    "period": "H1-2026",
+    "report_type": "interim_results",
+    "metrics": {
+      "cet1_ratio": 0.113,
+      "rote": 0.143
+    },
+    "evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.113,
+        "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+        "page": 4,
+        "note": "Crédit Agricole S.A.; 30 June 2026"
+      },
+      {
+        "metric": "rote",
+        "value": 0.143,
+        "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+        "page": 4,
+        "note": "Crédit Agricole S.A.; H1-2026 annualised ROTE"
+      }
+    ],
+    "status": "verified_source_extracted",
+    "market_data": {
+      "internal_ticker": "ACA",
+      "market_ticker": "ACA.PA",
+      "price": 18.565,
+      "price_date": "2026-09-02",
+      "retrieved_at": "2026-09-02T13:53:20.947663+00:00"
+    },
+    "valuation_metrics": {
+      "price_to_book": 0.8034482,
+      "price_to_earnings": 9.227722,
+      "status": "provider_observation_requires_review",
+      "market_cap": 56229949440,
+      "eps_trailing": 2.02,
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-09-03T07:50:31.813291+00:00"
+    },
+    "comparability": {
+      "common_balance_date": true,
+      "cet1_ratio": "comparable",
+      "rote": "not comparable until all three use the same scope",
+      "cost_income_ratio": "not comparable until all three use the same scope",
+      "price_to_book": "pending",
+      "price_to_earnings": "pending"
+    }
+  },
+  {
+    "bank_name": "BNP Paribas S.A.",
+    "ticker": "BNP",
+    "index_symbol": "SX7U",
+    "report_date": "2026-06-30",
+    "period": "Q2-2026",
+    "report_type": "quarterly_results",
+    "metrics": {
+      "cet1_ratio": 0.13,
+      "cost_income_ratio": 0.567
+    },
+    "evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.13,
+        "source_url": "https://invest.bnpparibas/en/document/second-quarter-2026-results-transcript",
+        "note": "CET1 at 30 June 2026"
+      },
+      {
+        "metric": "cost_income_ratio",
+        "value": 0.567,
+        "source_url": "https://invest.bnpparibas/en/results",
+        "note": "Group Q2-2026 cost-income ratio"
+      }
+    ],
+    "status": "verified_source_extracted",
+    "market_data": {
+      "internal_ticker": "BNP",
+      "market_ticker": "BNP.PA",
+      "price": 103.04,
+      "price_date": "2026-09-02",
+      "retrieved_at": "2026-09-02T13:53:21.064837+00:00"
+    },
+    "valuation_metrics": {
+      "price_to_book": 0.94104767,
+      "price_to_earnings": 8.920415,
+      "status": "provider_observation_requires_review",
+      "market_cap": 113019518976,
+      "eps_trailing": 11.56,
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-09-03T07:50:31.813291+00:00"
+    },
+    "comparability": {
+      "common_balance_date": true,
+      "cet1_ratio": "comparable",
+      "rote": "not comparable until all three use the same scope",
+      "cost_income_ratio": "not comparable until all three use the same scope",
+      "price_to_book": "pending",
+      "price_to_earnings": "pending"
+    }
+  },
+  {
+    "bank_name": "Deutsche Bank AG",
+    "ticker": "DBK",
+    "index_symbol": "SX7U",
+    "report_date": "2026-06-30",
+    "period": "Q2-2026",
+    "report_type": "quarterly_results",
+    "metrics": {
+      "cet1_ratio": 0.139,
+      "rote": 0.11,
+      "roe": 0.098,
+      "cost_income_ratio": 0.63
+    },
+    "evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.139,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "CET1 at end of June 2026"
+      },
+      {
+        "metric": "rote",
+        "value": 0.11,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 post-tax RoTE"
+      },
+      {
+        "metric": "roe",
+        "value": 0.098,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 post-tax RoE"
+      },
+      {
+        "metric": "cost_income_ratio",
+        "value": 0.63,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 cost/income ratio"
+      }
+    ],
+    "status": "verified_source_extracted",
+    "market_data": {
+      "internal_ticker": "DBK",
+      "market_ticker": "DBK.DE",
+      "price": 34.575,
+      "price_date": "2026-09-02",
+      "retrieved_at": "2026-09-02T13:53:21.324646+00:00"
+    },
+    "valuation_metrics": {
+      "price_to_book": 0.82943976,
+      "price_to_earnings": 10.575988,
+      "status": "provider_observation_requires_review",
+      "market_cap": 65379803136,
+      "eps_trailing": 3.29,
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-09-03T07:50:31.813291+00:00"
+    },
+    "comparability": {
+      "common_balance_date": true,
+      "cet1_ratio": "comparable",
+      "rote": "not comparable until all three use the same scope",
+      "cost_income_ratio": "not comparable until all three use the same scope",
+      "price_to_book": "pending",
+      "price_to_earnings": "pending"
+    }
+  }
+]
