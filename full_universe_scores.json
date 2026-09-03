@@ -2,17 +2,17 @@
   {
     "ticker": "BPE",
     "bank_name": "BPER Banca S.p.A.",
-    "score": 68.2,
+    "score": 68.7,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.6482168,
+        "raw_value": 1.6456693,
         "percentile_score": 0.587,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 12.94,
+        "raw_value": 13.038531,
         "percentile_score": 0.6304,
         "weight": 0.15
       },
@@ -28,7 +28,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.08960000000000001,
-        "percentile_score": 0.8913,
+        "percentile_score": 0.9348,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -47,17 +47,17 @@
   {
     "ticker": "BNP",
     "bank_name": "BNP Paribas S.A.",
-    "score": 66.6,
+    "score": 67.1,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 0.949352,
+        "raw_value": 0.9492608,
         "percentile_score": 0.8478,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 8.999134,
+        "raw_value": 8.998269,
         "percentile_score": 0.9783,
         "weight": 0.15
       },
@@ -73,7 +73,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.056299999999999996,
-        "percentile_score": 0.6304,
+        "percentile_score": 0.6739,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -92,17 +92,17 @@
   {
     "ticker": "AIBG",
     "bank_name": "AIB Group plc",
-    "score": 58.4,
+    "score": 58.9,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.6607276,
+        "raw_value": 1.663697,
         "percentile_score": 0.5435,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 11.530928,
+        "raw_value": 11.551546,
         "percentile_score": 0.8043,
         "weight": 0.15
       },
@@ -118,7 +118,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.059500000000000004,
-        "percentile_score": 0.7609,
+        "percentile_score": 0.8043,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -137,17 +137,17 @@
   {
     "ticker": "BBVA",
     "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
-    "score": 55.4,
+    "score": 55.8,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 2.4843197,
+        "raw_value": 2.4803996,
         "percentile_score": 0.1087,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 13.272252,
+        "raw_value": 13.251308,
         "percentile_score": 0.5435,
         "weight": 0.15
       },
@@ -163,7 +163,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.036699999999999997,
-        "percentile_score": 0.3696,
+        "percentile_score": 0.413,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -180,64 +180,19 @@
     "status": "ranked"
   },
   {
-    "ticker": "EBS",
-    "bank_name": "Erste Group Bank AG",
-    "score": 54.8,
-    "metric_count": 7,
-    "weight_coverage": 1.0,
-    "components": {
-      "price_to_book": {
-        "raw_value": 1.9734316,
-        "percentile_score": 0.2826,
-        "weight": 0.25
-      },
-      "price_to_earnings": {
-        "raw_value": 13.791947,
-        "percentile_score": 0.413,
-        "weight": 0.15
-      },
-      "return_on_equity": {
-        "raw_value": 0.13213,
-        "percentile_score": 0.4565,
-        "weight": 0.2
-      },
-      "return_on_assets": {
-        "raw_value": 0.01194,
-        "percentile_score": 0.7174,
-        "weight": 0.1
-      },
-      "dividend_yield": {
-        "raw_value": 0.62,
-        "percentile_score": 0.9783,
-        "weight": 0.1
-      },
-      "earnings_growth": {
-        "raw_value": 0.175,
-        "percentile_score": 0.6136,
-        "weight": 0.1
-      },
-      "revenue_growth": {
-        "raw_value": 0.399,
-        "percentile_score": 0.9318,
-        "weight": 0.1
-      }
-    },
-    "status": "ranked"
-  },
-  {
     "ticker": "ISP",
     "bank_name": "Intesa Sanpaolo S.p.A.",
-    "score": 54.7,
+    "score": 55.1,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.7130435,
+        "raw_value": 1.7138108,
         "percentile_score": 0.4565,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 11.960714,
+        "raw_value": 11.966072,
         "percentile_score": 0.7174,
         "weight": 0.15
       },
@@ -253,7 +208,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0571,
-        "percentile_score": 0.7174,
+        "percentile_score": 0.7609,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -272,17 +227,17 @@
   {
     "ticker": "BIRG",
     "bank_name": "Bank of Ireland Group plc",
-    "score": 54.6,
+    "score": 55.1,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.4282092,
+        "raw_value": 1.4263982,
         "percentile_score": 0.6739,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 14.6037035,
+        "raw_value": 14.585185,
         "percentile_score": 0.3261,
         "weight": 0.15
       },
@@ -298,7 +253,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0437,
-        "percentile_score": 0.5435,
+        "percentile_score": 0.587,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -317,17 +272,17 @@
   {
     "ticker": "GLE",
     "bank_name": "Société Générale S.A.",
-    "score": 54.4,
+    "score": 54.8,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 0.7533324,
+        "raw_value": 0.75374067,
         "percentile_score": 0.9783,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 9.6990795,
+        "raw_value": 9.704336,
         "percentile_score": 0.8913,
         "weight": 0.15
       },
@@ -343,7 +298,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0241,
-        "percentile_score": 0.0652,
+        "percentile_score": 0.1087,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -362,17 +317,17 @@
   {
     "ticker": "INGA",
     "bank_name": "ING Groep N.V.",
-    "score": 52.7,
+    "score": 53.2,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.8016506,
+        "raw_value": 1.8044963,
         "percentile_score": 0.3696,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 13.703464,
+        "raw_value": 13.725108,
         "percentile_score": 0.4565,
         "weight": 0.15
       },
@@ -388,7 +343,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0363,
-        "percentile_score": 0.3261,
+        "percentile_score": 0.3696,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -407,17 +362,17 @@
   {
     "ticker": "DBK",
     "bank_name": "Deutsche Bank AG",
-    "score": 51.6,
+    "score": 52.0,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 0.84112036,
+        "raw_value": 0.84576875,
         "percentile_score": 0.8913,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 10.724924,
+        "raw_value": 10.686747,
         "percentile_score": 0.8478,
         "weight": 0.15
       },
@@ -433,7 +388,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0287,
-        "percentile_score": 0.1522,
+        "percentile_score": 0.1957,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -452,17 +407,17 @@
   {
     "ticker": "ACA",
     "bank_name": "Crédit Agricole S.A.",
-    "score": 49.6,
+    "score": 50.1,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 0.8153017,
+        "raw_value": 0.8172413,
         "percentile_score": 0.9348,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 9.363862,
+        "raw_value": 9.386138,
         "percentile_score": 0.9348,
         "weight": 0.15
       },
@@ -478,7 +433,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0915,
-        "percentile_score": 0.9348,
+        "percentile_score": 0.9783,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -497,17 +452,17 @@
   {
     "ticker": "UCG",
     "bank_name": "UniCredit S.p.A.",
-    "score": 49.2,
+    "score": 49.6,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.7906003,
+        "raw_value": 1.7940044,
         "percentile_score": 0.413,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 11.937589,
+        "raw_value": 11.960283,
         "percentile_score": 0.7609,
         "weight": 0.15
       },
@@ -523,7 +478,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.037599999999999995,
-        "percentile_score": 0.413,
+        "percentile_score": 0.4565,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -542,17 +497,17 @@
   {
     "ticker": "BAMI",
     "bank_name": "Banco BPM S.p.A.",
-    "score": 49.0,
+    "score": 49.4,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.5691566,
+        "raw_value": 1.5701206,
         "percentile_score": 0.6304,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 12.818898,
+        "raw_value": 12.826773,
         "percentile_score": 0.6739,
         "weight": 0.15
       },
@@ -568,7 +523,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0622,
-        "percentile_score": 0.8043,
+        "percentile_score": 0.8478,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -587,17 +542,17 @@
   {
     "ticker": "BKT",
     "bank_name": "Bankinter S.A.",
-    "score": 48.9,
+    "score": 49.3,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 2.2563345,
+        "raw_value": 2.259016,
         "percentile_score": 0.1957,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 13.682926,
+        "raw_value": 13.699187,
         "percentile_score": 0.5,
         "weight": 0.15
       },
@@ -613,7 +568,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0464,
-        "percentile_score": 0.587,
+        "percentile_score": 0.6304,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -632,17 +587,17 @@
   {
     "ticker": "FBK",
     "bank_name": "FinecoBank S.p.A.",
-    "score": 46.2,
+    "score": 46.7,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 5.986725,
+        "raw_value": 5.9790654,
         "percentile_score": 0.0217,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 21.318182,
+        "raw_value": 21.290909,
         "percentile_score": 0.0217,
         "weight": 0.15
       },
@@ -658,7 +613,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0342,
-        "percentile_score": 0.2391,
+        "percentile_score": 0.2826,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -677,17 +632,17 @@
   {
     "ticker": "ABN",
     "bank_name": "ABN AMRO Bank N.V.",
-    "score": 46.1,
+    "score": 46.5,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.2687814,
+        "raw_value": 1.2732531,
         "percentile_score": 0.8043,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 15.309353,
+        "raw_value": 15.363309,
         "percentile_score": 0.2391,
         "weight": 0.15
       },
@@ -703,7 +658,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0326,
-        "percentile_score": 0.1957,
+        "percentile_score": 0.2391,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -722,17 +677,17 @@
   {
     "ticker": "NDA-FI",
     "bank_name": "Nordea Bank Abp",
-    "score": 45.4,
+    "score": 45.8,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.93912,
+        "raw_value": 1.9478327,
         "percentile_score": 0.3261,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 12.99635,
+        "raw_value": 13.054745,
         "percentile_score": 0.587,
         "weight": 0.15
       },
@@ -748,7 +703,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0741,
-        "percentile_score": 0.8478,
+        "percentile_score": 0.8913,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -765,19 +720,64 @@
     "status": "ranked"
   },
   {
-    "ticker": "BG",
-    "bank_name": "BAWAG Group AG",
-    "score": 44.6,
+    "ticker": "EBS",
+    "bank_name": "Erste Group Bank AG",
+    "score": 45.2,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 2.9199588,
+        "raw_value": 1.9798335,
+        "percentile_score": 0.2826,
+        "weight": 0.25
+      },
+      "price_to_earnings": {
+        "raw_value": 13.836689,
+        "percentile_score": 0.413,
+        "weight": 0.15
+      },
+      "return_on_equity": {
+        "raw_value": 0.13213,
+        "percentile_score": 0.4565,
+        "weight": 0.2
+      },
+      "return_on_assets": {
+        "raw_value": 0.01194,
+        "percentile_score": 0.7174,
+        "weight": 0.1
+      },
+      "dividend_yield": {
+        "raw_value": 0.0062,
+        "percentile_score": 0.0217,
+        "weight": 0.1
+      },
+      "earnings_growth": {
+        "raw_value": 0.175,
+        "percentile_score": 0.6136,
+        "weight": 0.1
+      },
+      "revenue_growth": {
+        "raw_value": 0.399,
+        "percentile_score": 0.9318,
+        "weight": 0.1
+      }
+    },
+    "status": "ranked"
+  },
+  {
+    "ticker": "BG",
+    "bank_name": "BAWAG Group AG",
+    "score": 45.0,
+    "metric_count": 7,
+    "weight_coverage": 1.0,
+    "components": {
+      "price_to_book": {
+        "raw_value": 2.9314096,
         "percentile_score": 0.0652,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 15.616797,
+        "raw_value": 15.67804,
         "percentile_score": 0.1957,
         "weight": 0.15
       },
@@ -793,7 +793,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0352,
-        "percentile_score": 0.2826,
+        "percentile_score": 0.3261,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -812,17 +812,17 @@
   {
     "ticker": "CBK",
     "bank_name": "Commerzbank AG",
-    "score": 43.5,
+    "score": 43.9,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.3194201,
+        "raw_value": 1.3303032,
         "percentile_score": 0.7174,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 15.793104,
+        "raw_value": 15.923373,
         "percentile_score": 0.1522,
         "weight": 0.15
       },
@@ -838,7 +838,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.027000000000000003,
-        "percentile_score": 0.1087,
+        "percentile_score": 0.1522,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -857,7 +857,7 @@
   {
     "ticker": "CABK",
     "bank_name": "CaixaBank S.A.",
-    "score": 40.7,
+    "score": 41.1,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
@@ -883,7 +883,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0378,
-        "percentile_score": 0.4565,
+        "percentile_score": 0.5,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -902,17 +902,17 @@
   {
     "ticker": "SAN",
     "bank_name": "Banco Santander S.A.",
-    "score": 38.4,
+    "score": 38.8,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 1.6861819,
+        "raw_value": 1.686444,
         "percentile_score": 0.5,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 14.465168,
+        "raw_value": 14.467417,
         "percentile_score": 0.3696,
         "weight": 0.15
       },
@@ -928,7 +928,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0197,
-        "percentile_score": 0.0217,
+        "percentile_score": 0.0652,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -947,17 +947,17 @@
   {
     "ticker": "KBC",
     "bank_name": "KBC Group N.V.",
-    "score": 38.4,
+    "score": 38.8,
     "metric_count": 7,
     "weight_coverage": 1.0,
     "components": {
       "price_to_book": {
-        "raw_value": 2.065942,
+        "raw_value": 2.0690513,
         "percentile_score": 0.2391,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 14.7176075,
+        "raw_value": 14.739758,
         "percentile_score": 0.2826,
         "weight": 0.15
       },
@@ -973,7 +973,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.039,
-        "percentile_score": 0.5,
+        "percentile_score": 0.5435,
         "weight": 0.1
       },
       "earnings_growth": {
@@ -992,17 +992,17 @@
   {
     "ticker": "SAB",
     "bank_name": "Banco de Sabadell S.A.",
-    "score": 35.9,
+    "score": 36.4,
     "metric_count": 5,
     "weight_coverage": 0.8,
     "components": {
       "price_to_book": {
-        "raw_value": 1.3038064,
+        "raw_value": 1.3073639,
         "percentile_score": 0.7609,
         "weight": 0.25
       },
       "price_to_earnings": {
-        "raw_value": 18.324999,
+        "raw_value": 18.375,
         "percentile_score": 0.0652,
         "weight": 0.15
       },
@@ -1018,7 +1018,7 @@
       },
       "dividend_yield": {
         "raw_value": 0.0564,
-        "percentile_score": 0.6739,
+        "percentile_score": 0.7174,
         "weight": 0.1
       }
     },
