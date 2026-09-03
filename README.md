@@ -31,6 +31,10 @@ streamlit run .\\pilot_dashboard.py
 - Evidence validation and weight sensitivity analysis
 - Governance disclosures and human-review checklist
 
+The metric catalogue covers valuation, profitability, capital, leverage,
+liquidity, funding, asset quality, interest-rate, market, operational, and
+systemic-importance indicators. See `metric_catalog.json`.
+
 ## Expand the universe
 
 `bank_master.json` contains the 23-bank universe and `report_registry.json`

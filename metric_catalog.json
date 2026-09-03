@@ -1,0 +1,26 @@
+{
+  "purpose": "Systemic EU bank peer evaluation; metrics require same scope and period.",
+  "source_priority": ["official bank reports", "EBA supervisory data", "ECB supervisory data", "licensed market data"],
+  "metrics": [
+    {"name":"price_to_book","category":"valuation","direction":"lower","suggested_weight":0.15,"source":"market data plus latest tangible equity"},
+    {"name":"price_to_earnings","category":"valuation","direction":"lower","suggested_weight":0.10,"source":"market data plus reported earnings"},
+    {"name":"roe_or_rote","category":"profitability","direction":"higher","suggested_weight":0.10,"source":"results release"},
+    {"name":"net_interest_income_growth","category":"profitability","direction":"higher","suggested_weight":0.05,"source":"results release"},
+    {"name":"cost_income_ratio","category":"efficiency","direction":"lower","suggested_weight":0.05,"source":"results release"},
+    {"name":"cet1_ratio","category":"capital","direction":"higher","suggested_weight":0.10,"source":"COREP/Pillar 3 or results release"},
+    {"name":"cet1_headroom_to_requirement","category":"capital","direction":"higher","suggested_weight":0.08,"source":"Pillar 3 and supervisory requirement disclosure"},
+    {"name":"leverage_ratio","category":"capital","direction":"higher","suggested_weight":0.05,"source":"Pillar 3"},
+    {"name":"lcr","category":"liquidity","direction":"higher","suggested_weight":0.06,"source":"Pillar 3"},
+    {"name":"nsfr","category":"liquidity","direction":"higher","suggested_weight":0.06,"source":"Pillar 3"},
+    {"name":"loan_to_deposit_ratio","category":"funding","direction":"lower","suggested_weight":0.04,"source":"annual/interim report"},
+    {"name":"npl_ratio","category":"asset_quality","direction":"lower","suggested_weight":0.05,"source":"FINREP/Pillar 3"},
+    {"name":"npl_coverage_ratio","category":"asset_quality","direction":"higher","suggested_weight":0.04,"source":"Pillar 3"},
+    {"name":"cost_of_risk","category":"asset_quality","direction":"lower","suggested_weight":0.04,"source":"results release"},
+    {"name":"sector_concentration","category":"asset_quality","direction":"lower","suggested_weight":0.02,"source":"Pillar 3 and risk report"},
+    {"name":"irbbb_nii_sensitivity","category":"interest_rate_risk","direction":"lower_abs","suggested_weight":0.02,"source":"Pillar 3 IRRBB disclosure"},
+    {"name":"market_risk_rwa_ratio","category":"market_risk","direction":"lower","suggested_weight":0.01,"source":"Pillar 3"},
+    {"name":"operational_loss_to_cet1","category":"operational_risk","direction":"lower","suggested_weight":0.01,"source":"Pillar 3 and risk report"},
+    {"name":"osii_or_gsii_buffer","category":"systemic_importance","direction":"higher","suggested_weight":0.02,"source":"supervisory disclosure"}
+  ],
+  "rule": "Do not fill missing values silently; exclude incompatible observations and renormalize weights."
+}
