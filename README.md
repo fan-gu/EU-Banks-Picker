@@ -17,6 +17,9 @@ images, country codes, tickers, index weights, euro-denominated prices, P/E,
 P/B, ROE, dividend yield, scores, and concise comments. The Evidence tab is a
 complete 23-bank directory of official annual and quarterly-report links.
 
+Provider dividend yields are normalized to decimal ratios before scoring and
+converted to percentages only for display (for example, `0.0563` → `5.63%`).
+
 ## Inputs
 
 - Official quarterly and annual bank reports

@@ -38,6 +38,14 @@ def number(value):
     return None
 
 
+def ratio(value):
+    """Standardize provider percentages to decimal ratios for storage."""
+    value = number(value)
+    if value is None:
+        return None
+    return value / 100 if abs(value) > 1 else value
+
+
 def percentile(values, value, reverse=False):
     if len(values) <= 1:
         return 0.5
@@ -72,7 +80,7 @@ def main():
                 "return_on_equity": number(info.get("returnOnEquity")),
                 "return_on_assets": number(info.get("returnOnAssets")),
                 "profit_margin": number(info.get("profitMargins")),
-                "dividend_yield": number(info.get("dividendYield")),
+                "dividend_yield": ratio(info.get("dividendYield")),
                 "payout_ratio": number(info.get("payoutRatio")),
                 "earnings_growth": number(info.get("earningsGrowth")),
                 "revenue_growth": number(info.get("revenueGrowth")),
