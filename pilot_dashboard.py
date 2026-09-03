@@ -12,6 +12,11 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).with_name(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent
+COUNTRY_DISPLAY = {
+    "Austria": "🇦🇹 AT", "Belgium": "🇧🇪 BE", "Finland": "🇫🇮 FI",
+    "France": "🇫🇷 FR", "Germany": "🇩🇪 DE", "Ireland": "🇮🇪 IE",
+    "Italy": "🇮🇹 IT", "Netherlands": "🇳🇱 NL", "Spain": "🇪🇸 ES",
+}
 
 
 @st.cache_data
@@ -74,13 +79,14 @@ with ranking_tab:
         {
             "Rank": i,
             "Bank": row["bank_name"],
-            "Country": banks[row["ticker"]]["country"],
-            "Current price": banks[row["ticker"]].get("metrics", {}).get("price"),
+            "Country": COUNTRY_DISPLAY.get(banks[row["ticker"]]["country"], banks[row["ticker"]]["country"]),
+            "Current price": f"€{banks[row['ticker']].get('metrics', {}).get('price'):,.2f}" if banks[row["ticker"]].get("metrics", {}).get("price") is not None else "N/A",
+            "P/E": multiple(banks[row["ticker"]].get("metrics", {}).get("price_to_earnings")),
             "Screening score": row["score"],
             "Comment": short_comment(row["score"]),
         }
         for i, row in enumerate((item for item in scores if item["status"] == "ranked"), 1)
-    ], use_container_width=True, hide_index=True)
+    ], use_container_width=True, hide_index=True, height=845)
     st.warning("A higher score indicates stronger relative inputs under this methodology; it is not a buy or sell recommendation.")
 
 with details_tab:
@@ -128,15 +134,14 @@ with coverage_tab:
     ], use_container_width=True, hide_index=True)
 
 with evidence_tab:
-    st.subheader("Source evidence")
-    selected = st.selectbox("Select a bank for evidence", [row["ticker"] for row in universe], key="evidence_bank")
-    bank = banks.get(selected, {"official_evidence": []})
-    st.link_button("Open official investor-relations reports", report_pages[selected])
-    for item in bank.get("official_evidence", []):
-        st.markdown(f"**{item['metric']}** — {item.get('note', 'Source observation')}  ")
-        st.markdown(f"[Open official source]({item['source_url']})")
-    if not bank.get("official_evidence"):
-        st.info("Official prudential evidence is pending for this bank. Market fields are provider observations.")
+    st.subheader("Official financial reports")
+    selected = st.selectbox("Select a bank", [row["ticker"] for row in universe], key="evidence_bank")
+    selected_bank = banks[selected]
+    st.markdown(f"### {selected_bank['bank_name']}")
+    annual_col, quarterly_col = st.columns(2)
+    annual_col.link_button("Latest annual report", report_pages[selected]["annual"], use_container_width=True)
+    quarterly_col.link_button("Latest quarterly / interim report", report_pages[selected]["quarterly"], use_container_width=True)
+    st.caption("Links open official issuer reporting pages where the latest publication is maintained.")
 
 with methodology_tab:
     st.subheader("Methodology and controls")
