@@ -1,0 +1,4 @@
+.env
+reports/*.pdf
+reports/**/*.pdf
+production_pdf_archive.json
