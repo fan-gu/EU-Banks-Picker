@@ -21,7 +21,7 @@ def load_data():
     with (BASE_DIR / "pilot_scores.json").open(encoding="utf-8") as handle:
         scores = json.load(handle)
     with (BASE_DIR / "bank_master.json").open(encoding="utf-8") as handle:
-        universe = json.load(handle)
+        universe = json.load(handle)["constituents"]
     return banks, scores, universe
 
 

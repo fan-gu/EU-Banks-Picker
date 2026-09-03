@@ -24,7 +24,7 @@ def sha256(path: Path) -> str:
 
 def main() -> None:
     registry_path = BASE_DIR / "report_registry.json"
-    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))["banks"]
     results = []
 
     for record in registry:

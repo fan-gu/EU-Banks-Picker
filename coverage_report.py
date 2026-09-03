@@ -11,8 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def main() -> None:
-    universe = json.loads((BASE_DIR / "bank_master.json").read_text(encoding="utf-8"))
-    registry = {row["ticker"]: row for row in json.loads((BASE_DIR / "report_registry.json").read_text(encoding="utf-8"))}
+    universe = json.loads((BASE_DIR / "bank_master.json").read_text(encoding="utf-8"))["constituents"]
+    registry = {row["ticker"]: row for row in json.loads((BASE_DIR / "report_registry.json").read_text(encoding="utf-8"))["banks"]}
     pilot = {row["ticker"]: row for row in json.loads((BASE_DIR / "pilot_real_data.json").read_text(encoding="utf-8"))}
 
     verified_urls = sum(bool(registry.get(row.get("ticker"), {}).get("download_url")) for row in universe)
