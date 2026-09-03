@@ -20,7 +20,15 @@ MARKET_TICKERS = {
     "ABN": "ABN.AS", "BAMI": "BAMI.MI", "SAB": "SAB.MC", "AIBG": "A5G.IR",
     "BKT": "BKT.MC", "BG": "BG.VI", "BPE": "BPE.MI",
 }
-WEIGHTS = {"price_to_book": 0.35, "price_to_earnings": 0.25, "return_on_equity": 0.25, "dividend_yield": 0.15}
+WEIGHTS = {
+    "price_to_book": 0.25,
+    "price_to_earnings": 0.15,
+    "return_on_equity": 0.20,
+    "return_on_assets": 0.10,
+    "dividend_yield": 0.10,
+    "earnings_growth": 0.10,
+    "revenue_growth": 0.10,
+}
 LOWER_IS_BETTER = {"price_to_book", "price_to_earnings"}
 
 
@@ -58,8 +66,17 @@ def main():
                 "market_cap": number(info.get("marketCap")),
                 "price_to_book": number(info.get("priceToBook")),
                 "price_to_earnings": number(info.get("trailingPE")),
+                "forward_price_to_earnings": number(info.get("forwardPE")),
+                "book_value_per_share": number(info.get("bookValue")),
+                "earnings_per_share": number(info.get("trailingEps")),
                 "return_on_equity": number(info.get("returnOnEquity")),
+                "return_on_assets": number(info.get("returnOnAssets")),
+                "profit_margin": number(info.get("profitMargins")),
                 "dividend_yield": number(info.get("dividendYield")),
+                "payout_ratio": number(info.get("payoutRatio")),
+                "earnings_growth": number(info.get("earningsGrowth")),
+                "revenue_growth": number(info.get("revenueGrowth")),
+                "beta": number(info.get("beta")),
             }
             record["status"] = "market_data_loaded"
         except Exception as exc:
@@ -77,7 +94,12 @@ def main():
         time.sleep(0.15)
 
     metric_values = {
-        metric: [row["metrics"][metric] for row in records if row.get("metrics", {}).get(metric) is not None and row["metrics"][metric] > 0]
+        metric: [
+            row["metrics"][metric]
+            for row in records
+            if row.get("metrics", {}).get(metric) is not None
+            and (metric not in LOWER_IS_BETTER or row["metrics"][metric] > 0)
+        ]
         for metric in WEIGHTS
     }
     scores = []
@@ -85,7 +107,7 @@ def main():
         components = {}
         for metric, weight in WEIGHTS.items():
             value = row.get("metrics", {}).get(metric)
-            if value is None or value <= 0:
+            if value is None or (metric in LOWER_IS_BETTER and value <= 0):
                 continue
             components[metric] = {
                 "raw_value": value,
@@ -99,7 +121,7 @@ def main():
             "score": round(score * 100, 1) if score is not None else None,
             "metric_count": len(components), "weight_coverage": round(weight_used, 2),
             "components": components,
-            "status": "ranked" if len(components) >= 2 else "insufficient_data",
+            "status": "ranked" if weight_used >= 0.60 else "insufficient_data",
         })
 
     scores.sort(key=lambda row: row["score"] if row["status"] == "ranked" and row["score"] is not None else -1, reverse=True)

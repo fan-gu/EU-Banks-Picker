@@ -1,6 +1,7 @@
 {
   "purpose": "Systemic EU bank peer evaluation; metrics require same scope and period.",
   "source_priority": ["official bank reports", "EBA supervisory data", "ECB supervisory data", "licensed market data"],
+  "market_screen_weights": {"price_to_book":0.25,"price_to_earnings":0.15,"return_on_equity":0.20,"return_on_assets":0.10,"dividend_yield":0.10,"earnings_growth":0.10,"revenue_growth":0.10},
   "metrics": [
     {"name":"price_to_book","category":"valuation","direction":"lower","suggested_weight":0.15,"source":"market data plus latest tangible equity"},
     {"name":"price_to_earnings","category":"valuation","direction":"lower","suggested_weight":0.10,"source":"market data plus reported earnings"},

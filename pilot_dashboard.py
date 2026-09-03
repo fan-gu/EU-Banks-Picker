@@ -22,7 +22,9 @@ def load_data():
         scores = json.load(handle)
     with (BASE_DIR / "bank_master.json").open(encoding="utf-8") as handle:
         universe = json.load(handle)["constituents"]
-    return banks, scores, universe
+    with (BASE_DIR / "official_report_pages.json").open(encoding="utf-8") as handle:
+        report_pages = json.load(handle)
+    return banks, scores, universe, report_pages
 
 
 def percent(value):
@@ -31,6 +33,16 @@ def percent(value):
 
 def multiple(value):
     return f"{value:.2f}x" if isinstance(value, (int, float)) else "Not available"
+
+
+def short_comment(score):
+    if score is None:
+        return "Insufficient comparable data"
+    if score >= 67:
+        return "Strong relative screen; verify report risks"
+    if score >= 45:
+        return "Mixed signals; broadly mid-pack"
+    return "Weak relative screen; review valuation and returns"
 
 
 st.set_page_config(page_title="EU Banks Picker", page_icon="🏦", layout="wide")
@@ -47,7 +59,7 @@ if st.button("Refresh data"):
         status.update(label="Refresh failed", state="error")
         st.code(result.stderr or result.stdout)
 
-banks, scores, universe = load_data()
+banks, scores, universe, report_pages = load_data()
 ranking_tab, details_tab, coverage_tab, evidence_tab, methodology_tab = st.tabs(["Relative ranking", "Bank details", "Universe coverage", "Evidence", "Methodology"])
 
 with ranking_tab:
@@ -59,7 +71,14 @@ with ranking_tab:
         age = (date.today() - observed).days
         (st.error if age > 3 else st.info)(f"Provider data retrieved: {observed} ({age} day(s) old)." + (" Refresh before analysis." if age > 3 else ""))
     st.dataframe([
-        {"Rank": i, "Bank": row["bank_name"], "Ticker": row["ticker"], "Screening score": row["score"], "Metrics": row["metric_count"], "Coverage": f"{row['weight_coverage']:.0%}"}
+        {
+            "Rank": i,
+            "Bank": row["bank_name"],
+            "Country": banks[row["ticker"]]["country"],
+            "Current price": banks[row["ticker"]].get("metrics", {}).get("price"),
+            "Screening score": row["score"],
+            "Comment": short_comment(row["score"]),
+        }
         for i, row in enumerate((item for item in scores if item["status"] == "ranked"), 1)
     ], use_container_width=True, hide_index=True)
     st.warning("A higher score indicates stronger relative inputs under this methodology; it is not a buy or sell recommendation.")
@@ -79,6 +98,19 @@ with details_tab:
     cols[3].metric("P/E", multiple(metrics.get("price_to_earnings")))
     cols[4].metric("ROE", percent(metrics.get("return_on_equity")))
     cols[5].metric("Dividend yield", percent(metrics.get("dividend_yield")))
+    st.markdown("#### Additional equity-research metrics")
+    st.dataframe([
+        {"Metric": "Forward P/E", "Value": multiple(metrics.get("forward_price_to_earnings"))},
+        {"Metric": "Book value per share", "Value": metrics.get("book_value_per_share")},
+        {"Metric": "Earnings per share", "Value": metrics.get("earnings_per_share")},
+        {"Metric": "Return on assets", "Value": percent(metrics.get("return_on_assets"))},
+        {"Metric": "Profit margin", "Value": percent(metrics.get("profit_margin"))},
+        {"Metric": "Payout ratio", "Value": percent(metrics.get("payout_ratio"))},
+        {"Metric": "Earnings growth", "Value": percent(metrics.get("earnings_growth"))},
+        {"Metric": "Revenue growth", "Value": percent(metrics.get("revenue_growth"))},
+        {"Metric": "Market capitalization", "Value": f"{metrics.get('market_cap'):,.0f}" if metrics.get("market_cap") else "Not available"},
+        {"Metric": "Beta", "Value": f"{metrics.get('beta'):.2f}" if metrics.get("beta") is not None else "Not available"},
+    ], use_container_width=True, hide_index=True)
     st.markdown(f"**Verified prudential overlay:** CET1 {percent(prudential.get('cet1_ratio'))} · RoTE {percent(prudential.get('rote'))}")
     st.markdown("#### Score contribution")
     st.dataframe([
@@ -99,6 +131,7 @@ with evidence_tab:
     st.subheader("Source evidence")
     selected = st.selectbox("Select a bank for evidence", [row["ticker"] for row in universe], key="evidence_bank")
     bank = banks.get(selected, {"official_evidence": []})
+    st.link_button("Open official investor-relations reports", report_pages[selected])
     for item in bank.get("official_evidence", []):
         st.markdown(f"**{item['metric']}** — {item.get('note', 'Source observation')}  ")
         st.markdown(f"[Open official source]({item['source_url']})")
@@ -107,7 +140,8 @@ with evidence_tab:
 
 with methodology_tab:
     st.subheader("Methodology and controls")
-    st.markdown("**Common 23-bank score:** P/B 35%, P/E 25%, ROE 25%, dividend yield 15%. Lower valuation multiples score higher; higher profitability and yield score higher. Percentile ranking limits the influence of extreme values.")
+    st.markdown("**Common 23-bank score:** P/B 25%, P/E 15%, ROE 20%, ROA 10%, dividend yield 10%, earnings growth 10%, and revenue growth 10%. Lower valuation multiples score higher; higher returns, yield, and growth score higher. Percentile ranking limits the influence of extreme values.")
+    st.markdown("**Official-report overlay:** CET1, leverage, LCR, NSFR, NPL ratio, NPL coverage, cost of risk, NIM, cost/income, loan/deposit ratio, and IRRBB sensitivities are included only when period-aligned evidence is available.")
     st.markdown("**Controls:** common reporting dates, source evidence, freshness checks, sensitivity analysis, and publication gate.")
     st.markdown("**Scope:** this is a research screening tool, not personalized investment advice.")
     report_path = BASE_DIR / "pilot_report.md"
