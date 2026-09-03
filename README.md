@@ -39,4 +39,11 @@ Market prices ---------------------> comparable dataset
 streamlit run "C:\FG\Roadmap to AI\pilot_dashboard.py"
 ```
 
+To monitor rollout coverage across all 23 constituents:
+
+```powershell
+& "C:\FG\.venv\Scripts\python.exe" `
+  "C:\FG\Roadmap to AI\coverage_report.py"
+```
+
 This is a research screening tool, not personalized investment advice.
