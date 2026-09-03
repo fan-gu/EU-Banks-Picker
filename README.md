@@ -46,4 +46,8 @@ To monitor rollout coverage across all 23 constituents:
   "C:\FG\Roadmap to AI\coverage_report.py"
 ```
 
+The latest download run is recorded in `download_manifest.json`. The current
+batch downloaded official PDFs for ACA, BNP, and DBK; the remaining entries are
+pending URL verification.
+
 This is a research screening tool, not personalized investment advice.

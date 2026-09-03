@@ -1,0 +1,172 @@
+[
+  {
+    "ticker": "ACA",
+    "bank_name": "Crédit Agricole S.A.",
+    "url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+    "checked_at": "2026-09-03T12:10:36.700915+00:00",
+    "status": "downloaded",
+    "path": "C:\\FG\\Roadmap to AI\\EU-Banks-Picker\\reports\\ACA\\ACA_2026_H1_results_en.pdf",
+    "sha256": "22f6fcc6932b856b8fd4a76443b51c5e8ae43225e11f23569d4e6139ad7a3eb1",
+    "bytes": 2025111
+  },
+  {
+    "ticker": "BNP",
+    "bank_name": "BNP Paribas S.A.",
+    "url": "https://cdn-group.bnpparibas.com/uploads/file/universal-registration-document-annual-financial-report-2025.pdf",
+    "checked_at": "2026-09-03T12:10:37.362465+00:00",
+    "status": "downloaded",
+    "path": "C:\\FG\\Roadmap to AI\\EU-Banks-Picker\\reports\\BNP\\BNP_2025_annual_report_en.pdf",
+    "sha256": "70060ea2be1548e6dd228de4aa04b771bb1d7555898b1276e65be7784e328bf5",
+    "bytes": 12591835
+  },
+  {
+    "ticker": "DBK",
+    "bank_name": "Deutsche Bank AG",
+    "url": "https://investorrelations.db.com/files/documents/annual-reports/2024/Annual-Report-2024.pdf?language_id=1",
+    "checked_at": "2026-09-03T12:10:38.270240+00:00",
+    "status": "downloaded",
+    "path": "C:\\FG\\Roadmap to AI\\EU-Banks-Picker\\reports\\DBK\\DBK_2024_annual_report_en.pdf",
+    "sha256": "81c9b850e45ea67492a23d51513f5fe398264926603bc6bab24a1f82a03e067b",
+    "bytes": 20960046
+  },
+  {
+    "ticker": "SAN",
+    "bank_name": "Banco Santander S.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716650+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "INGA",
+    "bank_name": "ING Groep N.V.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716719+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "BBVA",
+    "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716730+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "ISP",
+    "bank_name": "Intesa Sanpaolo S.p.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716735+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "UCG",
+    "bank_name": "UniCredit S.p.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716739+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "NDA-FI",
+    "bank_name": "Nordea Bank Abp",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716743+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "GLE",
+    "bank_name": "Société Générale S.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716747+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "KBC",
+    "bank_name": "KBC Group N.V.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716750+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "CABK",
+    "bank_name": "CaixaBank S.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716754+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "CBK",
+    "bank_name": "Commerzbank AG",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716758+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "EBS",
+    "bank_name": "Erste Group Bank AG",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716762+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "BIRG",
+    "bank_name": "Bank of Ireland Group plc",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716766+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "FBK",
+    "bank_name": "FinecoBank S.p.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716770+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "ABN",
+    "bank_name": "ABN AMRO Bank N.V.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716774+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "BAMI",
+    "bank_name": "Banco BPM S.p.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716779+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "SAB",
+    "bank_name": "Banco de Sabadell S.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716783+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "AIBG",
+    "bank_name": "AIB Group plc",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716787+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "BKT",
+    "bank_name": "Bankinter S.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716791+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "BG",
+    "bank_name": "BAWAG Group AG",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716796+00:00",
+    "status": "pending_official_url"
+  },
+  {
+    "ticker": "BPE",
+    "bank_name": "BPER Banca S.p.A.",
+    "url": null,
+    "checked_at": "2026-09-03T12:10:39.716800+00:00",
+    "status": "pending_official_url"
+  }
+]
