@@ -2,3 +2,5 @@
 reports/*.pdf
 reports/**/*.pdf
 production_pdf_archive.json
+__pycache__/
+*.pyc

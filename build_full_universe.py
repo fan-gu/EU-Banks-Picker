@@ -1,0 +1,113 @@
+"""Build and score the full 23-bank universe using common provider metrics."""
+
+from pathlib import Path
+from datetime import datetime, timezone
+import json
+import math
+import time
+
+from dotenv import load_dotenv
+import yfinance as yf
+
+load_dotenv(Path(__file__).with_name(".env"))
+
+BASE_DIR = Path(__file__).resolve().parent
+MARKET_TICKERS = {
+    "BNP": "BNP.PA", "SAN": "SAN.MC", "INGA": "INGA.AS", "BBVA": "BBVA.MC",
+    "ISP": "ISP.MI", "UCG": "UCG.MI", "NDA-FI": "NDA-FI.HE", "DBK": "DBK.DE",
+    "GLE": "GLE.PA", "KBC": "KBC.BR", "CABK": "CABK.MC", "ACA": "ACA.PA",
+    "CBK": "CBK.DE", "EBS": "EBS.VI", "BIRG": "BIRG.IR", "FBK": "FBK.MI",
+    "ABN": "ABN.AS", "BAMI": "BAMI.MI", "SAB": "SAB.MC", "AIBG": "A5G.IR",
+    "BKT": "BKT.MC", "BG": "BG.VI", "BPE": "BPE.MI",
+}
+WEIGHTS = {"price_to_book": 0.35, "price_to_earnings": 0.25, "return_on_equity": 0.25, "dividend_yield": 0.15}
+LOWER_IS_BETTER = {"price_to_book", "price_to_earnings"}
+
+
+def number(value):
+    if isinstance(value, (int, float)) and math.isfinite(value):
+        return float(value)
+    return None
+
+
+def percentile(values, value, reverse=False):
+    if len(values) <= 1:
+        return 0.5
+    below = sum(candidate < value for candidate in values)
+    equal = sum(candidate == value for candidate in values)
+    result = (below + 0.5 * equal) / len(values)
+    return 1.0 - result if reverse else result
+
+
+def main():
+    master = json.loads((BASE_DIR / "bank_master.json").read_text(encoding="utf-8"))
+    universe = master["constituents"]
+    pilot_path = BASE_DIR / "pilot_real_data.json"
+    pilot = {row["ticker"]: row for row in json.loads(pilot_path.read_text(encoding="utf-8"))} if pilot_path.exists() else {}
+    retrieved_at = datetime.now(timezone.utc).isoformat()
+    records = []
+
+    for bank in universe:
+        ticker = bank["ticker"]
+        symbol = MARKET_TICKERS[ticker]
+        record = {**bank, "market_ticker": symbol, "retrieved_at": retrieved_at, "provider": "Yahoo Finance via yfinance"}
+        try:
+            info = yf.Ticker(symbol).info
+            record["metrics"] = {
+                "price": number(info.get("currentPrice") or info.get("regularMarketPrice")),
+                "market_cap": number(info.get("marketCap")),
+                "price_to_book": number(info.get("priceToBook")),
+                "price_to_earnings": number(info.get("trailingPE")),
+                "return_on_equity": number(info.get("returnOnEquity")),
+                "dividend_yield": number(info.get("dividendYield")),
+            }
+            record["status"] = "market_data_loaded"
+        except Exception as exc:
+            record["metrics"] = {}
+            record["status"] = "market_data_failed"
+            record["error"] = str(exc)
+        if ticker in pilot:
+            record["prudential_metrics"] = pilot[ticker].get("metrics", {})
+            record["official_evidence"] = pilot[ticker].get("evidence", [])
+        else:
+            record["prudential_metrics"] = {}
+            record["official_evidence"] = []
+        records.append(record)
+        print(f"{ticker}: {record['status']}")
+        time.sleep(0.15)
+
+    metric_values = {
+        metric: [row["metrics"][metric] for row in records if row.get("metrics", {}).get(metric) is not None and row["metrics"][metric] > 0]
+        for metric in WEIGHTS
+    }
+    scores = []
+    for row in records:
+        components = {}
+        for metric, weight in WEIGHTS.items():
+            value = row.get("metrics", {}).get(metric)
+            if value is None or value <= 0:
+                continue
+            components[metric] = {
+                "raw_value": value,
+                "percentile_score": round(percentile(metric_values[metric], value, metric in LOWER_IS_BETTER), 4),
+                "weight": weight,
+            }
+        weight_used = sum(item["weight"] for item in components.values())
+        score = sum(item["percentile_score"] * item["weight"] for item in components.values()) / weight_used if weight_used else None
+        scores.append({
+            "ticker": row["ticker"], "bank_name": row["bank_name"],
+            "score": round(score * 100, 1) if score is not None else None,
+            "metric_count": len(components), "weight_coverage": round(weight_used, 2),
+            "components": components,
+            "status": "ranked" if len(components) >= 2 else "insufficient_data",
+        })
+
+    scores.sort(key=lambda row: row["score"] if row["status"] == "ranked" and row["score"] is not None else -1, reverse=True)
+    (BASE_DIR / "full_universe_dataset.json").write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
+    (BASE_DIR / "full_universe_scores.json").write_text(json.dumps(scores, indent=2, ensure_ascii=False), encoding="utf-8")
+    ranked = sum(row["status"] == "ranked" for row in scores)
+    print(f"Ranked {ranked}/{len(scores)} banks. Provider observations require review.")
+
+
+if __name__ == "__main__":
+    main()

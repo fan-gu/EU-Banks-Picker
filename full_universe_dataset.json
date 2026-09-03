@@ -1,0 +1,618 @@
+[
+  {
+    "rank": 1,
+    "stoxx_name": "BNP PARIBAS",
+    "bank_name": "BNP Paribas S.A.",
+    "country": "France",
+    "ticker": "BNP",
+    "isin": null,
+    "weight_percent": 13.6,
+    "active": true,
+    "market_ticker": "BNP.PA",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 103.36,
+      "market_cap": 113282564096.0,
+      "price_to_book": 0.9432378,
+      "price_to_earnings": 8.941176,
+      "return_on_equity": 0.104770005,
+      "dividend_yield": 5.63
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {
+      "cet1_ratio": 0.13,
+      "cost_income_ratio": 0.567
+    },
+    "official_evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.13,
+        "source_url": "https://invest.bnpparibas/en/document/second-quarter-2026-results-transcript",
+        "note": "CET1 at 30 June 2026"
+      },
+      {
+        "metric": "cost_income_ratio",
+        "value": 0.567,
+        "source_url": "https://invest.bnpparibas/en/results",
+        "note": "Group Q2-2026 cost-income ratio"
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "stoxx_name": "BCO SANTANDER",
+    "bank_name": "Banco Santander S.A.",
+    "country": "Spain",
+    "ticker": "SAN",
+    "isin": null,
+    "weight_percent": 11.43,
+    "active": true,
+    "market_ticker": "SAN.MC",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 12.804,
+      "market_cap": 186088275968.0,
+      "price_to_book": 1.6770136,
+      "price_to_earnings": 14.386517,
+      "return_on_equity": 0.13109,
+      "dividend_yield": 1.97
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 3,
+    "stoxx_name": "ING GRP",
+    "bank_name": "ING Groep N.V.",
+    "country": "Netherlands",
+    "ticker": "INGA",
+    "isin": null,
+    "weight_percent": 9.68,
+    "active": true,
+    "market_ticker": "INGA.AS",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 31.52,
+      "market_cap": 89921478656.0,
+      "price_to_book": 1.793967,
+      "price_to_earnings": 13.645022,
+      "return_on_equity": 0.17124,
+      "dividend_yield": 3.63
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 4,
+    "stoxx_name": "BCO BILBAO VIZCAYA ARGENTARIA",
+    "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+    "country": "Spain",
+    "ticker": "BBVA",
+    "isin": null,
+    "weight_percent": 8.65,
+    "active": true,
+    "market_ticker": "BBVA.MC",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 25.26,
+      "market_cap": 139392385024.0,
+      "price_to_book": 2.4754996,
+      "price_to_earnings": 13.225131,
+      "return_on_equity": 0.18924,
+      "dividend_yield": 3.67
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 5,
+    "stoxx_name": "INTESA SANPAOLO",
+    "bank_name": "Intesa Sanpaolo S.p.A.",
+    "country": "Italy",
+    "ticker": "ISP",
+    "isin": null,
+    "weight_percent": 8.45,
+    "active": true,
+    "market_ticker": "ISP.MI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 6.682,
+      "market_cap": 116500389888.0,
+      "price_to_book": 1.7089514,
+      "price_to_earnings": 11.932143,
+      "return_on_equity": 0.14261,
+      "dividend_yield": 5.71
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 6,
+    "stoxx_name": "UNICREDIT",
+    "bank_name": "UniCredit S.p.A.",
+    "country": "Italy",
+    "ticker": "UCG",
+    "isin": null,
+    "weight_percent": 7.88,
+    "active": true,
+    "market_ticker": "UCG.MI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 83.76,
+      "market_cap": null,
+      "price_to_book": 1.7820898,
+      "price_to_earnings": 11.880851,
+      "return_on_equity": 0.15779,
+      "dividend_yield": 3.76
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 7,
+    "stoxx_name": "NORDEA BANK",
+    "bank_name": "Nordea Bank Abp",
+    "country": "Finland",
+    "ticker": "NDA-FI",
+    "isin": null,
+    "weight_percent": 7.6,
+    "active": true,
+    "market_ticker": "NDA-FI.HE",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 17.715,
+      "market_cap": 60120346624.0,
+      "price_to_book": 1.9293182,
+      "price_to_earnings": 12.930657,
+      "return_on_equity": 0.15337,
+      "dividend_yield": 7.41
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 8,
+    "stoxx_name": "DEUTSCHE BANK",
+    "bank_name": "Deutsche Bank AG",
+    "country": "Germany",
+    "ticker": "DBK",
+    "isin": null,
+    "weight_percent": 4.1,
+    "active": true,
+    "market_ticker": "DBK.DE",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 35.17,
+      "market_cap": 66084429824.0,
+      "price_to_book": 0.83837897,
+      "price_to_earnings": 10.689969,
+      "return_on_equity": 0.08891,
+      "dividend_yield": 2.87
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {
+      "cet1_ratio": 0.139,
+      "rote": 0.11,
+      "roe": 0.098,
+      "cost_income_ratio": 0.63
+    },
+    "official_evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.139,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "CET1 at end of June 2026"
+      },
+      {
+        "metric": "rote",
+        "value": 0.11,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 post-tax RoTE"
+      },
+      {
+        "metric": "roe",
+        "value": 0.098,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 post-tax RoE"
+      },
+      {
+        "metric": "cost_income_ratio",
+        "value": 0.63,
+        "source_url": "https://investor-relations.db.com/files/documents/quarterly-results/2026/Interim-Report-as-of-June-30-2026.pdf?language_id=1",
+        "note": "Q2-2026 cost/income ratio"
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "stoxx_name": "GRP SOCIETE GENERALE",
+    "bank_name": "Société Générale S.A.",
+    "country": "France",
+    "ticker": "GLE",
+    "isin": null,
+    "weight_percent": 3.97,
+    "active": true,
+    "market_ticker": "GLE.PA",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 73.1,
+      "market_cap": 53402943488.0,
+      "price_to_book": 0.7460859,
+      "price_to_earnings": 9.605782,
+      "return_on_equity": 0.09453,
+      "dividend_yield": 2.41
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 10,
+    "stoxx_name": "KBC GRP",
+    "bank_name": "KBC Group N.V.",
+    "country": "Belgium",
+    "ticker": "KBC",
+    "isin": null,
+    "weight_percent": 3.29,
+    "active": true,
+    "market_ticker": "KBC.BR",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 132.35,
+      "market_cap": null,
+      "price_to_book": 2.0573926,
+      "price_to_earnings": 14.656701,
+      "return_on_equity": 0.13664,
+      "dividend_yield": 3.9
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 11,
+    "stoxx_name": "CAIXABANK",
+    "bank_name": "CaixaBank S.A.",
+    "country": "Spain",
+    "ticker": "CABK",
+    "isin": null,
+    "weight_percent": 3.2,
+    "active": true,
+    "market_ticker": "CABK.MC",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 13.39,
+      "market_cap": 93028450304.0,
+      "price_to_book": 2.4087067,
+      "price_to_earnings": 15.940477,
+      "return_on_equity": 0.16159001,
+      "dividend_yield": 3.78
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 12,
+    "stoxx_name": "CREDIT AGRICOLE",
+    "bank_name": "Crédit Agricole S.A.",
+    "country": "France",
+    "ticker": "ACA",
+    "isin": null,
+    "weight_percent": 2.97,
+    "active": true,
+    "market_ticker": "ACA.PA",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 18.825,
+      "market_cap": 56788029440.0,
+      "price_to_book": 0.8114224,
+      "price_to_earnings": 9.319307,
+      "return_on_equity": 0.08612,
+      "dividend_yield": 9.15
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {
+      "cet1_ratio": 0.113,
+      "rote": 0.143
+    },
+    "official_evidence": [
+      {
+        "metric": "cet1_ratio",
+        "value": 0.113,
+        "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+        "page": 4,
+        "note": "Crédit Agricole S.A.; 30 June 2026"
+      },
+      {
+        "metric": "rote",
+        "value": 0.143,
+        "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+        "page": 4,
+        "note": "Crédit Agricole S.A.; H1-2026 annualised ROTE"
+      }
+    ]
+  },
+  {
+    "rank": 13,
+    "stoxx_name": "COMMERZBANK",
+    "bank_name": "Commerzbank AG",
+    "country": "Germany",
+    "ticker": "CBK",
+    "isin": null,
+    "weight_percent": 2.29,
+    "active": true,
+    "market_ticker": "CBK.DE",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 41.0,
+      "market_cap": 44314730496.0,
+      "price_to_book": 1.312378,
+      "price_to_earnings": 15.708813,
+      "return_on_equity": 0.09666,
+      "dividend_yield": 2.7
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 14,
+    "stoxx_name": "ERSTE GROUP BANK",
+    "bank_name": "Erste Group Bank AG",
+    "country": "Austria",
+    "ticker": "EBS",
+    "isin": null,
+    "weight_percent": 2.2,
+    "active": true,
+    "market_ticker": "EBS.VI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 122.9,
+      "market_cap": 47740657664.0,
+      "price_to_book": 1.9670295,
+      "price_to_earnings": 13.747205,
+      "return_on_equity": 0.13213,
+      "dividend_yield": 0.62
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 15,
+    "stoxx_name": "BANK OF IRELAND GROUP",
+    "bank_name": "Bank of Ireland Group plc",
+    "country": "Ireland",
+    "ticker": "BIRG",
+    "isin": null,
+    "weight_percent": 2.12,
+    "active": true,
+    "market_ticker": "BIRG.IR",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 19.625,
+      "market_cap": 18506375168.0,
+      "price_to_book": 1.4216894,
+      "price_to_earnings": 14.537037,
+      "return_on_equity": 0.10549,
+      "dividend_yield": 4.32
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 16,
+    "stoxx_name": "FINECOBANK",
+    "bank_name": "FinecoBank S.p.A.",
+    "country": "Italy",
+    "ticker": "FBK",
+    "isin": null,
+    "weight_percent": 1.64,
+    "active": true,
+    "market_ticker": "FBK.MI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 23.45,
+      "market_cap": 14347160576.0,
+      "price_to_book": 5.986725,
+      "price_to_earnings": 21.318182,
+      "return_on_equity": 0.28855,
+      "dividend_yield": 3.42
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 17,
+    "stoxx_name": "ABN AMRO BANK",
+    "bank_name": "ABN AMRO Bank N.V.",
+    "country": "Netherlands",
+    "ticker": "ABN",
+    "isin": null,
+    "weight_percent": 1.34,
+    "active": true,
+    "market_ticker": "ABN.AS",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 42.39,
+      "market_cap": 34545127424.0,
+      "price_to_book": 1.2637134,
+      "price_to_earnings": 15.248201,
+      "return_on_equity": 0.0912,
+      "dividend_yield": 3.26
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 18,
+    "stoxx_name": "BANCO BPM",
+    "bank_name": "Banco BPM S.p.A.",
+    "country": "Italy",
+    "ticker": "BAMI",
+    "isin": null,
+    "weight_percent": 1.28,
+    "active": true,
+    "market_ticker": "BAMI.MI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 16.25,
+      "market_cap": 24469913600.0,
+      "price_to_book": 1.5662651,
+      "price_to_earnings": 12.795276,
+      "return_on_equity": 0.12613,
+      "dividend_yield": 6.22
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 19,
+    "stoxx_name": "BCO SABADELL",
+    "bank_name": "Banco de Sabadell S.A.",
+    "country": "Spain",
+    "ticker": "SAB",
+    "isin": null,
+    "weight_percent": 1.21,
+    "active": true,
+    "market_ticker": "SAB.MC",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 3.661,
+      "market_cap": 17325037568.0,
+      "price_to_book": 1.3023834,
+      "price_to_earnings": 18.305,
+      "return_on_equity": 0.08131,
+      "dividend_yield": 5.64
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 20,
+    "stoxx_name": "AIB GROUP",
+    "bank_name": "AIB Group plc",
+    "country": "Ireland",
+    "ticker": "AIBG",
+    "isin": null,
+    "weight_percent": 0.99,
+    "active": true,
+    "market_ticker": "A5G.IR",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 11.145,
+      "market_cap": 23338745856.0,
+      "price_to_book": 1.6547885,
+      "price_to_earnings": 11.489691,
+      "return_on_equity": 0.15133001,
+      "dividend_yield": 5.95
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 21,
+    "stoxx_name": "BANKINTER",
+    "bank_name": "Bankinter S.A.",
+    "country": "Spain",
+    "ticker": "BKT",
+    "isin": null,
+    "weight_percent": 0.78,
+    "active": true,
+    "market_ticker": "BKT.MC",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 16.815,
+      "market_cap": 15111577600.0,
+      "price_to_book": 2.2543237,
+      "price_to_earnings": 13.670732,
+      "return_on_equity": 0.17864001,
+      "dividend_yield": 4.64
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 22,
+    "stoxx_name": "BAWAG GROUP AG",
+    "bank_name": "BAWAG Group AG",
+    "country": "Austria",
+    "ticker": "BG",
+    "isin": null,
+    "weight_percent": 0.77,
+    "active": true,
+    "market_ticker": "BG.VI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 177.7,
+      "market_cap": 13682637824.0,
+      "price_to_book": 2.906872,
+      "price_to_earnings": 15.546806,
+      "return_on_equity": 0.1989,
+      "dividend_yield": 3.52
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  },
+  {
+    "rank": 23,
+    "stoxx_name": "BPER Banca",
+    "bank_name": "BPER Banca S.p.A.",
+    "country": "Italy",
+    "ticker": "BPE",
+    "isin": null,
+    "weight_percent": 0.54,
+    "active": true,
+    "market_ticker": "BPE.MI",
+    "retrieved_at": "2026-09-03T12:26:00.978386+00:00",
+    "provider": "Yahoo Finance via yfinance",
+    "metrics": {
+      "price": 14.158,
+      "market_cap": 29531514880.0,
+      "price_to_book": 1.6394165,
+      "price_to_earnings": 12.870909,
+      "return_on_equity": 0.15279001,
+      "dividend_yield": 8.96
+    },
+    "status": "market_data_loaded",
+    "prudential_metrics": {},
+    "official_evidence": []
+  }
+]

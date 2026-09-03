@@ -5,6 +5,10 @@
 Compare public financial information for EURO STOXX Banks constituents and
 identify potentially attractive or expensive banks relative to peers.
 
+The deployed dashboard ranks all 23 constituents using a common provider-data
+screen based on P/B, P/E, ROE, and dividend yield. Official prudential metrics
+are added as a separate evidence-backed overlay as report coverage expands.
+
 ## Inputs
 
 - Official quarterly and annual bank reports
