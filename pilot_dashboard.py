@@ -31,7 +31,13 @@ def load_data():
         universe = json.load(handle)["constituents"]
     with (BASE_DIR / "official_report_pages.json").open(encoding="utf-8") as handle:
         report_pages = json.load(handle)
-    return banks, scores, universe, report_pages
+    evidence_path = BASE_DIR / "table_evidence_index.json"
+    table_evidence = (
+        json.loads(evidence_path.read_text(encoding="utf-8"))
+        if evidence_path.exists()
+        else {"source_count": 0, "table_count": 0, "documents": []}
+    )
+    return banks, scores, universe, report_pages, table_evidence
 
 
 def percent(value):
@@ -40,6 +46,10 @@ def percent(value):
 
 def multiple(value):
     return f"{value:.2f}x" if isinstance(value, (int, float)) else "Not available"
+
+
+def decimal(value):
+    return f"{value:.2f}" if isinstance(value, (int, float)) else "Not available"
 
 
 def short_comment(score):
@@ -66,7 +76,7 @@ if st.button("Refresh data"):
         status.update(label="Refresh failed", state="error")
         st.code(result.stderr or result.stdout)
 
-banks, scores, universe, report_pages = load_data()
+banks, scores, universe, report_pages, table_evidence = load_data()
 ranking_tab, details_tab, coverage_tab, evidence_tab, methodology_tab = st.tabs(["Relative ranking", "Bank details", "Universe coverage", "Evidence", "Methodology"])
 
 with ranking_tab:
@@ -99,7 +109,7 @@ with ranking_tab:
         })
     st.dataframe(
         ranking_rows,
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         height=845,
         column_config={
@@ -133,8 +143,8 @@ with details_tab:
     st.markdown("#### Additional equity-research metrics")
     st.dataframe([
         {"Metric": "Forward P/E", "Value": multiple(metrics.get("forward_price_to_earnings"))},
-        {"Metric": "Book value per share", "Value": metrics.get("book_value_per_share")},
-        {"Metric": "Earnings per share", "Value": metrics.get("earnings_per_share")},
+        {"Metric": "Book value per share", "Value": decimal(metrics.get("book_value_per_share"))},
+        {"Metric": "Earnings per share", "Value": decimal(metrics.get("earnings_per_share"))},
         {"Metric": "Return on assets", "Value": percent(metrics.get("return_on_assets"))},
         {"Metric": "Profit margin", "Value": percent(metrics.get("profit_margin"))},
         {"Metric": "Payout ratio", "Value": percent(metrics.get("payout_ratio"))},
@@ -142,13 +152,13 @@ with details_tab:
         {"Metric": "Revenue growth", "Value": percent(metrics.get("revenue_growth"))},
         {"Metric": "Market capitalization", "Value": f"{metrics.get('market_cap'):,.0f}" if metrics.get("market_cap") else "Not available"},
         {"Metric": "Beta", "Value": f"{metrics.get('beta'):.2f}" if metrics.get("beta") is not None else "Not available"},
-    ], use_container_width=True, hide_index=True)
+    ], width="stretch", hide_index=True)
     st.markdown(f"**Verified prudential overlay:** CET1 {percent(prudential.get('cet1_ratio'))} · RoTE {percent(prudential.get('rote'))}")
     st.markdown("#### Score contribution")
     st.dataframe([
         {"Metric": metric.replace("_", " ").title(), "Raw value": detail["raw_value"], "Percentile score": detail["percentile_score"], "Weight": f"{detail['weight']:.0%}"}
         for metric, detail in score.get("components", {}).items()
-    ], use_container_width=True, hide_index=True)
+    ], width="stretch", hide_index=True)
 
 with coverage_tab:
     st.subheader("EURO STOXX Banks universe")
@@ -157,7 +167,7 @@ with coverage_tab:
     st.dataframe([
         {"Bank": row.get("bank_name"), "Ticker": row.get("ticker"), "Country": row.get("country"), "Index weight": f"{row.get('weight_percent', 0):.2f}%", "Status": "Ranked" if row.get("ticker") in scored else "Insufficient provider data"}
         for row in universe
-    ], use_container_width=True, hide_index=True)
+    ], width="stretch", hide_index=True)
 
 with evidence_tab:
     st.subheader("Official financial reports")
@@ -172,7 +182,7 @@ with evidence_tab:
             }
             for row in universe
         ],
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         height=845,
         column_config={
@@ -180,6 +190,53 @@ with evidence_tab:
             "Quarterly / interim": st.column_config.LinkColumn("Latest quarterly / interim", display_text="Open results"),
         },
     )
+
+    st.markdown("#### Extracted table evidence")
+    st.caption(
+        f"{table_evidence.get('table_count', 0)} metric-relevant table candidates "
+        f"from {table_evidence.get('source_count', 0)} locally processed official reports. "
+        "Candidates are excluded from ranking until their definition, period, unit and scope are reviewed."
+    )
+    evidence_documents = [
+        document for document in table_evidence.get("documents", []) if document.get("tables")
+    ]
+    if not evidence_documents:
+        st.info("No structured table evidence has been generated yet.")
+    else:
+        evidence_tickers = [document["ticker"] for document in evidence_documents]
+        selected_evidence_ticker = st.pills(
+            "View extracted evidence for",
+            evidence_tickers,
+            default=evidence_tickers[0],
+            key="evidence_bank",
+        )
+        selected_document = next(
+            (document for document in evidence_documents if document["ticker"] == selected_evidence_ticker),
+            evidence_documents[0],
+        )
+        st.write(
+            f"**{selected_document.get('bank_name') or selected_document['ticker']}** · "
+            f"{selected_document['document']} · {selected_document['table_count']} retained table(s)"
+        )
+        for table in selected_document["tables"]:
+            metric_label = ", ".join(
+                metric.replace("_", " ").upper() for metric in table["matched_metrics"]
+            )
+            with st.expander(
+                f"Page {table['page']} · {metric_label} · review pending",
+                icon=":material/table_view:",
+            ):
+                image_path = BASE_DIR / table["evidence_image"] if table.get("evidence_image") else None
+                if image_path and image_path.exists():
+                    st.image(image_path, caption=f"Source table on PDF page {table['page']}")
+                st.dataframe(table.get("rows", []), width="stretch", hide_index=True)
+                st.caption(table.get("page_excerpt", ""))
+                if table.get("source_url"):
+                    st.link_button(
+                        "Open official source",
+                        table["source_url"],
+                        icon=":material/open_in_new:",
+                    )
 
 with methodology_tab:
     st.subheader("Methodology and controls")

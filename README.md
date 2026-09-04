@@ -12,6 +12,13 @@ margin, payout ratio, market capitalisation, and beta. Official prudential
 metrics are added as a separate evidence-backed overlay as report coverage
 expands, and every bank has an official investor-relations link.
 
+The PDF pipeline now performs precision-first table extraction. It screens
+pages for bank-metric terminology, rejects chart and slide regions that do not
+have a credible row/column structure, converts retained tables to structured
+records, and saves an image crop of the exact source table. Every candidate is
+marked `pending_human_review`; it cannot enter the ranking until its metric
+definition, reporting period, unit and consolidation scope are confirmed.
+
 The dark-mode dashboard presents all 23 ranking rows at once. It includes flag
 images, country codes, tickers, index weights, euro-denominated prices, P/E,
 P/B, ROE, dividend yield, scores, and concise comments. The Evidence tab is a
@@ -31,7 +38,8 @@ before scoring, then converted back only for display (for example, provider
 ## Workflow
 
 ```text
-Official reports -> PDF extraction -> evidence archive
+Official reports -> fast page screen -> table extraction -> evidence PNG
+                                      -> review-pending evidence archive
 Market prices ---------------------> comparable dataset
                        -> quality/freshness gates
                        -> weighted peer score
@@ -65,5 +73,17 @@ To monitor rollout coverage across all 23 constituents:
 The latest download run is recorded in `download_manifest.json`. The current
 batch downloaded official PDFs for ACA, BNP, and DBK; the remaining entries are
 pending URL verification.
+
+To rebuild structured table evidence from all locally downloaded reports:
+
+```powershell
+& "C:\FG\.venv\Scripts\python.exe" `
+  "C:\FG\Roadmap to AI\EU-Banks-Picker\app\table_evidence.py"
+```
+
+Use `--ticker BNP` to process one bank or `--no-images` for a faster diagnostic
+run. The current local batch contains candidates from ACA, BNP and DBK. Evidence
+screenshots are displayed in the dashboard separately from the 23-bank official
+report-link directory.
 
 This is a research screening tool, not personalized investment advice.

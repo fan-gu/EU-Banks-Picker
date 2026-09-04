@@ -1,5 +1,6 @@
 python-dotenv
 pypdf
 pdfplumber
+pypdfium2
 streamlit
 yfinance
