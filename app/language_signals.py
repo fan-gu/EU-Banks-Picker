@@ -107,7 +107,18 @@ def clean_text(text: str) -> str:
 def split_sentences(text: str) -> list[str]:
     clean = clean_text(text)
     sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9])", clean)
-    return [sentence for sentence in sentences if 40 <= len(sentence) <= 600]
+    # Investor presentations frequently use bullet fragments without terminal
+    # punctuation. Preserve those management statements as auditable passages
+    # instead of silently treating a slide as empty.
+    bullet_blocks = re.split(r"\n\s*(?:[•▪◼�]|[-–—]\s+)", text)
+    candidates = sentences + [clean_text(block) for block in bullet_blocks]
+    unique = []
+    seen = set()
+    for sentence in candidates:
+        if 40 <= len(sentence) <= 600 and sentence not in seen:
+            seen.add(sentence)
+            unique.append(sentence)
+    return unique
 
 
 def phrase_count(text: str, phrase: str) -> int:
@@ -197,10 +208,11 @@ def page_is_eligible(page_text: str, document_type: str) -> bool:
     return document_type in {"half_year_results", "quarterly_results"}
 
 
-def analyze_pdf(path: Path, manifest: dict) -> dict:
-    ticker = path.parent.name
-    source = manifest.get(ticker, {})
-    document_type, period = infer_document_metadata(path)
+def analyze_pdf(path: Path, source: dict) -> dict:
+    ticker = source["ticker"]
+    inferred_type, inferred_period = infer_document_metadata(path)
+    document_type = source.get("document_type", inferred_type)
+    period = source.get("period", inferred_period)
     evidence = []
     counts = {category: 0 for category in LEXICONS}
     word_count = 0
@@ -211,11 +223,7 @@ def analyze_pdf(path: Path, manifest: dict) -> dict:
     for page_number, page in enumerate(reader.pages, start=1):
         page_count += 1
         page_text = clean_text(page.extract_text() or "")
-        if (
-            not page_text
-            or EXCLUDED_CONTEXT.search(page_text[:400])
-            or not page_is_eligible(page_text, document_type)
-        ):
+        if not page_text or not page_is_eligible(page_text, document_type):
             continue
         for sentence in split_sentences(page_text):
             if not relevant_sentence(sentence):
@@ -241,7 +249,7 @@ def analyze_pdf(path: Path, manifest: dict) -> dict:
     features = score_features(counts, word_count)
     evidence.sort(key=evidence_priority, reverse=True)
     selected_evidence = evidence[:8]
-    minimum_coverage = word_count >= 300 and len(selected_evidence) >= 3
+    minimum_coverage = word_count >= 150 and len(selected_evidence) >= 3
     record = {
         "ticker": ticker,
         "bank_name": source.get("bank_name"),
@@ -249,7 +257,8 @@ def analyze_pdf(path: Path, manifest: dict) -> dict:
         "document_type": document_type,
         "period": period,
         "publication_date": None,
-        "source_url": source.get("url"),
+        "source_url": source.get("download_url"),
+        "official_page": source.get("official_page"),
         "document_sha256": sha256(path),
         "page_count": page_count,
         "analyzed_word_count": word_count,
@@ -273,12 +282,18 @@ def analyze_pdf(path: Path, manifest: dict) -> dict:
     return record
 
 
-def load_manifest() -> dict[str, dict]:
-    path = BASE_DIR / "download_manifest.json"
-    return {
-        record["ticker"]: record
+def load_language_manifest() -> list[dict]:
+    path = BASE_DIR / "language_download_manifest.json"
+    if not path.exists():
+        raise FileNotFoundError(
+            "language_download_manifest.json is missing; run "
+            "download_language_reports.py first."
+        )
+    return [
+        record
         for record in json.loads(path.read_text(encoding="utf-8"))
-    }
+        if record.get("status") == "downloaded"
+    ]
 
 
 def load_universe() -> list[dict]:
@@ -306,14 +321,17 @@ def quadrant(numeric_score: float, language_score: float) -> str:
 
 
 def build_archive(reports_dir: Path, output_path: Path) -> dict:
-    manifest = load_manifest()
+    manifest = load_language_manifest()
     numeric_scores = load_numeric_scores()
-    analyzed = {
-        record["ticker"]: record
-        for record in (
-            analyze_pdf(path, manifest) for path in sorted(reports_dir.rglob("*.pdf"))
-        )
-    }
+    analyzed = {}
+    for source in manifest:
+        path = Path(source["path"])
+        if not path.is_absolute():
+            path = reports_dir / source["ticker"] / path.name
+        if not path.exists():
+            print(f"Skipping missing curated report: {path}", flush=True)
+            continue
+        analyzed[source["ticker"]] = analyze_pdf(path, source)
     signals = []
     for bank in load_universe():
         ticker = bank["ticker"]

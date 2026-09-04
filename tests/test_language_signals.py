@@ -1,6 +1,7 @@
 """Unit tests for deterministic management-language signal rules."""
 
 from pathlib import Path
+import json
 import sys
 import unittest
 
@@ -9,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app.language_signals import category_hits, quadrant, score_features
+from app.language_signals import category_hits, quadrant, score_features, split_sentences
 
 
 class LanguageSignalTests(unittest.TestCase):
@@ -43,6 +44,47 @@ class LanguageSignalTests(unittest.TestCase):
         self.assertEqual(quadrant(30, 70), "Potential turnaround")
         self.assertEqual(quadrant(70, 30), "Early warning")
         self.assertEqual(quadrant(30, 30), "High-risk screen")
+
+    def test_bullet_fragments_are_preserved_as_passages(self):
+        passages = split_sentences(
+            "Q2 highlights\n"
+            "- We remain confident and will deliver our capital target\n"
+            "- The outlook may remain challenging because uncertainty is high"
+        )
+        self.assertTrue(any("remain confident" in item for item in passages))
+        self.assertTrue(any("may remain challenging" in item for item in passages))
+
+
+class LanguageCoverageTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        base_dir = Path(__file__).resolve().parent.parent
+        cls.sources = json.loads(
+            (base_dir / "language_report_sources.json").read_text(encoding="utf-8")
+        )["sources"]
+        cls.manifest = json.loads(
+            (base_dir / "language_download_manifest.json").read_text(encoding="utf-8")
+        )
+        cls.archive = json.loads(
+            (base_dir / "language_signals.json").read_text(encoding="utf-8")
+        )
+
+    def test_curated_source_and_download_coverage_is_23_banks(self):
+        self.assertEqual(len(self.sources), 23)
+        self.assertEqual(len({row["ticker"] for row in self.sources}), 23)
+        self.assertEqual(len(self.manifest), 23)
+        self.assertTrue(all(row["status"] == "downloaded" for row in self.manifest))
+
+    def test_signal_archive_has_auditable_provisional_coverage(self):
+        self.assertEqual(self.archive["coverage"]["provisional_banks"], 23)
+        self.assertEqual(self.archive["coverage"]["insufficient_banks"], 0)
+        self.assertEqual(len(self.archive["documents"]), 23)
+        self.assertTrue(
+            all(len(row["evidence"]) >= 3 for row in self.archive["documents"])
+        )
+        self.assertTrue(
+            all(row["publication_eligible"] is False for row in self.archive["signals"])
+        )
 
 
 if __name__ == "__main__":

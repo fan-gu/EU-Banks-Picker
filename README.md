@@ -40,10 +40,12 @@ Language governance follows a staged history rule:
 - 8 comparable quarterly periods: drift and event-alert research
 - Human review plus out-of-sample backtest: eligible for validated publication
 
-The current archive has provisional single-period coverage for ACA, BNP and
-DBK. The other 20 banks are explicitly marked `insufficient_language_data`.
-Annual and interim documents are not treated as comparable, and no missing
-language value is imputed.
+The current archive has provisional single-period language coverage for all 23
+EURO STOXX Banks constituents: one latest official English Q2 or H1 2026
+management-facing results document per bank. Every bank has at least three
+page-cited evidence passages. Coverage does not make the observations
+publication-eligible: cross-bank document genres and periods are still mixed,
+and no missing language value is imputed.
 
 Provider dividend yields arrive in percentage points and are divided by 100
 before scoring, then converted back only for display (for example, provider
@@ -97,9 +99,23 @@ To monitor rollout coverage across all 23 constituents:
   "C:\FG\Roadmap to AI\EU-Banks-Picker\coverage_report.py"
 ```
 
-The latest download run is recorded in `download_manifest.json`. The current
-batch downloaded official PDFs for ACA, BNP, and DBK; the remaining entries are
-pending URL verification.
+The curated language sources are recorded in `language_report_sources.json`.
+To download and PDF-validate all 23 current-period documents, then rebuild the
+signal archive:
+
+```powershell
+& "C:\FG\.venv\Scripts\python.exe" `
+  "C:\FG\Roadmap to AI\EU-Banks-Picker\download_language_reports.py"
+& "C:\FG\.venv\Scripts\python.exe" `
+  -m app.language_signals
+```
+
+`language_download_manifest.json` records status, final URL, byte size, SHA-256
+hash and retrieval time for each file. The Commerzbank endpoint needs a scoped
+local certificate-verification exception on this machine; its downloaded
+content is still size-limited, PDF-signature checked and hash-recorded. Run
+`discover_language_reports.py` to create a review-only candidate registry;
+curated sources remain authoritative.
 
 To rebuild structured table evidence from all locally downloaded reports:
 
@@ -109,9 +125,8 @@ To rebuild structured table evidence from all locally downloaded reports:
 ```
 
 Use `--ticker BNP` to process one bank or `--no-images` for a faster diagnostic
-run. The current local batch contains candidates from ACA, BNP and DBK. Evidence
-screenshots are displayed in the dashboard separately from the 23-bank official
-report-link directory.
+run. Evidence screenshots are displayed in the dashboard separately from the
+23-bank official report-link directory.
 
 To rebuild the independent management-language archive:
 
