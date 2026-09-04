@@ -6,6 +6,8 @@ import json
 import subprocess
 import sys
 
+import altair as alt
+import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -37,7 +39,17 @@ def load_data():
         if evidence_path.exists()
         else {"source_count": 0, "table_count": 0, "documents": []}
     )
-    return banks, scores, universe, report_pages, table_evidence
+    language_path = BASE_DIR / "language_signals.json"
+    language_signals = (
+        json.loads(language_path.read_text(encoding="utf-8"))
+        if language_path.exists()
+        else {
+            "coverage": {"universe_banks": len(universe), "provisional_banks": 0, "insufficient_banks": len(universe)},
+            "documents": [],
+            "signals": [],
+        }
+    )
+    return banks, scores, universe, report_pages, table_evidence, language_signals
 
 
 def percent(value):
@@ -76,8 +88,10 @@ if st.button("Refresh data"):
         status.update(label="Refresh failed", state="error")
         st.code(result.stderr or result.stdout)
 
-banks, scores, universe, report_pages, table_evidence = load_data()
-ranking_tab, details_tab, coverage_tab, evidence_tab, methodology_tab = st.tabs(["Relative ranking", "Bank details", "Universe coverage", "Evidence", "Methodology"])
+banks, scores, universe, report_pages, table_evidence, language_signals = load_data()
+ranking_tab, signals_tab, details_tab, coverage_tab, evidence_tab, methodology_tab = st.tabs(
+    ["Relative ranking", "Signals", "Bank details", "Universe coverage", "Evidence", "Methodology"]
+)
 
 with ranking_tab:
     st.subheader("Relative ranking")
@@ -125,6 +139,133 @@ with ranking_tab:
     )
     st.warning("A higher score indicates stronger relative inputs under this methodology; it is not a buy or sell recommendation.")
 
+with signals_tab:
+    st.subheader("Independent numeric and management-language signals")
+    st.warning(
+        "Research preview only: language history, document genre and reporting periods are not yet aligned. "
+        "No quadrant label is a buy or sell recommendation."
+    )
+    coverage = language_signals.get("coverage", {})
+    with st.container(horizontal=True):
+        st.metric("Bank universe", coverage.get("universe_banks", len(universe)), border=True)
+        st.metric("Provisional language coverage", coverage.get("provisional_banks", 0), border=True)
+        st.metric("Insufficient language data", coverage.get("insufficient_banks", len(universe)), border=True)
+        st.metric("Backtested signals", 0, border=True)
+
+    signal_rows = language_signals.get("signals", [])
+    plotted_rows = [
+        {
+            "Ticker": row["ticker"],
+            "Bank": row["bank_name"],
+            "Numeric score": row["numeric_score"],
+            "Language score": row["language_score"],
+            "Gap": row["divergence"],
+            "Research quadrant": row["quadrant"],
+        }
+        for row in signal_rows
+        if row.get("numeric_score") is not None and row.get("language_score") is not None
+    ]
+    if plotted_rows:
+        signal_frame = pd.DataFrame(plotted_rows)
+        vertical = alt.Chart(pd.DataFrame({"cut": [50]})).mark_rule(
+            color="#7a8599", strokeDash=[6, 6]
+        ).encode(x=alt.X("cut:Q"))
+        horizontal = alt.Chart(pd.DataFrame({"cut": [50]})).mark_rule(
+            color="#7a8599", strokeDash=[6, 6]
+        ).encode(y=alt.Y("cut:Q"))
+        points = alt.Chart(signal_frame).mark_circle(size=420, opacity=0.85).encode(
+            x=alt.X("Numeric score:Q", scale=alt.Scale(domain=[0, 100])),
+            y=alt.Y("Language score:Q", scale=alt.Scale(domain=[0, 100])),
+            color=alt.Color(
+                "Research quadrant:N",
+                scale=alt.Scale(
+                    domain=["Confirmed strength", "Potential turnaround", "Early warning", "High-risk screen"],
+                    range=["#35c48d", "#4fa3ff", "#ffb347", "#ef6262"],
+                ),
+            ),
+            tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Gap:Q", "Research quadrant:N"],
+        )
+        labels = alt.Chart(signal_frame).mark_text(
+            dy=-18, color="#f4f6fb", fontWeight="bold"
+        ).encode(x="Numeric score:Q", y="Language score:Q", text="Ticker:N")
+        st.altair_chart(
+            (vertical + horizontal + points + labels).properties(height=560),
+            width="stretch",
+        )
+        st.caption(
+            "Upper-right: confirmed strength · upper-left: potential turnaround · "
+            "lower-right: early warning · lower-left: high-risk screen."
+        )
+    else:
+        st.info("No bank currently has sufficient language evidence for the matrix.")
+
+    matrix_rows = [
+        {
+            "Bank": row["bank_name"],
+            "Ticker": row["ticker"],
+            "Numeric": row.get("numeric_score"),
+            "Language": row.get("language_score"),
+            "Gap": row.get("divergence"),
+            "Quadrant": row.get("quadrant") or "Not assigned",
+            "Coverage status": row["status"],
+        }
+        for row in signal_rows
+    ]
+    st.dataframe(
+        matrix_rows,
+        width="stretch",
+        hide_index=True,
+        column_config={
+            "Numeric": st.column_config.NumberColumn(format="%.1f"),
+            "Language": st.column_config.NumberColumn(format="%.1f"),
+            "Gap": st.column_config.NumberColumn(format="%+.1f"),
+        },
+    )
+
+    language_documents = language_signals.get("documents", [])
+    if language_documents:
+        st.markdown("#### Language evidence and review queue")
+        language_tickers = [document["ticker"] for document in language_documents]
+        selected_language_ticker = st.pills(
+            "View language evidence for",
+            language_tickers,
+            default=language_tickers[0],
+            key="language_evidence_bank",
+        )
+        language_document = next(
+            document for document in language_documents if document["ticker"] == selected_language_ticker
+        )
+        language_signal = next(
+            row for row in signal_rows if row["ticker"] == selected_language_ticker
+        )
+        with st.container(horizontal=True):
+            st.metric("Language score", language_signal["language_score"], border=True)
+            st.metric("Numeric-language gap", f"{language_signal['divergence']:+.1f}", border=True)
+            st.metric("History available", f"{language_document['history_periods']} period", border=True)
+            st.metric("Review status", "Pending", border=True)
+        st.caption(
+            f"{language_document['document_type'].replace('_', ' ').title()} · "
+            f"{language_document['period']} · {language_document['analyzed_word_count']:,} analyzed words · "
+            f"rule {language_signals.get('rule_version', 'unknown')}"
+        )
+        if language_signal.get("alerts"):
+            for alert in language_signal["alerts"]:
+                st.warning(alert["message"] + " Human review required.")
+        for item in language_document.get("evidence", []):
+            hit_labels = [name.replace("_", " ") for name, value in item["hits"].items() if value]
+            with st.container(border=True):
+                st.caption(
+                    f"PDF page {item['page']} · {', '.join(hit_labels) or 'guidance'} · "
+                    f"{item['review_status'].replace('_', ' ')}"
+                )
+                st.write(item["sentence"])
+        if language_document.get("source_url"):
+            st.link_button(
+                "Open official source",
+                language_document["source_url"],
+                icon=":material/open_in_new:",
+            )
+
 with details_tab:
     selected = st.selectbox("Select a bank", [row["ticker"] for row in universe])
     bank = banks[selected]
@@ -159,6 +300,23 @@ with details_tab:
         {"Metric": metric.replace("_", " ").title(), "Raw value": detail["raw_value"], "Percentile score": detail["percentile_score"], "Weight": f"{detail['weight']:.0%}"}
         for metric, detail in score.get("components", {}).items()
     ], width="stretch", hide_index=True)
+    bank_language_documents = [
+        document for document in language_signals.get("documents", []) if document["ticker"] == selected
+    ]
+    st.markdown("#### Management-language history")
+    if len(bank_language_documents) < 4:
+        st.info(
+            "Four comparable periods are needed for a preliminary language trend; "
+            "eight periods are required before drift alerts can enter research validation."
+        )
+    else:
+        history_frame = pd.DataFrame(
+            {
+                "Period": [document["period"] for document in bank_language_documents],
+                "Language score": [document["features"]["language_score"] for document in bank_language_documents],
+            }
+        )
+        st.line_chart(history_frame, x="Period", y="Language score")
 
 with coverage_tab:
     st.subheader("EURO STOXX Banks universe")
@@ -242,6 +400,8 @@ with methodology_tab:
     st.subheader("Methodology and controls")
     st.markdown("**Common 23-bank score:** P/B 25%, P/E 15%, ROE 20%, ROA 10%, dividend yield 10%, earnings growth 10%, and revenue growth 10%. Lower valuation multiples score higher; higher returns, yield, and growth score higher. Percentile ranking limits the influence of extreme values.")
     st.markdown("**Official-report overlay:** CET1, leverage, LCR, NSFR, NPL ratio, NPL coverage, cost of risk, NIM, cost/income, loan/deposit ratio, and IRRBB sensitivities are included only when period-aligned evidence is available.")
+    st.markdown("**Independent language axis:** financial tone, uncertainty, commitment strength, cautious wording, and confidence expressions are calculated with deterministic versioned rules. The numeric and language axes are not combined.")
+    st.markdown("**Language history gate:** four comparable periods enable a preliminary trend; eight enable drift alerts. Original sentence and PDF page, human approval, and an out-of-sample backtest are still required before a signal becomes validated research output.")
     st.markdown("**Controls:** common reporting dates, source evidence, freshness checks, sensitivity analysis, and publication gate.")
     st.markdown("**Scope:** this is a research screening tool, not personalized investment advice.")
     report_path = BASE_DIR / "pilot_report.md"

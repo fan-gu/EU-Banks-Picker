@@ -1,0 +1,776 @@
+{
+  "schema_version": "1.0",
+  "rule_version": "management-language-v1.0",
+  "generated_at": "2026-09-04T18:24:45.055930+00:00",
+  "methodology": {
+    "axes_are_independent": true,
+    "language_model": "deterministic_financial_lexicon",
+    "minimum_history_for_preliminary_trend": 4,
+    "minimum_history_for_drift_alerts": 8,
+    "publication_gate": "backtest_and_human_review_required",
+    "labels_are_research_screens_not_investment_recommendations": true
+  },
+  "coverage": {
+    "universe_banks": 23,
+    "provisional_banks": 3,
+    "insufficient_banks": 20
+  },
+  "documents": [
+    {
+      "ticker": "ACA",
+      "bank_name": "Crédit Agricole S.A.",
+      "document": "ACA_2026_H1_results_en.pdf",
+      "document_type": "half_year_results",
+      "period": "H1 2026",
+      "publication_date": null,
+      "source_url": "https://www.credit-agricole.com/en/pdfPreview/211048",
+      "document_sha256": "22f6fcc6932b856b8fd4a76443b51c5e8ae43225e11f23569d4e6139ad7a3eb1",
+      "page_count": 89,
+      "analyzed_word_count": 833,
+      "feature_counts": {
+        "positive": 14,
+        "negative": 0,
+        "uncertainty": 8,
+        "strong_modal": 0,
+        "weak_modal": 0,
+        "caution_buffer": 0,
+        "confidence": 12
+      },
+      "features": {
+        "language_score": 66.0,
+        "tone_balance": 1.0,
+        "commitment_balance": 0.0,
+        "uncertainty_per_1000_words": 9.6,
+        "caution_per_1000_words": 0.0,
+        "confidence_per_1000_words": 14.41
+      },
+      "evidence": [
+        {
+          "page": 14,
+          "sentence": "26 RB AG SFS LC CC June 26 Credit risk Operational risk Market risk STABLE SOLVENCY RATIO, INCORPORATING STRONG M&A ACTIVITY STRONG FINANCIAL POSITION – CRÉDIT AGRICOLE S.A.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 2,
+            "negative": 0,
+            "uncertainty": 3,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 2
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 15,
+          "sentence": "26 Retail Banking AG SFS LC CC June 26 Credit risk Operational risk Market risk VERY HIGH CAPITAL STRONG FINANCIAL POSITION – CRÉDIT AGRICOLE GROUP Change in CET1 ratio (bp) Change in RWA by business line (€bn) CET1 RATIO 17.2% +0.1pp vs.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 1,
+            "negative": 0,
+            "uncertainty": 3,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 1
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 26,
+          "sentence": "NII recovery (+17%); fee and commission income rose (+9%; +5% excluding Milleis) driven by savings and non- life insurance Operating expenses: +3% excluding scope effect (2) and the “Energies 2030” transformation plan (3); cost/income ratio at 57.8% excluding the transformation plan Cost of risk/outstandings(4): 28bp, increased individual risk on corporates (sectors: retail/distribution/construction) 105.6 106.2 107.0 8.6 8.4 8.6 32.6 33.4 34.1 24.8 25.4 25.4 171.5 173.4 175.0 June 25 Mar.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 20,
+          "sentence": "20 2ND QUARTER AND 1ST HALF-YEAR 2026 RESULTS AG – ASSET MANAGEMENT (AMUNDI) Strong activity • Medium-long-term net inflows (1) of +€20bn, driven by ETFs (+€12bn) and active management (+€9bn), still driven by fixed-income/credit strategies • Continued strong momentum in third-party distribution (net inflows of +€13bn; a record for the half-year at €38bn, i.e.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 3,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 3
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 22,
+          "sentence": "Stable performance in FICC compared with a high base, impacted by underperformance in treasury against a backdrop of central bank balance sheet reductions Financing activities: stable Q2/Q2 and up 1.2% excluding foreign exchange impact; structured finance up 4.4% excluding foreign exchange impact, driven by growth in asset financing with strong momentum in the transport sector; and commercial banking stable excluding foreign exchange impact Revenues: Q2 at an all-time high.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 3,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 2
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 16,
+          "sentence": "16 2ND QUARTER AND 1ST HALF-YEAR 2026 RESULTS CRÉDIT AGRICOLE GROUP STRONG LIQUIDITY POSITION STRONG FINANCIAL POSITION – CRÉDIT AGRICOLE GROUP Liquidity reserves (€bn) Customer deposits (€bn) 1.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 2,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 2
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 13,
+          "sentence": "Amundi US base effect STRONG RESULTS DRIVEN BY A SHARP RISE IN GROSS OPERATING INCOME (+11.4%) RESULTS Q2/Q2 change in Net income Group share by business line (€m) Change in Q2/Q2 net income Group share by P&L line (€m) +€357m +11.4% Leasys -€33m: lower margins on used vehicles Gross operating income AG: Asset gathering; LC: Large customers; SFS: Specialised financial services; RB: Retail banking; CC: Corporate Centre Scope effects and integration costs in Appendix p.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 1,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 1
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 29,
+          "sentence": "Ukraine: 2026 tax rates at 50% vs 25% in 2025 CA Poland: +61K new customers this quarter; loan production +20.4% Q2/Q2 driven by the retail segment; outstanding loans +3.2% (1) June/June; on-balance sheet and off-balance sheet deposits +9.0% (1) CA Egypt: good commercial momentum in corporate and consumer finance; loans outstanding +22.7% (1) June/June; on-balance sheet deposits +21.6% (1) CA Ukraine: loans outstanding +39.1% (1) June/June; on-balance sheet deposits +16.0% (1) Liquidity: net dep",
+          "is_guidance": false,
+          "hits": {
+            "positive": 1,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 1
+          },
+          "review_status": "pending_human_review"
+        }
+      ],
+      "status": "provisional_single_period",
+      "history_periods": 1,
+      "language_drift_score": null,
+      "backtest_status": "not_run",
+      "publication_eligible": false,
+      "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
+    },
+    {
+      "ticker": "BNP",
+      "bank_name": "BNP Paribas S.A.",
+      "document": "BNP_2025_annual_report_en.pdf",
+      "document_type": "annual_report",
+      "period": "FY2025",
+      "publication_date": null,
+      "source_url": "https://cdn-group.bnpparibas.com/uploads/file/universal-registration-document-annual-financial-report-2025.pdf",
+      "document_sha256": "70060ea2be1548e6dd228de4aa04b771bb1d7555898b1276e65be7784e328bf5",
+      "page_count": 936,
+      "analyzed_word_count": 5142,
+      "feature_counts": {
+        "positive": 11,
+        "negative": 8,
+        "uncertainty": 51,
+        "strong_modal": 38,
+        "weak_modal": 18,
+        "caution_buffer": 1,
+        "confidence": 6
+      },
+      "features": {
+        "language_score": 46.4,
+        "tone_balance": 0.1579,
+        "commitment_balance": 0.3571,
+        "uncertainty_per_1000_words": 9.92,
+        "caution_per_1000_words": 0.19,
+        "confidence_per_1000_words": 1.17
+      },
+      "evidence": [
+        {
+          "page": 179,
+          "sentence": "The 2030 plan is anchored around four strategic growth pillars: Supported by these growth engines, the 2025 ‑2030 financial trajectory is ambitious: This ambition will be driven by disciplined execution and the generation of approximately €150m in revenue synergies and ~€400m in cost synergies by 2029 achieved through platform convergence, fund rationalisation, and operational scale efficiencies.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 2,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 1,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 181,
+          "sentence": "2025 REVIEW OF OPERATIONS Outlook 2028 TARGETS RAISED ROTE 2028: > 13% The upward revision of the 2028 ROTE target (new target above 13%, vs. previous target of 13%) results from strategic plans already underway at Commercial & Personal Banking in France (CPBF) and Belgium (CPBB), Personal Finance (PF), Arval, and Asset Management, and will be more broadly carried by the three divisions, CPBS, CIB and IPS.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 5,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 182,
+          "sentence": "Target raised Target raised New target Target con/f_irmed We are pursuing the development of our platforms at marginal cost.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 4,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 181,
+          "sentence": "2028 cost‑income ratio: < 56% The 2028 cost‑income ratio target is also revised (new target below 56% vs. previous target of ~58%).",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 3,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 181,
+          "sentence": "This marks an acceleration, as the average annual growth target for 2024‑2026 stands at +7%.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 1,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 1,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 182,
+          "sentence": "The distribution of surplus capital above the 13% CET1 target will be decided annually starting in 2027.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 2,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 368,
+          "sentence": "Additionally, the Group is pursuing an ambitious corporate social responsibility (CSR) policy and is committed to making a positive impact on society with concrete commitments and targets.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 2,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 98,
+          "sentence": "If objectives based on quantitative criteria are exceeded (or not achieved), the fraction of the target compensation in question evolves proportionally within the limits of the cap mentioned below.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 1,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        }
+      ],
+      "status": "provisional_single_period",
+      "history_periods": 1,
+      "language_drift_score": null,
+      "backtest_status": "not_run",
+      "publication_eligible": false,
+      "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
+    },
+    {
+      "ticker": "DBK",
+      "bank_name": "Deutsche Bank AG",
+      "document": "DBK_2024_annual_report_en.pdf",
+      "document_type": "annual_report",
+      "period": "FY2024",
+      "publication_date": null,
+      "source_url": "https://investorrelations.db.com/files/documents/annual-reports/2024/Annual-Report-2024.pdf?language_id=1",
+      "document_sha256": "81c9b850e45ea67492a23d51513f5fe398264926603bc6bab24a1f82a03e067b",
+      "page_count": 737,
+      "analyzed_word_count": 15686,
+      "feature_counts": {
+        "positive": 114,
+        "negative": 25,
+        "uncertainty": 165,
+        "strong_modal": 107,
+        "weak_modal": 35,
+        "caution_buffer": 2,
+        "confidence": 52
+      },
+      "features": {
+        "language_score": 60.1,
+        "tone_balance": 0.6403,
+        "commitment_balance": 0.507,
+        "uncertainty_per_1000_words": 10.52,
+        "caution_per_1000_words": 0.13,
+        "confidence_per_1000_words": 3.32
+      },
+      "evidence": [
+        {
+          "page": 76,
+          "sentence": "44 Deutsche Bank Risks and Opportunities Annual Report 2024 Risks Risks and Opportunities The following section focuses on future trends or events that may result in downside risk or upside potential from what Deutsche Bank has anticipated in its “Outlook”.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 4,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 78,
+          "sentence": "There is a risk that some of these policies could result in higher inflation and interest rates and uncertainty around the outlook for ke y geopolitical risks.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 3,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 76,
+          "sentence": "These risks include but are not limited to the challenging macroeconomic environment in Europe, in particular Germany, and the potential for a re -emergence of inflationary pressures impacting the int erest rate outlook.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 2,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 149,
+          "sentence": "Impact, risk, and opportunity management Impacts, risks, and opportunities Clients expect secure access to their bank’s services anytime, anywhere, and through a variety of channels.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 1,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 73,
+          "sentence": "For a discussion of the risks and opportunities for the outlook of Deutsche Bank please refer to the section “Risks and opportunities” of this report.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 118,
+          "sentence": "86 Deutsche Bank Risk and Capital Management Annual Report 2024 Credit Risk Management IFRS 9 model results Provision for credit losses was € 1.8 billion in 2024, up from € 1.5 billion in 2023 and 38 basis points (bps) of average loans, in line with the guidance the bank provided after the third quarter.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 415,
+          "sentence": "383 Deutsche Bank Standalone parent company information (HGB) Annual Report 2024 Management of Deutsche Bank AG within the Group Management of Deutsche Bank AG within the Group The content in this chapter should be read in conjunction with the respective group sections in this Annual Report, especially “Risk Report”, “Outlook”, “Risks and Opportunities” and “Internal control over financial reporting”.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 247,
+          "sentence": "215 Deutsche Bank General information Annual Report 2024 Stakeholder engagement and thought leadership Investors ESRS 2 SBM-2 Investors expect Deutsche Bank to execute its strategy and to build a strong business foundation that delivers consistent returns while managing risks responsibly.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 1,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 1,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 1
+          },
+          "review_status": "pending_human_review"
+        }
+      ],
+      "status": "provisional_single_period",
+      "history_periods": 1,
+      "language_drift_score": null,
+      "backtest_status": "not_run",
+      "publication_eligible": false,
+      "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
+    }
+  ],
+  "signals": [
+    {
+      "ticker": "BNP",
+      "bank_name": "BNP Paribas S.A.",
+      "numeric_score": 67.1,
+      "language_score": 46.4,
+      "language_drift_score": null,
+      "divergence": 20.7,
+      "quadrant": "Early warning",
+      "status": "provisional_single_period",
+      "alerts": [
+        {
+          "type": "numeric_language_divergence",
+          "severity": "research_review",
+          "message": "Numeric-language gap reached +20.7 points.",
+          "review_status": "pending_human_review"
+        }
+      ],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "SAN",
+      "bank_name": "Banco Santander S.A.",
+      "numeric_score": 38.8,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "INGA",
+      "bank_name": "ING Groep N.V.",
+      "numeric_score": 53.2,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "BBVA",
+      "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+      "numeric_score": 55.8,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "ISP",
+      "bank_name": "Intesa Sanpaolo S.p.A.",
+      "numeric_score": 55.1,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "UCG",
+      "bank_name": "UniCredit S.p.A.",
+      "numeric_score": 49.6,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "NDA-FI",
+      "bank_name": "Nordea Bank Abp",
+      "numeric_score": 45.8,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "DBK",
+      "bank_name": "Deutsche Bank AG",
+      "numeric_score": 52.0,
+      "language_score": 60.1,
+      "language_drift_score": null,
+      "divergence": -8.1,
+      "quadrant": "Confirmed strength",
+      "status": "provisional_single_period",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "GLE",
+      "bank_name": "Société Générale S.A.",
+      "numeric_score": 54.8,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "KBC",
+      "bank_name": "KBC Group N.V.",
+      "numeric_score": 38.8,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "CABK",
+      "bank_name": "CaixaBank S.A.",
+      "numeric_score": 41.1,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "ACA",
+      "bank_name": "Crédit Agricole S.A.",
+      "numeric_score": 50.1,
+      "language_score": 66.0,
+      "language_drift_score": null,
+      "divergence": -15.9,
+      "quadrant": "Confirmed strength",
+      "status": "provisional_single_period",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "CBK",
+      "bank_name": "Commerzbank AG",
+      "numeric_score": 43.9,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "EBS",
+      "bank_name": "Erste Group Bank AG",
+      "numeric_score": 45.2,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "BIRG",
+      "bank_name": "Bank of Ireland Group plc",
+      "numeric_score": 55.1,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "FBK",
+      "bank_name": "FinecoBank S.p.A.",
+      "numeric_score": 46.7,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "ABN",
+      "bank_name": "ABN AMRO Bank N.V.",
+      "numeric_score": 46.5,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "BAMI",
+      "bank_name": "Banco BPM S.p.A.",
+      "numeric_score": 49.4,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "SAB",
+      "bank_name": "Banco de Sabadell S.A.",
+      "numeric_score": 36.4,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "AIBG",
+      "bank_name": "AIB Group plc",
+      "numeric_score": 58.9,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "BKT",
+      "bank_name": "Bankinter S.A.",
+      "numeric_score": 49.3,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "BG",
+      "bank_name": "BAWAG Group AG",
+      "numeric_score": 45.0,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    },
+    {
+      "ticker": "BPE",
+      "bank_name": "BPER Banca S.p.A.",
+      "numeric_score": 68.7,
+      "language_score": null,
+      "language_drift_score": null,
+      "divergence": null,
+      "quadrant": null,
+      "status": "insufficient_language_data",
+      "alerts": [],
+      "publication_eligible": false
+    }
+  ]
+}

@@ -24,6 +24,27 @@ images, country codes, tickers, index weights, euro-denominated prices, P/E,
 P/B, ROE, dividend yield, scores, and concise comments. The Evidence tab is a
 complete 23-bank directory of official annual and quarterly-report links.
 
+## Independent management-language axis
+
+The Signals tab keeps the numeric and language axes separate. The versioned,
+deterministic language engine measures financial tone, uncertainty, commitment
+strength, cautious wording and confidence expressions. Each observation keeps
+the original sentence, PDF page, document hash, reporting period and official
+source URL. Numeric-language gaps can create research-review alerts, but the
+labels are not investment recommendations.
+
+Language governance follows a staged history rule:
+
+- 1 period: current-language preview only
+- 4 comparable quarterly periods: preliminary trend
+- 8 comparable quarterly periods: drift and event-alert research
+- Human review plus out-of-sample backtest: eligible for validated publication
+
+The current archive has provisional single-period coverage for ACA, BNP and
+DBK. The other 20 banks are explicitly marked `insufficient_language_data`.
+Annual and interim documents are not treated as comparable, and no missing
+language value is imputed.
+
 Provider dividend yields arrive in percentage points and are divided by 100
 before scoring, then converted back only for display (for example, provider
 `5.63` → stored `0.0563` → displayed `5.63%`).
@@ -40,6 +61,8 @@ before scoring, then converted back only for display (for example, provider
 ```text
 Official reports -> fast page screen -> table extraction -> evidence PNG
                                       -> review-pending evidence archive
+                 -> management-section gate -> language evidence + page
+                                            -> independent language axis
 Market prices ---------------------> comparable dataset
                        -> quality/freshness gates
                        -> weighted peer score
@@ -54,20 +77,24 @@ Market prices ---------------------> comparable dataset
 - Stale-price gate
 - Weight sensitivity analysis
 - Governance disclosures
+- Separate numeric and language axes
+- Four-period preliminary-trend gate
+- Eight-period drift-alert gate
+- Human review and out-of-sample backtest gate
 
 ## Run
 
 ```powershell
 & "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\run_pilot_pipeline.py"
-streamlit run "C:\FG\Roadmap to AI\pilot_dashboard.py"
+  "C:\FG\Roadmap to AI\EU-Banks-Picker\run_pilot_pipeline.py"
+streamlit run "C:\FG\Roadmap to AI\EU-Banks-Picker\pilot_dashboard.py"
 ```
 
 To monitor rollout coverage across all 23 constituents:
 
 ```powershell
 & "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\coverage_report.py"
+  "C:\FG\Roadmap to AI\EU-Banks-Picker\coverage_report.py"
 ```
 
 The latest download run is recorded in `download_manifest.json`. The current
@@ -85,5 +112,12 @@ Use `--ticker BNP` to process one bank or `--no-images` for a faster diagnostic
 run. The current local batch contains candidates from ACA, BNP and DBK. Evidence
 screenshots are displayed in the dashboard separately from the 23-bank official
 report-link directory.
+
+To rebuild the independent management-language archive:
+
+```powershell
+& "C:\FG\.venv\Scripts\python.exe" `
+  "C:\FG\Roadmap to AI\EU-Banks-Picker\app\language_signals.py"
+```
 
 This is a research screening tool, not personalized investment advice.

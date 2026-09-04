@@ -1,4 +1,6 @@
 python-dotenv
+altair
+pandas
 pypdf
 pdfplumber
 pypdfium2
