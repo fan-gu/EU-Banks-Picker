@@ -36,6 +36,16 @@ the original sentence, PDF page, document hash, reporting period and official
 source URL. Numeric-language gaps can create research-review alerts, but the
 labels are not investment recommendations.
 
+Language rule v2 corrects the positive base rate of management-authored
+documents in two steps. First, it calculates explicit negative pressure from
+negative terms (2.00×), weak modal density (1.75×), uncertainty (1.35×), and
+cautious or euphemistic wording (1.15×), all per 1,000 analyzed words. Second,
+it robustly centers net language strength across the 23-bank cohort using the
+median and MAD. Therefore, 50 is the peer center rather than generic sentiment
+neutrality. A confidence decline combined with rising caution is encoded as a
+directional reversal, but the drift penalty remains inactive until comparable
+history exists.
+
 Language governance follows a staged history rule:
 
 - 1 period: current-language preview only

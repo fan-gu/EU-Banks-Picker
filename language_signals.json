@@ -1,10 +1,27 @@
 {
   "schema_version": "1.0",
-  "rule_version": "management-language-v1.0",
-  "generated_at": "2026-09-04T19:58:45.986974+00:00",
+  "rule_version": "management-language-v2.0",
+  "generated_at": "2026-09-04T20:39:19.427257+00:00",
   "methodology": {
     "axes_are_independent": true,
     "language_model": "deterministic_financial_lexicon",
+    "language_score_calibration": {
+      "method": "robust_median_mad",
+      "peer_count": 23,
+      "median_raw_strength": -21.7608,
+      "mad_raw_strength": 10.039,
+      "score_center": 50,
+      "score_points_per_robust_sigma": 12,
+      "score_floor": 15,
+      "score_ceiling": 85
+    },
+    "negative_pressure_weights": {
+      "negative_terms": 2.0,
+      "uncertainty": 1.35,
+      "weak_modals": 1.75,
+      "caution_or_euphemism": 1.15
+    },
+    "drift_penalty": "Weak-modal and uncertainty increases, caution increases, and confidence declines are activated only for comparable history.",
     "minimum_history_for_preliminary_trend": 4,
     "minimum_history_for_drift_alerts": 8,
     "publication_gate": "backtest_and_human_review_required",
@@ -27,23 +44,30 @@
       "official_page": "https://invest.bnpparibas/en/results",
       "document_sha256": "a26f585d295c85aec21e106efdf32bd6adae975f5b908961d77bdd5d7c754494",
       "page_count": 36,
-      "analyzed_word_count": 619,
+      "analyzed_word_count": 775,
       "feature_counts": {
         "positive": 29,
         "negative": 0,
-        "uncertainty": 4,
+        "uncertainty": 8,
         "strong_modal": 3,
-        "weak_modal": 0,
-        "caution_buffer": 3,
+        "weak_modal": 5,
+        "caution_buffer": 4,
         "confidence": 18
       },
       "features": {
-        "language_score": 75.5,
-        "tone_balance": 1.0,
-        "commitment_balance": 1.0,
-        "uncertainty_per_1000_words": 6.46,
-        "caution_per_1000_words": 4.85,
-        "confidence_per_1000_words": 29.08
+        "language_score": 67.6,
+        "absolute_language_score": 50.1,
+        "management_language_strength_raw": 0.129,
+        "positive_signal_score": 31.29,
+        "negative_pressure_score": 31.16,
+        "positive_per_1000_words": 37.42,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 3.87,
+        "weak_modal_per_1000_words": 6.45,
+        "uncertainty_per_1000_words": 10.32,
+        "caution_per_1000_words": 5.16,
+        "confidence_per_1000_words": 23.23,
+        "peer_centered_z": 1.4707
       },
       "evidence": [
         {
@@ -77,6 +101,36 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 2,
+          "sentence": "Those events are uncertain; their outcome may differ from current expectations which may in turn significantly affect expected results.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 2,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "Forward-looking statements are not guarantees of future performance and are subject to inherent risks, uncertainties and assumptions about BNP Paribas and its subsidiaries and investments, developments of BNP Paribas and its subsidiaries, banking industry trends, future capital expenditures and acquisitions, changes in economic conditions globally, or in BNP Paribas’ principal local markets, the competitive market and regulatory factors.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 25,
           "sentence": "All regions up strongly, notably APAC ⎯ Securities Services • Strong momentum continued, benefiting from market levels and volatility, higher levels of deposits and improved margins.",
           "is_guidance": false,
@@ -92,77 +146,47 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 26,
-          "sentence": "Improved margins in Türkiye partially offset by normalisation in Poland due to rate cuts ⎯ Specialised Businesses • Personal Finance: double-digit pre-tax income growth, driven by solid commercial momentum and mobility production with successful Retail partnerships, coupled with disciplined cost management • Arval & Leasing Solutions: Arval delivered strong organic growth, driven by fleet and margin expansion.",
+          "page": 34,
+          "sentence": "Athlon: closing expected some time in 2026, subject to informational and consultation processes with personnel representative bodies of the entities and authorisations by competent authorities • Slide 8 1.",
           "is_guidance": false,
           "hits": {
-            "positive": 7,
+            "positive": 0,
             "negative": 0,
-            "uncertainty": 0,
+            "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 2,
-            "confidence": 3
+            "caution_buffer": 1,
+            "confidence": 0
           },
           "review_status": "pending_human_review"
         },
         {
-          "page": 14,
-          "sentence": "Revenue growth at Personal Finance, driven by a solid business momentum and improved margins.",
+          "page": 2,
+          "sentence": "Actual results may differ materially from those projected or implied in these forward-looking statements.",
           "is_guidance": false,
           "hits": {
-            "positive": 4,
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 1,
             "caution_buffer": 0,
-            "confidence": 2
+            "confidence": 0
           },
           "review_status": "pending_human_review"
         },
         {
-          "page": 14,
-          "sentence": "Strong quarter at Wealth Management and Asset Management supported by robust fee momentum and margins on deposits €m €5,281m +12.7%; +13.8% csr Excellent quarter anchoring our #1 position amongst European banks.",
+          "page": 2,
+          "sentence": "Consequently, actual results may differ from those projected or implied in these forward-looking statements due to a variety of factors.",
           "is_guidance": false,
           "hits": {
-            "positive": 3,
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 1,
             "caution_buffer": 0,
-            "confidence": 3
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 14,
-          "sentence": "30.06.2026 Results | 14 Double-digit organic and reported growthREVENUES | ⎯ Revenues rose sharply in 2Q26: +12.0%; +10.4% csr €6,945m +4.8%; +4.9% csr Strong revenue momentum confirmed, supported by the interest rate environment and positive fee dynamics across CPB Sustained organic revenue growth at Arval.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 3,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 2
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 27,
-          "sentence": "2Q25 given the absence of dividend in 2Q26 (~€60m in 2Q25), partially offset by higher share of earnings of equity method entities ⎯ Asset Management • Strong commercial momentum with net inflows of €21.7bn in 1H26, in line with the Deep Dive trajectory (€350bn inflows across the plan) supported by successful product launches across alternative credit and actively managed ETF offerings, leveraging the Group's distribution networks and GM’s product expertise • AuM up sharply from 2025 (+€108bn, +",
-          "is_guidance": false,
-          "hits": {
-            "positive": 3,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 2
+            "confidence": 0
           },
           "review_status": "pending_human_review"
         }
@@ -170,6 +194,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -185,23 +211,30 @@
       "official_page": "https://www.santander.com/en/shareholders-and-investors/financial-and-economic-information/quarterly-results",
       "document_sha256": "bde3eb4ebe130caa07f625eb26a1ff7f21440a81b85ef7a2847e601bcd42bbc0",
       "page_count": 63,
-      "analyzed_word_count": 1572,
+      "analyzed_word_count": 2113,
       "feature_counts": {
-        "positive": 52,
+        "positive": 57,
         "negative": 3,
-        "uncertainty": 4,
+        "uncertainty": 11,
         "strong_modal": 9,
-        "weak_modal": 2,
-        "caution_buffer": 7,
-        "confidence": 28
+        "weak_modal": 9,
+        "caution_buffer": 11,
+        "confidence": 31
       },
       "features": {
-        "language_score": 75.2,
-        "tone_balance": 0.8909,
-        "commitment_balance": 0.6364,
-        "uncertainty_per_1000_words": 2.54,
-        "caution_per_1000_words": 4.45,
-        "confidence_per_1000_words": 17.81
+        "language_score": 66.8,
+        "absolute_language_score": 49.1,
+        "management_language_strength_raw": -0.9229,
+        "positive_signal_score": 22.39,
+        "negative_pressure_score": 23.31,
+        "positive_per_1000_words": 26.98,
+        "negative_per_1000_words": 1.42,
+        "strong_modal_per_1000_words": 4.26,
+        "weak_modal_per_1000_words": 4.26,
+        "uncertainty_per_1000_words": 5.21,
+        "caution_per_1000_words": 5.21,
+        "confidence_per_1000_words": 14.67,
+        "peer_centered_z": 1.4
       },
       "evidence": [
         {
@@ -229,7 +262,7 @@
             "uncertainty": 0,
             "strong_modal": 2,
             "weak_modal": 0,
-            "caution_buffer": 1,
+            "caution_buffer": 0,
             "confidence": 2
           },
           "review_status": "pending_human_review"
@@ -280,6 +313,36 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 2,
+          "sentence": "However, risks, uncertainties and other important factors may lead to developments and results that differ materially from those anticipated, expected, projected or assumed in forward-looking statements.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 4,
+          "sentence": "Moreover, in reproducing these contents in by any means, Santander may introduce any changes it deems suitable, and may omit, partially or completely, any of the elements of this presentation, and in case of any deviation, Santander assumes no liability for any discrepancy.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 2,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 12,
           "sentence": "TSB ONE Transformation progressing at speed driven by product digitalization, with digital sales +21% YoY; customer interaction platform rollout ready in Spain Profitable loan growth and generalized increases in deposits underscoring our strength as a trusted partner and the value of our customer-centric model Excluding Argentina, CoR improved YoY to 1.07%, as a result of our prudent risk management Strong profit growth reflecting the benefits of ONE Transformation in fees (+6%) and costs (-5% e",
           "is_guidance": false,
@@ -293,41 +356,13 @@
             "confidence": 1
           },
           "review_status": "pending_human_review"
-        },
-        {
-          "page": 25,
-          "sentence": "Excluding Argentina: – LLPs broadly stable YoY and CoR improved 2bps to 1.07%, reflecting our active risk management and resilient labour markets across most of our footprint – NPL ratio improved 2bps to 2.88%.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 3,
-            "negative": 0,
-            "uncertainty": 1,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 1,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 48,
-          "sentence": "Costs down in real terms and LLPs growing below loans • In the quarter, stronger NII (balance sheet management) and lower tax pressure.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 1,
-            "negative": 1,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
         }
       ],
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -343,23 +378,30 @@
       "official_page": "https://ing.com/investors/financial-performance/quarterly-results/2026",
       "document_sha256": "635988478a5069bc37f689ee258bc9cbad1695e54251098a2ebe77bb9e7c1ffd",
       "page_count": 31,
-      "analyzed_word_count": 321,
+      "analyzed_word_count": 458,
       "feature_counts": {
         "positive": 8,
         "negative": 0,
-        "uncertainty": 2,
+        "uncertainty": 4,
         "strong_modal": 0,
-        "weak_modal": 1,
-        "caution_buffer": 0,
+        "weak_modal": 6,
+        "caution_buffer": 1,
         "confidence": 3
       },
       "features": {
-        "language_score": 56.7,
-        "tone_balance": 1.0,
-        "commitment_balance": -1.0,
-        "uncertainty_per_1000_words": 6.23,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 9.35
+        "language_score": 45.9,
+        "absolute_language_score": 23.1,
+        "management_language_strength_raw": -26.8559,
+        "positive_signal_score": 10.37,
+        "negative_pressure_score": 37.23,
+        "positive_per_1000_words": 17.47,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 0.0,
+        "weak_modal_per_1000_words": 13.1,
+        "uncertainty_per_1000_words": 8.73,
+        "caution_per_1000_words": 2.18,
+        "confidence_per_1000_words": 6.55,
+        "peer_centered_z": -0.3423
       },
       "evidence": [
         {
@@ -372,7 +414,7 @@
             "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -438,6 +480,21 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 23,
+          "sentence": "2Q2026 results overview (in € mln) Reported P&L Volatile items P&L excluding volatile items Commercial NII 4,174 0 4,174 Fee income 1,278 1 1,277 All other income 833 88 745 Total income 6,284 88 6,195 Expenses excl. regulatory costs 3,008 46 2,961 Regulatory costs 78 0 78 Operating expenses 3,086 46 3,039 Gross result 3,198 42 3,156 Addition to loan loss provisions 279 0 279 Result before tax 2,919 42 2,877 Taxation 902 Non-controlling interests 71 Net result 1,947 23 2Q2026 results overview",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 31,
           "sentence": "Certain of the statements contained herein are not historical facts, including, without limitation, certain statements made of future expectations and other forward-looking statements that are based on management’s current views and assumptions and involve known and unknown risks and uncertainties that could cause actual results, performance or events to diﬀer materially from those expressed or implied in such statements.",
           "is_guidance": false,
@@ -453,17 +510,17 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 6,
-          "sentence": "• Profitability continues to trend upward on the back of strong commercial growth, coupled with positive operating jaws.",
+          "page": 31,
+          "sentence": "Due to the fact that there may be different or even conflicting laws, the approach, criteria or the application thereof, could be different.",
           "is_guidance": false,
           "hits": {
-            "positive": 2,
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 2,
             "caution_buffer": 0,
-            "confidence": 1
+            "confidence": 0
           },
           "review_status": "pending_human_review"
         }
@@ -471,6 +528,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -486,23 +545,30 @@
       "official_page": "https://shareholdersandinvestors.bbva.com/financials/financial-reports/",
       "document_sha256": "f8d17b93240d1cda23185f05c5e114cf2e20cc2530f015ca69792d48f747f0f0",
       "page_count": 53,
-      "analyzed_word_count": 966,
+      "analyzed_word_count": 1301,
       "feature_counts": {
         "positive": 20,
         "negative": 0,
-        "uncertainty": 3,
-        "strong_modal": 14,
-        "weak_modal": 6,
-        "caution_buffer": 0,
+        "uncertainty": 7,
+        "strong_modal": 16,
+        "weak_modal": 16,
+        "caution_buffer": 3,
         "confidence": 9
       },
       "features": {
-        "language_score": 78.1,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.4,
-        "uncertainty_per_1000_words": 3.11,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 9.32
+        "language_score": 58.1,
+        "absolute_language_score": 38.3,
+        "management_language_strength_raw": -11.7218,
+        "positive_signal_score": 19.72,
+        "negative_pressure_score": 31.44,
+        "positive_per_1000_words": 15.37,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 12.3,
+        "weak_modal_per_1000_words": 12.3,
+        "uncertainty_per_1000_words": 5.38,
+        "caution_per_1000_words": 2.31,
+        "confidence_per_1000_words": 6.92,
+        "peer_centered_z": 0.6745
       },
       "evidence": [
         {
@@ -629,6 +695,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -644,40 +712,32 @@
       "official_page": "https://group.intesasanpaolo.com/en/investor-relations/results",
       "document_sha256": "6081cde07bf6efac92d410c762cf8e820b6c14fd8764d12fe2a6de9bc44cdb42",
       "page_count": 102,
-      "analyzed_word_count": 1327,
+      "analyzed_word_count": 2848,
       "feature_counts": {
-        "positive": 8,
-        "negative": 2,
-        "uncertainty": 3,
-        "strong_modal": 3,
-        "weak_modal": 8,
-        "caution_buffer": 3,
-        "confidence": 6
+        "positive": 16,
+        "negative": 3,
+        "uncertainty": 12,
+        "strong_modal": 5,
+        "weak_modal": 47,
+        "caution_buffer": 6,
+        "confidence": 9
       },
       "features": {
-        "language_score": 55.4,
-        "tone_balance": 0.6,
-        "commitment_balance": -0.4545,
-        "uncertainty_per_1000_words": 2.26,
-        "caution_per_1000_words": 2.26,
-        "confidence_per_1000_words": 4.52
+        "language_score": 40.4,
+        "absolute_language_score": 16.3,
+        "management_language_strength_raw": -33.6728,
+        "positive_signal_score": 5.42,
+        "negative_pressure_score": 39.1,
+        "positive_per_1000_words": 5.62,
+        "negative_per_1000_words": 1.05,
+        "strong_modal_per_1000_words": 1.76,
+        "weak_modal_per_1000_words": 16.5,
+        "uncertainty_per_1000_words": 4.21,
+        "caution_per_1000_words": 2.11,
+        "confidence_per_1000_words": 3.16,
+        "peer_centered_z": -0.8003
       },
       "evidence": [
-        {
-          "page": 14,
-          "sentence": "MIL-BVA362-03032014-90141/VR 13 Net interest income growth despite Euribor decline… +1.90+2.35 Net interest income – Half-yearly comparison € m % Euribor 1M (average data) 1H25 2H25 1H26 7,432 7,364 7,480 +1.99 +€48m 2026 Net interest income guidance raised to well above €15bn -36bps",
-          "is_guidance": true,
-          "hits": {
-            "positive": 1,
-            "negative": 1,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
-        },
         {
           "page": 6,
           "sentence": "Subject to ECB and shareholders’ approvals (3) Based on ISP share price as at 27.7.26, 75% cash payout ratio and 2026 Net income guidance of >€10bn.",
@@ -686,6 +746,21 @@
             "positive": 0,
             "negative": 0,
             "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 14,
+          "sentence": "MIL-BVA362-03032014-90141/VR 13 Net interest income growth despite Euribor decline… +1.90+2.35 Net interest income – Half-yearly comparison € m % Euribor 1M (average data) 1H25 2H25 1H26 7,432 7,364 7,480 +1.99 +€48m 2026 Net interest income guidance raised to well above €15bn -36bps",
+          "is_guidance": true,
+          "hits": {
+            "positive": 1,
+            "negative": 1,
+            "uncertainty": 0,
             "strong_modal": 0,
             "weak_modal": 0,
             "caution_buffer": 0,
@@ -703,7 +778,7 @@
             "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -718,7 +793,7 @@
             "uncertainty": 0,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 1,
+            "caution_buffer": 0,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -769,17 +844,17 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 28,
-          "sentence": "13.0% not including any 1H26 Net income %, bps ISP 2026 fully loaded requirements SREP + combined buffer CET1 ratio evolution 31.12.25 ~(75) Buyback launched in July 31.12.25 post buyback ~180 Net income ~(175) Dividends and AT1 coupons(1) ~(35) RWA evolution ~25 DTA and others 30.6.26(2) >13.9% ~13.2% ~13.1% 10% >13.8% including additional ~75bps from DTA absorption ISP is a clear winner of the EBA stress test thanks to its well-diversified and resilient business model ~90 ~(90)>13.0% 31.3.26 ~",
+          "page": 26,
+          "sentence": "MIL-BVA362-03032014-90141/VR 25 Lowest-ever half-yearly Cost of risk, with a strong increase in NPL coverage € m Cost of risk bps; annualised 505 428 1H25 1H26 Low Cost of risk, in line with Zero-NPL Bank status Loan loss provisions €0.9bn overlays Note: figures may not add up exactly due to rounding 24 20 1H25 1H26 NPL coverage % 31.12.25 30.6.26 48.6 50.1 +1.5pp High and strongly increased NPL coverage",
           "is_guidance": false,
           "hits": {
             "positive": 1,
-            "negative": 1,
-            "uncertainty": 0,
+            "negative": 0,
+            "uncertainty": 3,
             "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 1,
-            "confidence": 2
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 1
           },
           "review_status": "pending_human_review"
         }
@@ -787,6 +862,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -802,23 +879,30 @@
       "official_page": "https://www.unicreditgroup.eu/en/investors/financial-reporting/group-results.html",
       "document_sha256": "470c416896fc2e49710d383707139afa8635d823056674cf3b789c8a8fd5da7e",
       "page_count": 47,
-      "analyzed_word_count": 1401,
+      "analyzed_word_count": 2197,
       "feature_counts": {
-        "positive": 16,
-        "negative": 0,
-        "uncertainty": 5,
-        "strong_modal": 7,
-        "weak_modal": 3,
-        "caution_buffer": 8,
+        "positive": 19,
+        "negative": 1,
+        "uncertainty": 20,
+        "strong_modal": 10,
+        "weak_modal": 18,
+        "caution_buffer": 21,
         "confidence": 6
       },
       "features": {
-        "language_score": 68.0,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.4,
-        "uncertainty_per_1000_words": 3.57,
-        "caution_per_1000_words": 5.71,
-        "confidence_per_1000_words": 4.28
+        "language_score": 43.3,
+        "absolute_language_score": 19.9,
+        "management_language_strength_raw": -30.0865,
+        "positive_signal_score": 8.44,
+        "negative_pressure_score": 38.53,
+        "positive_per_1000_words": 8.65,
+        "negative_per_1000_words": 0.46,
+        "strong_modal_per_1000_words": 4.55,
+        "weak_modal_per_1000_words": 8.19,
+        "uncertainty_per_1000_words": 9.1,
+        "caution_per_1000_words": 9.56,
+        "confidence_per_1000_words": 2.73,
+        "peer_centered_z": -0.5594
       },
       "evidence": [
         {
@@ -846,6 +930,21 @@
             "uncertainty": 1,
             "strong_modal": 1,
             "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 47,
+          "sentence": "No statement in the Information is intended to be nor may be construed as a profit forecast.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 1,
             "caution_buffer": 0,
             "confidence": 0
           },
@@ -925,26 +1024,13 @@
             "confidence": 0
           },
           "review_status": "pending_human_review"
-        },
-        {
-          "page": 19,
-          "sentence": "TARGET EFFICIENCIES, WHILE RE-INVESTING: Efficiencies – excluding Poland – focusing on international network, non-HR administrative costs and central functions, reducing social impact in Germany.",
-          "is_guidance": true,
-          "hits": {
-            "positive": 0,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 1,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
         }
       ],
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -960,23 +1046,30 @@
       "official_page": "https://www.nordea.com/en/investors/latest-interim-results",
       "document_sha256": "04beaf04ef39bfaa3de16849df8dc477f85d84c41574d0db5ab1d4e02af6a0aa",
       "page_count": 20,
-      "analyzed_word_count": 254,
+      "analyzed_word_count": 331,
       "feature_counts": {
         "positive": 5,
         "negative": 0,
-        "uncertainty": 2,
+        "uncertainty": 3,
         "strong_modal": 0,
-        "weak_modal": 1,
-        "caution_buffer": 0,
+        "weak_modal": 3,
+        "caution_buffer": 2,
         "confidence": 1
       },
       "features": {
-        "language_score": 50.1,
-        "tone_balance": 1.0,
-        "commitment_balance": -1.0,
-        "uncertainty_per_1000_words": 7.87,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 3.94
+        "language_score": 45.1,
+        "absolute_language_score": 22.2,
+        "management_language_strength_raw": -27.7946,
+        "positive_signal_score": 7.25,
+        "negative_pressure_score": 35.05,
+        "positive_per_1000_words": 15.11,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 0.0,
+        "weak_modal_per_1000_words": 9.06,
+        "uncertainty_per_1000_words": 9.06,
+        "caution_per_1000_words": 6.04,
+        "confidence_per_1000_words": 3.02,
+        "peer_centered_z": -0.4054
       },
       "evidence": [
         {
@@ -1025,6 +1118,51 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 18,
+          "sentence": "Assuming stable regulatory requirements and subject to potential M&A 3.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 2,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "Accordingly, results could differ materially from those set out in the forward- looking statements as a result of various factors.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "Important factors that may cause such a difference for Nordea include, but are not limited to: (i) the macroeconomic development, (ii) change in the competitive climate, (iii) change in the regulatory environment and other government actions and (iv) change in interest rate and foreign exchange rate levels.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 3,
           "sentence": "3 Second-quarter highlights 2026 Executive summary Strong performance and high profitability – highlighting the strength of Nordea’s diversified business model - Return on equity1 15.9% and earnings per share EUR 0.36, up 3% y/y High business volume growth; assets under management at record EUR 505bn - Corporate lending up 9% y/y, corporate deposits up 9%.",
           "is_guidance": false,
@@ -1058,6 +1196,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1073,23 +1213,30 @@
       "official_page": "https://investor-relations.db.com/reports-and-events/quarterly-results?language_id=1",
       "document_sha256": "bc0cb406e0ffc2d1ea34e5cb64d865ff5589f4e1223dc8411e83041a4f1b5158",
       "page_count": 35,
-      "analyzed_word_count": 633,
+      "analyzed_word_count": 786,
       "feature_counts": {
         "positive": 3,
-        "negative": 0,
-        "uncertainty": 5,
-        "strong_modal": 2,
-        "weak_modal": 0,
-        "caution_buffer": 0,
+        "negative": 1,
+        "uncertainty": 11,
+        "strong_modal": 3,
+        "weak_modal": 2,
+        "caution_buffer": 3,
         "confidence": 4
       },
       "features": {
-        "language_score": 76.5,
-        "tone_balance": 1.0,
-        "commitment_balance": 1.0,
-        "uncertainty_per_1000_words": 7.9,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 6.32
+        "language_score": 49.3,
+        "absolute_language_score": 27.4,
+        "management_language_strength_raw": -22.5827,
+        "positive_signal_score": 7.7,
+        "negative_pressure_score": 30.28,
+        "positive_per_1000_words": 3.82,
+        "negative_per_1000_words": 1.27,
+        "strong_modal_per_1000_words": 3.82,
+        "weak_modal_per_1000_words": 2.54,
+        "uncertainty_per_1000_words": 13.99,
+        "caution_per_1000_words": 3.82,
+        "confidence_per_1000_words": 5.09,
+        "peer_centered_z": -0.0552
       },
       "evidence": [
         {
@@ -1153,6 +1300,21 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 34,
+          "sentence": "Based on balance sheet per May 31, 2026 and on current market-implied forward rates as of June 30, 2026 34 Slide 26 – Group Trading Book Value-at-Risk (VaR) and stressed Value-at-Risk (sVaR) 1.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 1,
+            "uncertainty": 2,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 35,
           "sentence": "Such factors include the conditions in the financial markets in Germany, in Europe, in the United States and elsewhere from which we derive a substantial portion of our revenues and in which we hold a substantial portion of our assets, the development of asset prices and market volatility, potential defaults of borrowers or trading counterparties, the implementation of our strategic initiatives, the reliability of our risk management policies, procedures and methods, and other risks referenced i",
           "is_guidance": false,
@@ -1168,8 +1330,23 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 34,
+          "sentence": "Distributions to shareholders are subject to corporate decisions, shareholder authorization, meeting German corporate law requirements, and in the case of share buybacks additionally require prior supervisory approval Slide 20 – 2028 financial targets and capital objectives 1.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 1,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 33,
-          "sentence": "Total FIC revenue credits across Institutional Client Group and Risk Management Solutions; development vs. prior-year quarter 5.",
+          "sentence": "Includes interim profit still subject to ECB approval 2.",
           "is_guidance": false,
           "hits": {
             "positive": 0,
@@ -1177,7 +1354,7 @@
             "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -1186,6 +1363,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1201,23 +1380,30 @@
       "official_page": "https://investors.societegenerale.com/en/publications-documents",
       "document_sha256": "4ceb05d8ae2a86da7c6ba1d629fc143c609b0f7a784bce55d4257f9686009a82",
       "page_count": 72,
-      "analyzed_word_count": 491,
+      "analyzed_word_count": 768,
       "feature_counts": {
         "positive": 10,
         "negative": 0,
-        "uncertainty": 4,
+        "uncertainty": 11,
         "strong_modal": 12,
-        "weak_modal": 1,
-        "caution_buffer": 1,
+        "weak_modal": 10,
+        "caution_buffer": 2,
         "confidence": 7
       },
       "features": {
-        "language_score": 74.1,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.8462,
-        "uncertainty_per_1000_words": 8.15,
-        "caution_per_1000_words": 2.04,
-        "confidence_per_1000_words": 14.26
+        "language_score": 49.7,
+        "absolute_language_score": 27.9,
+        "management_language_strength_raw": -22.1354,
+        "positive_signal_score": 22.98,
+        "negative_pressure_score": 45.12,
+        "positive_per_1000_words": 13.02,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 15.62,
+        "weak_modal_per_1000_words": 13.02,
+        "uncertainty_per_1000_words": 14.32,
+        "caution_per_1000_words": 2.6,
+        "confidence_per_1000_words": 9.11,
+        "peer_centered_z": -0.0252
       },
       "evidence": [
         {
@@ -1327,14 +1513,14 @@
         },
         {
           "page": 2,
-          "sentence": "Therefore, although Societe Generale believes that these statements are based on reasonable assumptions, this Information is subject to numerous risks, uncertainties and contingencies, including matters of which Societe Generale or its management are not yet aware or currently deem immaterial, and there is no guarantee that the anticipated events will occur or that the objectives set out will actually be achieved.",
+          "sentence": "Societe Generale may not be able to: - anticipate all risks, uncertainties, contingencies or other factors that may affect its business and to assess their potential consequences; - accurately assess the extent to which the occurrence of a risk or a combination of risks could result in outcomes that differ materially from those projected in this Presentation.",
           "is_guidance": false,
           "hits": {
             "positive": 0,
             "negative": 0,
-            "uncertainty": 2,
-            "strong_modal": 2,
-            "weak_modal": 0,
+            "uncertainty": 3,
+            "strong_modal": 0,
+            "weak_modal": 3,
             "caution_buffer": 0,
             "confidence": 0
           },
@@ -1344,6 +1530,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1359,23 +1547,30 @@
       "official_page": "https://www.kbc.com/en/landing-pages-info/interim-resultaten.html",
       "document_sha256": "7f30d0108072a0866dc11e9500ebf3aca699e97836b87e1be5f920a74120ad96",
       "page_count": 66,
-      "analyzed_word_count": 776,
+      "analyzed_word_count": 907,
       "feature_counts": {
-        "positive": 2,
+        "positive": 3,
         "negative": 0,
-        "uncertainty": 2,
+        "uncertainty": 5,
         "strong_modal": 19,
-        "weak_modal": 1,
+        "weak_modal": 4,
         "caution_buffer": 0,
         "confidence": 0
       },
       "features": {
-        "language_score": 76.9,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.9,
-        "uncertainty_per_1000_words": 2.58,
+        "language_score": 69.8,
+        "absolute_language_score": 52.8,
+        "management_language_strength_raw": 2.7563,
+        "positive_signal_score": 17.92,
+        "negative_pressure_score": 15.16,
+        "positive_per_1000_words": 3.31,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 20.95,
+        "weak_modal_per_1000_words": 4.41,
+        "uncertainty_per_1000_words": 5.51,
         "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 0.0
+        "confidence_per_1000_words": 0.0,
+        "peer_centered_z": 1.6472
       },
       "evidence": [
         {
@@ -1502,6 +1697,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1524,16 +1721,23 @@
         "uncertainty": 2,
         "strong_modal": 2,
         "weak_modal": 1,
-        "caution_buffer": 0,
+        "caution_buffer": 1,
         "confidence": 16
       },
       "features": {
-        "language_score": 77.3,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.3333,
+        "language_score": 83.6,
+        "absolute_language_score": 69.9,
+        "management_language_strength_raw": 19.906,
+        "positive_signal_score": 28.68,
+        "negative_pressure_score": 8.78,
+        "positive_per_1000_words": 28.21,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 3.13,
+        "weak_modal_per_1000_words": 1.57,
         "uncertainty_per_1000_words": 3.13,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 25.08
+        "caution_per_1000_words": 1.57,
+        "confidence_per_1000_words": 25.08,
+        "peer_centered_z": 2.7995
       },
       "evidence": [
         {
@@ -1561,7 +1765,7 @@
             "uncertainty": 1,
             "strong_modal": 1,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -1660,6 +1864,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1675,23 +1881,30 @@
       "official_page": "https://www.credit-agricole.com/en/finance/financial-information",
       "document_sha256": "22f6fcc6932b856b8fd4a76443b51c5e8ae43225e11f23569d4e6139ad7a3eb1",
       "page_count": 89,
-      "analyzed_word_count": 871,
+      "analyzed_word_count": 1075,
       "feature_counts": {
-        "positive": 14,
-        "negative": 0,
-        "uncertainty": 8,
+        "positive": 16,
+        "negative": 1,
+        "uncertainty": 10,
         "strong_modal": 0,
-        "weak_modal": 0,
-        "caution_buffer": 0,
-        "confidence": 12
+        "weak_modal": 6,
+        "caution_buffer": 2,
+        "confidence": 14
       },
       "features": {
-        "language_score": 66.0,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.0,
-        "uncertainty_per_1000_words": 9.18,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 13.78
+        "language_score": 57.3,
+        "absolute_language_score": 37.3,
+        "management_language_strength_raw": -12.6512,
+        "positive_signal_score": 13.67,
+        "negative_pressure_score": 26.33,
+        "positive_per_1000_words": 14.88,
+        "negative_per_1000_words": 0.93,
+        "strong_modal_per_1000_words": 0.0,
+        "weak_modal_per_1000_words": 5.58,
+        "uncertainty_per_1000_words": 9.3,
+        "caution_per_1000_words": 1.86,
+        "confidence_per_1000_words": 13.02,
+        "peer_centered_z": 0.612
       },
       "evidence": [
         {
@@ -1725,6 +1938,21 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 2,
+          "sentence": "Therefore, these assumptions are by nature subject to random factors that could cause actual results to differ from projections.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 26,
           "sentence": "NII recovery (+17%); fee and commission income rose (+9%; +5% excluding Milleis) driven by savings and non- life insurance Operating expenses: +3% excluding scope effect (2) and the “Energies 2030” transformation plan (3); cost/income ratio at 57.8% excluding the transformation plan Cost of risk/outstandings(4): 28bp, increased individual risk on corporates (sectors: retail/distribution/construction) 105.6 106.2 107.0 8.6 8.4 8.6 32.6 33.4 34.1 24.8 25.4 25.4 171.5 173.4 175.0 June 25 Mar.",
           "is_guidance": false,
@@ -1740,57 +1968,27 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 20,
-          "sentence": "20 2ND QUARTER AND 1ST HALF-YEAR 2026 RESULTS AG – ASSET MANAGEMENT (AMUNDI) Strong activity • Medium-long-term net inflows (1) of +€20bn, driven by ETFs (+€12bn) and active management (+€9bn), still driven by fixed-income/credit strategies • Continued strong momentum in third-party distribution (net inflows of +€13bn; a record for the half-year at €38bn, i.e.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 3,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 3
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 22,
-          "sentence": "Stable performance in FICC compared with a high base, impacted by underperformance in treasury against a backdrop of central bank balance sheet reductions Financing activities: stable Q2/Q2 and up 1.2% excluding foreign exchange impact; structured finance up 4.4% excluding foreign exchange impact, driven by growth in asset financing with strong momentum in the transport sector; and commercial banking stable excluding foreign exchange impact Revenues: Q2 at an all-time high.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 3,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 2
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 16,
-          "sentence": "16 2ND QUARTER AND 1ST HALF-YEAR 2026 RESULTS CRÉDIT AGRICOLE GROUP STRONG LIQUIDITY POSITION STRONG FINANCIAL POSITION – CRÉDIT AGRICOLE GROUP Liquidity reserves (€bn) Customer deposits (€bn) 1.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 2,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 2
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 13,
-          "sentence": "Amundi US base effect STRONG RESULTS DRIVEN BY A SHARP RISE IN GROSS OPERATING INCOME (+11.4%) RESULTS Q2/Q2 change in Net income Group share by business line (€m) Change in Q2/Q2 net income Group share by P&L line (€m) +€357m +11.4% Leasys -€33m: lower margins on used vehicles Gross operating income AG: Asset gathering; LC: Large customers; SFS: Specialised financial services; RB: Retail banking; CC: Corporate Centre Scope effects and integration costs in Appendix p.",
+          "page": 32,
+          "sentence": "Average production rate for the period from April to May 2026 Revenues driven by a sharp increase in the net interest margin (+38% Q2/Q2) and strong fee and commission income from insurance.",
           "is_guidance": false,
           "hits": {
             "positive": 1,
             "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 1
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 44,
+          "sentence": "Data at 03 April 2026 MODERATE UPWARD PRESSURE ON INTEREST RATES APPENDICES Interest rates. in euros (%) Equity indexes (base 100 = 31/12/2021) France ‒ Household and corporate leaders’ confidence Sources : LSEG Datastream, Crédit Agricole SA / ECO.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 1,
+            "negative": 1,
             "uncertainty": 0,
             "strong_modal": 0,
             "weak_modal": 0,
@@ -1800,17 +1998,32 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 29,
-          "sentence": "Ukraine: 2026 tax rates at 50% vs 25% in 2025 CA Poland: +61K new customers this quarter; loan production +20.4% Q2/Q2 driven by the retail segment; outstanding loans +3.2% (1) June/June; on-balance sheet and off-balance sheet deposits +9.0% (1) CA Egypt: good commercial momentum in corporate and consumer finance; loans outstanding +22.7% (1) June/June; on-balance sheet deposits +21.6% (1) CA Ukraine: loans outstanding +39.1% (1) June/June; on-balance sheet deposits +16.0% (1) Liquidity: net dep",
+          "page": 11,
+          "sentence": "28 29 33 31 28 32 35 45 38 32 Q2-25 Q3-25 Q4-25 Q1-26 Q2-26 (1) Estimated indicators following the disposal of files subject to the technical migration",
           "is_guidance": false,
           "hits": {
-            "positive": 1,
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "This presentation may include prospective information on the Group, supplied as information on trends.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 1,
             "caution_buffer": 0,
-            "confidence": 1
+            "confidence": 0
           },
           "review_status": "pending_human_review"
         }
@@ -1818,6 +2031,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1833,23 +2048,30 @@
       "official_page": "https://investor-relations.commerzbank.com/quarterly-results",
       "document_sha256": "10795a067adc0c1584547bc355fbf4dd72b7ad33cd86aca2f77696a769faf102",
       "page_count": 78,
-      "analyzed_word_count": 959,
+      "analyzed_word_count": 1129,
       "feature_counts": {
         "positive": 13,
         "negative": 0,
-        "uncertainty": 9,
-        "strong_modal": 10,
-        "weak_modal": 1,
-        "caution_buffer": 1,
+        "uncertainty": 11,
+        "strong_modal": 11,
+        "weak_modal": 4,
+        "caution_buffer": 4,
         "confidence": 7
       },
       "features": {
-        "language_score": 74.1,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.8182,
-        "uncertainty_per_1000_words": 9.38,
-        "caution_per_1000_words": 1.04,
-        "confidence_per_1000_words": 7.3
+        "language_score": 61.4,
+        "absolute_language_score": 42.4,
+        "management_language_strength_raw": -7.5731,
+        "positive_signal_score": 15.85,
+        "negative_pressure_score": 23.43,
+        "positive_per_1000_words": 11.51,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 9.74,
+        "weak_modal_per_1000_words": 3.54,
+        "uncertainty_per_1000_words": 9.74,
+        "caution_per_1000_words": 3.54,
+        "confidence_per_1000_words": 6.2,
+        "peer_centered_z": 0.9532
       },
       "evidence": [
         {
@@ -1862,7 +2084,7 @@
             "uncertainty": 3,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 1,
+            "caution_buffer": 0,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -1892,7 +2114,7 @@
             "uncertainty": 1,
             "strong_modal": 1,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -1907,7 +2129,7 @@
             "uncertainty": 1,
             "strong_modal": 1,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -1976,6 +2198,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -1991,23 +2215,30 @@
       "official_page": "https://www.erstegroup.com/en/investors/reports/finanzberichte",
       "document_sha256": "834a47310383915f133721c3a3a24a049f246e5e787ac3f720168ffdedb73e33",
       "page_count": 51,
-      "analyzed_word_count": 261,
+      "analyzed_word_count": 455,
       "feature_counts": {
-        "positive": 1,
+        "positive": 2,
         "negative": 0,
         "uncertainty": 1,
-        "strong_modal": 0,
-        "weak_modal": 2,
+        "strong_modal": 1,
+        "weak_modal": 5,
         "caution_buffer": 0,
-        "confidence": 0
+        "confidence": 1
       },
       "features": {
-        "language_score": 52.3,
-        "tone_balance": 1.0,
-        "commitment_balance": -1.0,
-        "uncertainty_per_1000_words": 3.83,
+        "language_score": 53.5,
+        "absolute_language_score": 32.5,
+        "management_language_strength_raw": -17.4725,
+        "positive_signal_score": 4.73,
+        "negative_pressure_score": 22.2,
+        "positive_per_1000_words": 4.4,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 2.2,
+        "weak_modal_per_1000_words": 10.99,
+        "uncertainty_per_1000_words": 2.2,
         "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 0.0
+        "confidence_per_1000_words": 2.2,
+        "peer_centered_z": 0.2881
       },
       "evidence": [
         {
@@ -2134,6 +2365,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2149,23 +2382,30 @@
       "official_page": "https://investorrelations.bankofireland.com/results-centre/",
       "document_sha256": "dc0f31a22891e80c8ddc52809e3f81884aea7a65427b3b37fac4f7886106eed5",
       "page_count": 56,
-      "analyzed_word_count": 765,
+      "analyzed_word_count": 791,
       "feature_counts": {
         "positive": 24,
         "negative": 0,
-        "uncertainty": 5,
+        "uncertainty": 7,
         "strong_modal": 3,
-        "weak_modal": 5,
-        "caution_buffer": 4,
+        "weak_modal": 6,
+        "caution_buffer": 2,
         "confidence": 9
       },
       "features": {
-        "language_score": 60.0,
-        "tone_balance": 1.0,
-        "commitment_balance": -0.25,
-        "uncertainty_per_1000_words": 6.54,
-        "caution_per_1000_words": 5.23,
-        "confidence_per_1000_words": 11.76
+        "language_score": 61.8,
+        "absolute_language_score": 42.9,
+        "management_language_strength_raw": -7.0796,
+        "positive_signal_score": 21.05,
+        "negative_pressure_score": 28.13,
+        "positive_per_1000_words": 30.34,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 3.79,
+        "weak_modal_per_1000_words": 7.59,
+        "uncertainty_per_1000_words": 8.85,
+        "caution_per_1000_words": 2.53,
+        "confidence_per_1000_words": 11.38,
+        "peer_centered_z": 0.9864
       },
       "evidence": [
         {
@@ -2208,7 +2448,7 @@
             "uncertainty": 0,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 1,
+            "caution_buffer": 0,
             "confidence": 1
           },
           "review_status": "pending_human_review"
@@ -2292,6 +2532,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2307,23 +2549,30 @@
       "official_page": "https://about.finecobank.com/en/investors/bilanci-e-relazioni/",
       "document_sha256": "a58ec1feae35ee8381491a30551018906d961d128858c1ff250f2b551c91045a",
       "page_count": 46,
-      "analyzed_word_count": 387,
+      "analyzed_word_count": 602,
       "feature_counts": {
         "positive": 0,
         "negative": 0,
-        "uncertainty": 1,
+        "uncertainty": 4,
         "strong_modal": 2,
-        "weak_modal": 1,
-        "caution_buffer": 0,
+        "weak_modal": 4,
+        "caution_buffer": 2,
         "confidence": 0
       },
       "features": {
-        "language_score": 50.1,
-        "tone_balance": 0.0,
-        "commitment_balance": 0.3333,
-        "uncertainty_per_1000_words": 2.58,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 0.0
+        "language_score": 50.0,
+        "absolute_language_score": 28.2,
+        "management_language_strength_raw": -21.7608,
+        "positive_signal_score": 2.66,
+        "negative_pressure_score": 24.42,
+        "positive_per_1000_words": 0.0,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 3.32,
+        "weak_modal_per_1000_words": 6.64,
+        "uncertainty_per_1000_words": 6.64,
+        "caution_per_1000_words": 3.32,
+        "confidence_per_1000_words": 0.0,
+        "peer_centered_z": 0.0
       },
       "evidence": [
         {
@@ -2388,7 +2637,52 @@
         },
         {
           "page": 2,
-          "sentence": "Neither this Presentat ion nor any part of it nor the fact of its distribution may form the basis of, or be relied on or in connection with, any contract or investment decision. • The information, statements and opinions contained in this Presentation are for information purposes only and do not constitu te a public offer under any applicable legislation or an offer to sell or solicitation of an offer to purchase or subscribe for securities or financial instruments or any advice or recommendatio",
+          "sentence": "5 8 of February 24, 1998), Erick Vecchi, in his capacity as manager responsible for the preparation of FinecoBank S.p.A.’s (the “Company”)’s financial reports, declares that accounting information contained in this Presentation reflects the Company ’s documented results, books and accounting records”. • This Presentation may contain written and oral “forward -looking statements”, which include all statements that do not relate sol ely to historical or current facts and which are therefore inhere",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "All forward-looking statements rely on a number of assumptions, expectations, objectives, estimates, forecasts, proje ctions and provisional data concerning future events and are subject to a number of uncertainties and other factors, many of which are outside the control of the Company.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "The information and opinions contained in this Presentation are provided as at the date hereof and are subject to change without notice.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "There are a variety of factors that may cause actual results and performance to be materially different from the explicit or implicit express or implied contents of any forward -looking statements and thus, therefore, such forward-looking statements are not a reliable indicator of future performance.",
           "is_guidance": false,
           "hits": {
             "positive": 0,
@@ -2405,6 +2699,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2420,23 +2716,30 @@
       "official_page": "https://www.abnamro.com/en/investor-relations/financial-disclosures",
       "document_sha256": "c8da692f54cb9e32cec1986cf988befdfb1ea69196ee9b84eceba3ce393f5ef5",
       "page_count": 4,
-      "analyzed_word_count": 175,
+      "analyzed_word_count": 217,
       "feature_counts": {
-        "positive": 4,
+        "positive": 7,
         "negative": 0,
-        "uncertainty": 2,
-        "strong_modal": 2,
-        "weak_modal": 0,
+        "uncertainty": 3,
+        "strong_modal": 3,
+        "weak_modal": 1,
         "caution_buffer": 0,
-        "confidence": 2
+        "confidence": 4
       },
       "features": {
-        "language_score": 78.0,
-        "tone_balance": 1.0,
-        "commitment_balance": 1.0,
-        "uncertainty_per_1000_words": 11.43,
+        "language_score": 73.7,
+        "absolute_language_score": 57.6,
+        "management_language_strength_raw": 7.6037,
+        "positive_signal_score": 34.33,
+        "negative_pressure_score": 26.73,
+        "positive_per_1000_words": 32.26,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 13.82,
+        "weak_modal_per_1000_words": 4.61,
+        "uncertainty_per_1000_words": 13.82,
         "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 11.43
+        "confidence_per_1000_words": 18.43,
+        "peer_centered_z": 1.9729
       },
       "evidence": [
         {
@@ -2500,6 +2803,36 @@
           "review_status": "pending_human_review"
         },
         {
+          "page": 1,
+          "sentence": "Overall, resilient domestic demand and solid economic fundamentals provided a solid backdrop amid geopolitical and macroeconomic uncertainty.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 3,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 2
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 1,
+          "sentence": "Costs in the second half of the year may be influenced by the outcome of the collective labour agreement negotiations, which will resume in September.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 1,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 2,
           "sentence": "Corporate Banking delivered a strong increase in profitability, supported by solid Clearing results, higher corporate lending and limited loan impairments.",
           "is_guidance": false,
@@ -2533,6 +2866,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2548,23 +2883,30 @@
       "official_page": "https://gruppo.bancobpm.it/en/investor-relations/presentations/",
       "document_sha256": "06627df194ccfaef401dae5d4637aa5d83085ebf29bab268c71efb807b5c7a0e",
       "page_count": 41,
-      "analyzed_word_count": 750,
+      "analyzed_word_count": 959,
       "feature_counts": {
         "positive": 3,
         "negative": 0,
-        "uncertainty": 3,
+        "uncertainty": 10,
         "strong_modal": 9,
-        "weak_modal": 1,
-        "caution_buffer": 2,
+        "weak_modal": 4,
+        "caution_buffer": 9,
         "confidence": 2
       },
       "features": {
-        "language_score": 73.6,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.8,
-        "uncertainty_per_1000_words": 4.0,
-        "caution_per_1000_words": 2.67,
-        "confidence_per_1000_words": 2.67
+        "language_score": 49.6,
+        "absolute_language_score": 27.8,
+        "management_language_strength_raw": -22.2106,
+        "positive_signal_score": 9.96,
+        "negative_pressure_score": 32.17,
+        "positive_per_1000_words": 3.13,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 9.38,
+        "weak_modal_per_1000_words": 4.17,
+        "uncertainty_per_1000_words": 10.43,
+        "caution_per_1000_words": 9.38,
+        "confidence_per_1000_words": 2.09,
+        "peer_centered_z": -0.0302
       },
       "evidence": [
         {
@@ -2577,7 +2919,7 @@
             "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -2674,12 +3016,12 @@
         },
         {
           "page": 2,
-          "sentence": "The distribution of this presentation in other jurisdictions may be restricted by law or regulation.",
+          "sentence": "By their nature, forward-looking statements involve a number of risks, uncertainties and assumptions which could cause actual results or events to differ materially from those expressed or implied by the forward-looking statements.",
           "is_guidance": false,
           "hits": {
             "positive": 0,
             "negative": 0,
-            "uncertainty": 0,
+            "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 1,
             "caution_buffer": 0,
@@ -2691,6 +3033,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2706,23 +3050,30 @@
       "official_page": "https://www.grupbancsabadell.com/corp/en/shareholders-and-investors/economic-and-financial-information.html",
       "document_sha256": "6179db2af6bed0872dc32978566f1f1c223661108fa56d414f62d66c2f30c29c",
       "page_count": 45,
-      "analyzed_word_count": 339,
+      "analyzed_word_count": 633,
       "feature_counts": {
         "positive": 2,
         "negative": 0,
-        "uncertainty": 1,
-        "strong_modal": 2,
-        "weak_modal": 2,
-        "caution_buffer": 0,
+        "uncertainty": 4,
+        "strong_modal": 4,
+        "weak_modal": 10,
+        "caution_buffer": 1,
         "confidence": 0
       },
       "features": {
-        "language_score": 65.6,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.0,
-        "uncertainty_per_1000_words": 2.95,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 0.0
+        "language_score": 41.9,
+        "absolute_language_score": 18.2,
+        "management_language_strength_raw": -31.8325,
+        "positive_signal_score": 6.16,
+        "negative_pressure_score": 37.99,
+        "positive_per_1000_words": 3.16,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 6.32,
+        "weak_modal_per_1000_words": 15.8,
+        "uncertainty_per_1000_words": 6.32,
+        "caution_per_1000_words": 1.58,
+        "confidence_per_1000_words": 0.0,
+        "peer_centered_z": -0.6767
       },
       "evidence": [
         {
@@ -2735,6 +3086,66 @@
             "uncertainty": 0,
             "strong_modal": 0,
             "weak_modal": 0,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 44,
+          "sentence": "The information contained in the Presentation may be subject to change without notice and must not be relied upon for any purpose.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 1,
+            "weak_modal": 1,
+            "caution_buffer": 1,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 44,
+          "sentence": "While these forward- looking statements and estimates, forecasts, targets or projections represent Banco Sabadell Group’s current judgment on future expectations concerning the development of its business, a certain number of risks, uncertainties and other important factors could cause actual results to differ materially from Banco Sabadell Group expectations.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 1,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 44,
+          "sentence": "These criteria do not follow any particular regulation and may include estimates and subjective valuations which could represent substantial differences in the information presented, should a different methodology be applied.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 2,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 44,
+          "sentence": "Moreover, the way the Banco Sabadell Group defines and calculates these APMs may differ from the way these are calculated by other companies that use similar measures, and therefore they may not be comparable.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 2,
             "caution_buffer": 0,
             "confidence": 0
           },
@@ -2756,8 +3167,8 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 42,
-          "sentence": "Compliance with regulations Quality and risk management system aligned with the European AI Act.",
+          "page": 34,
+          "sentence": "Spain Italy Other non-EU governments & agencies Other EU governments Corporates & Financials • The sensitivity of our capital position to bond spread volatility remains low as Fair Value OCI composition accounts for only a small proportion and is short duration • Option to make further purchases during 2026 • c.€0.8 bn to mature in 2S26 • Unrealised capital gains/losses (after tax): • Fair value OCI: -0.1pp of CET1 • Held to collect: -0.3pp of CET1",
           "is_guidance": false,
           "hits": {
             "positive": 0,
@@ -2771,43 +3182,13 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 44,
-          "sentence": "The distribution of this Presentation in certain jurisdictions may be restricted by law.",
+          "page": 42,
+          "sentence": "Compliance with regulations Quality and risk management system aligned with the European AI Act.",
           "is_guidance": false,
           "hits": {
             "positive": 0,
             "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 1,
-            "caution_buffer": 0,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 16,
-          "sentence": "16 Profitability will improve in 2H26 to reach 14.5% at year-end €M 2Q26 1H26 2Q26/1Q26 1H26/1H25 Net interest income 902 1,774 +3.4% -2.0% Fees & commissions 328 643 +4.0% -0.9% Core banking revenue 1,230 2,417 +3.6% -1.7% Trading income & forex 16 17 n.m. +5.3% Other income & expenses 22 28 n.m. -52.0% Gross operating income 1,267 2,463 +6.0% -2.8% Recurrent costs -570 -1,139 +0.3% +4.9% Non-recurrent costs -33 -88 -39.8% n.m.",
-          "is_guidance": false,
-          "hits": {
-            "positive": 0,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 1,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 26,
-          "sentence": "13.18% 12.91% 13.11% Mar-26 Mar-26 Pro forma post TSB sale and post extraordinary dividend Organic CET1 generation post AT1 coupons Fair value reserve adjustment RWAs growth Dividend accrual Jun-26 +61bps +3bps -18bps -26bps 60% pay-out 46bps of capital generation pre dividend accrual +20bps 1",
-          "is_guidance": false,
-          "hits": {
-            "positive": 1,
-            "negative": 0,
-            "uncertainty": 0,
+            "uncertainty": 1,
             "strong_modal": 0,
             "weak_modal": 0,
             "caution_buffer": 0,
@@ -2819,6 +3200,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2834,23 +3217,30 @@
       "official_page": "https://www.aib.ie/investorrelations/financial-information/results-centre/2026-financial-results",
       "document_sha256": "277d9b4d97e1ce6b3a21b03314c275759f42960ef0d96efa4c41834c91ddf5a2",
       "page_count": 48,
-      "analyzed_word_count": 536,
+      "analyzed_word_count": 715,
       "feature_counts": {
         "positive": 13,
         "negative": 0,
-        "uncertainty": 0,
-        "strong_modal": 9,
-        "weak_modal": 6,
+        "uncertainty": 5,
+        "strong_modal": 10,
+        "weak_modal": 11,
         "caution_buffer": 1,
         "confidence": 7
       },
       "features": {
-        "language_score": 78.5,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.2,
-        "uncertainty_per_1000_words": 0.0,
-        "caution_per_1000_words": 1.87,
-        "confidence_per_1000_words": 13.06
+        "language_score": 56.2,
+        "absolute_language_score": 35.9,
+        "management_language_strength_raw": -14.0559,
+        "positive_signal_score": 23.92,
+        "negative_pressure_score": 37.97,
+        "positive_per_1000_words": 18.18,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 13.99,
+        "weak_modal_per_1000_words": 15.38,
+        "uncertainty_per_1000_words": 6.99,
+        "caution_per_1000_words": 1.4,
+        "confidence_per_1000_words": 9.79,
+        "peer_centered_z": 0.5177
       },
       "evidence": [
         {
@@ -2977,6 +3367,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -2992,28 +3384,95 @@
       "official_page": "https://www.bankinter.com/webcorporativa/en/shareholders-investors/shareholders/important-information",
       "document_sha256": "a12304503375ed24f5e90957686d05f065bac8fe4244bd2ba0ba8f32d32704fe",
       "page_count": 39,
-      "analyzed_word_count": 292,
+      "analyzed_word_count": 475,
       "feature_counts": {
-        "positive": 6,
+        "positive": 8,
         "negative": 0,
-        "uncertainty": 0,
+        "uncertainty": 1,
         "strong_modal": 0,
-        "weak_modal": 2,
+        "weak_modal": 11,
         "caution_buffer": 0,
         "confidence": 1
       },
       "features": {
-        "language_score": 61.4,
-        "tone_balance": 1.0,
-        "commitment_balance": -1.0,
-        "uncertainty_per_1000_words": 0.0,
+        "language_score": 38.4,
+        "absolute_language_score": 13.9,
+        "management_language_strength_raw": -36.1053,
+        "positive_signal_score": 7.26,
+        "negative_pressure_score": 43.37,
+        "positive_per_1000_words": 16.84,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 0.0,
+        "weak_modal_per_1000_words": 23.16,
+        "uncertainty_per_1000_words": 2.11,
         "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 3.42
+        "confidence_per_1000_words": 2.11,
+        "peer_centered_z": -0.9638
       },
       "evidence": [
         {
+          "page": 2,
+          "sentence": "While these statements represent our opinion and future expectations, various risks, uncertainties and other important factors may cause results to differ significantly from our expectations.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "Furthermore, the way in which Bankinter defines and calculates these measures may differ from other similar measures calculated by other companies and, therefore, may not be comparable.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 2,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 2,
+          "sentence": "Failure to comply with this restriction may constitute an infringement that the current legislation may sanction in such cases.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 2,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
           "page": 13,
           "sentence": "13 214 23 188 192 196 218 203 237 1Q25 2Q25 3Q25 4Q25 1Q26 2Q26 Net fees Extraordinary alternative investments 35 194 319 Insurance Transactional Asset management & brokerage +28%1 +1% .2 35% 58% 7% % Fees Received +5% +23%1 1 Performance fee related to Helia vehicles in 2Q26. Excluding extraordinary fees, the YoY net fee growth would be +12% and +19% in Asset Management & Brokerage gross fees. Results & solvency Accelerating fee income, supported by wealth management product growth Net fees: su",
+          "is_guidance": false,
+          "hits": {
+            "positive": 2,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 25,
+          "sentence": "25 10 11 12 jun-25 dec-25 jun-26 .3 BKT Spain +7% Sector1 3,6% +7% +12% 36 37 39 jun-25 dec-25 jun-26 Geographies & businesses Corporate & SME banking continues to outperform the market Customer lending €Bn €Bn International business customer lending Customer lending growth jun-26 vs jun-25 1. BoS May 2026 (chapter 19, table 16)",
           "is_guidance": false,
           "hits": {
             "positive": 2,
@@ -3042,45 +3501,30 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 18,
-          "sentence": "18 Results & solvency Earnings momentum reflects the strength of our business model Net profit € million Profit before tax € million .2 18 378 387 377 392 410 443 1Q25 2Q25 3Q25 4Q25 1Q26 2Q26 270 272 270 278 291 315 1Q25 2Q25 3Q25 4Q25 1Q26 2Q26 +14% +16%",
+          "page": 2,
+          "sentence": "2 Similarly, Bankinter advises that this presentation may contain forward-looking statements, regarding the business evolution and results of the entity.",
           "is_guidance": false,
           "hits": {
-            "positive": 1,
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 1
-          },
-          "review_status": "pending_human_review"
-        },
-        {
-          "page": 13,
-          "sentence": "Results & solvency Accelerating fee income, supported by wealth management product growth Net fees: sustainable positive trends € million Mix of recurring fee streams € million 1H26, YoY variation 1",
-          "is_guidance": false,
-          "hits": {
-            "positive": 1,
-            "negative": 0,
-            "uncertainty": 0,
-            "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 1,
             "caution_buffer": 0,
             "confidence": 0
           },
           "review_status": "pending_human_review"
         },
         {
-          "page": 38,
-          "sentence": "38 13 8 77 90 66 73 142 163 jun-25 Market effect Net New Money jun-26 Private Banking Retail Banking A.3 Appendix Wealth Management: growth reflects the high-quality customer base Customer Wealth1 €Bn 1 Customer wealth includes balances in current accounts, term deposits, AUMs and AUCs +€21Bn /+15%",
+          "page": 2,
+          "sentence": "Notwithstanding any legal requirements or any limitations imposed by Bankinter that may be applicable, any form of use or application of the contents of this presentation, as well as the use of the signs, trademarks, and logos contained therein, is expressly prohibited.",
           "is_guidance": false,
           "hits": {
-            "positive": 1,
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 1,
             "caution_buffer": 0,
             "confidence": 0
           },
@@ -3090,6 +3534,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -3105,23 +3551,30 @@
       "official_page": "https://www.bawaggroup.com/en/investor-relations/financial-results",
       "document_sha256": "74920f83dc80de8aea4f826ae3b64f1e808a94981e22b2d21f0cc5e6bfa922df",
       "page_count": 18,
-      "analyzed_word_count": 250,
+      "analyzed_word_count": 517,
       "feature_counts": {
         "positive": 2,
         "negative": 0,
-        "uncertainty": 1,
+        "uncertainty": 3,
         "strong_modal": 9,
-        "weak_modal": 5,
-        "caution_buffer": 0,
+        "weak_modal": 13,
+        "caution_buffer": 1,
         "confidence": 0
       },
       "features": {
-        "language_score": 67.4,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.2857,
-        "uncertainty_per_1000_words": 4.0,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 0.0
+        "language_score": 36.3,
+        "absolute_language_score": 11.2,
+        "management_language_strength_raw": -38.7814,
+        "positive_signal_score": 15.28,
+        "negative_pressure_score": 54.06,
+        "positive_per_1000_words": 3.87,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 17.41,
+        "weak_modal_per_1000_words": 25.15,
+        "uncertainty_per_1000_words": 5.8,
+        "caution_per_1000_words": 1.93,
+        "confidence_per_1000_words": 0.0,
+        "peer_centered_z": -1.1436
       },
       "evidence": [
         {
@@ -3186,15 +3639,60 @@
         },
         {
           "page": 17,
-          "sentence": "Forward-looking statements include statements relating to the following: (i) future capital expenditures, expenses, revenues, economic performance, financial conditions, dividend policy, losses and future prospects; (ii) business and management strategies and the expansion and growth of the operations of BAWAG Group or the PTSB Group; and (iii) the effects of government regulation on the business of BAWAG Group, or the PTSB Group.",
+          "sentence": "These forward-looking statements involve known and unknown risks, uncertainties and other factors which may cause the actual results, performance or achievements of any such person, or industry results, to be materially different from any results, performance or achievements expressed or implied by such forward-looking statements.",
           "is_guidance": false,
           "hits": {
-            "positive": 1,
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 1,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 17,
+          "sentence": "Accordingly, figures shown for thesame category presented in different tables or forms may vary slightly and figures shown as totals in certain tables or forms may not be an arithmetic aggregation of the figures that precede them.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
             "negative": 0,
             "uncertainty": 0,
             "strong_modal": 0,
-            "weak_modal": 0,
+            "weak_modal": 2,
             "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 17,
+          "sentence": "This presentation has been prepared for the purpose of complying with the laws of Ireland and the Irish Takeover Rules and the information disclosed may not be the same as that which would have been disclosed if this presentation had been prepared in accordance with the laws of jurisdictions outside of Ireland.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 0,
+            "strong_modal": 0,
+            "weak_modal": 2,
+            "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 17,
+          "sentence": "Persons who are not resident in Ireland or the United Kingdom, or who are subject to laws of any jurisdiction other than Ireland or the United Kingdom, should inform themselves about, and observe, any applicable legal or regulatory requirements.",
+          "is_guidance": false,
+          "hits": {
+            "positive": 0,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -3203,6 +3701,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -3218,23 +3718,30 @@
       "official_page": "https://group.bper.it/en/investor-relations/presentations",
       "document_sha256": "52919c4ba83f13f8901fbef65b2b7d8e1738360591abc42b645851764f758bac",
       "page_count": 48,
-      "analyzed_word_count": 861,
+      "analyzed_word_count": 911,
       "feature_counts": {
         "positive": 16,
         "negative": 0,
         "uncertainty": 18,
         "strong_modal": 5,
-        "weak_modal": 4,
-        "caution_buffer": 0,
+        "weak_modal": 6,
+        "caution_buffer": 6,
         "confidence": 11
       },
       "features": {
-        "language_score": 67.3,
-        "tone_balance": 1.0,
-        "commitment_balance": 0.1111,
-        "uncertainty_per_1000_words": 20.91,
-        "caution_per_1000_words": 0.0,
-        "confidence_per_1000_words": 12.78
+        "language_score": 45.5,
+        "absolute_language_score": 22.6,
+        "management_language_strength_raw": -27.3875,
+        "positive_signal_score": 18.39,
+        "negative_pressure_score": 45.77,
+        "positive_per_1000_words": 17.56,
+        "negative_per_1000_words": 0.0,
+        "strong_modal_per_1000_words": 5.49,
+        "weak_modal_per_1000_words": 6.59,
+        "uncertainty_per_1000_words": 19.76,
+        "caution_per_1000_words": 6.59,
+        "confidence_per_1000_words": 12.07,
+        "peer_centered_z": -0.378
       },
       "evidence": [
         {
@@ -3248,6 +3755,21 @@
             "strong_modal": 3,
             "weak_modal": 2,
             "caution_buffer": 0,
+            "confidence": 0
+          },
+          "review_status": "pending_human_review"
+        },
+        {
+          "page": 9,
+          "sentence": "8 Full year 2026 Guidance improved, subject to macro and market conditions Total Revenues o.w.",
+          "is_guidance": true,
+          "hits": {
+            "positive": 1,
+            "negative": 0,
+            "uncertainty": 1,
+            "strong_modal": 0,
+            "weak_modal": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -3268,21 +3790,6 @@
           "review_status": "pending_human_review"
         },
         {
-          "page": 9,
-          "sentence": "8 Full year 2026 Guidance improved, subject to macro and market conditions Total Revenues o.w.",
-          "is_guidance": true,
-          "hits": {
-            "positive": 1,
-            "negative": 0,
-            "uncertainty": 1,
-            "strong_modal": 0,
-            "weak_modal": 0,
-            "caution_buffer": 0,
-            "confidence": 0
-          },
-          "review_status": "pending_human_review"
-        },
-        {
           "page": 33,
           "sentence": "Distributions subject to target's achievement .",
           "is_guidance": true,
@@ -3292,7 +3799,7 @@
             "uncertainty": 1,
             "strong_modal": 1,
             "weak_modal": 0,
-            "caution_buffer": 0,
+            "caution_buffer": 1,
             "confidence": 0
           },
           "review_status": "pending_human_review"
@@ -3361,6 +3868,8 @@
       "status": "provisional_single_period",
       "history_periods": 1,
       "language_drift_score": null,
+      "directional_reversal": null,
+      "drift_status": "requires_comparable_history",
       "backtest_status": "not_run",
       "publication_eligible": false,
       "comparability_warning": "Single-period and mixed document genres; do not interpret as a trading signal."
@@ -3371,9 +3880,11 @@
       "ticker": "BNP",
       "bank_name": "BNP Paribas S.A.",
       "numeric_score": 67.1,
-      "language_score": 75.5,
+      "language_score": 67.6,
+      "absolute_language_score": 50.1,
+      "negative_pressure_score": 31.16,
       "language_drift_score": null,
-      "divergence": -8.4,
+      "divergence": -0.5,
       "quadrant": "Confirmed strength",
       "status": "provisional_single_period",
       "alerts": [],
@@ -3383,16 +3894,18 @@
       "ticker": "SAN",
       "bank_name": "Banco Santander S.A.",
       "numeric_score": 38.8,
-      "language_score": 75.2,
+      "language_score": 66.8,
+      "absolute_language_score": 49.1,
+      "negative_pressure_score": 23.31,
       "language_drift_score": null,
-      "divergence": -36.4,
+      "divergence": -28.0,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
       "alerts": [
         {
           "type": "numeric_language_divergence",
           "severity": "research_review",
-          "message": "Numeric-language gap reached -36.4 points.",
+          "message": "Numeric-language gap reached -28.0 points.",
           "review_status": "pending_human_review"
         }
       ],
@@ -3402,10 +3915,12 @@
       "ticker": "INGA",
       "bank_name": "ING Groep N.V.",
       "numeric_score": 53.2,
-      "language_score": 56.7,
+      "language_score": 45.9,
+      "absolute_language_score": 23.1,
+      "negative_pressure_score": 37.23,
       "language_drift_score": null,
-      "divergence": -3.5,
-      "quadrant": "Confirmed strength",
+      "divergence": 7.3,
+      "quadrant": "Early warning",
       "status": "provisional_single_period",
       "alerts": [],
       "publication_eligible": false
@@ -3414,29 +3929,26 @@
       "ticker": "BBVA",
       "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
       "numeric_score": 55.8,
-      "language_score": 78.1,
+      "language_score": 58.1,
+      "absolute_language_score": 38.3,
+      "negative_pressure_score": 31.44,
       "language_drift_score": null,
-      "divergence": -22.3,
+      "divergence": -2.3,
       "quadrant": "Confirmed strength",
       "status": "provisional_single_period",
-      "alerts": [
-        {
-          "type": "numeric_language_divergence",
-          "severity": "research_review",
-          "message": "Numeric-language gap reached -22.3 points.",
-          "review_status": "pending_human_review"
-        }
-      ],
+      "alerts": [],
       "publication_eligible": false
     },
     {
       "ticker": "ISP",
       "bank_name": "Intesa Sanpaolo S.p.A.",
       "numeric_score": 55.1,
-      "language_score": 55.4,
+      "language_score": 40.4,
+      "absolute_language_score": 16.3,
+      "negative_pressure_score": 39.1,
       "language_drift_score": null,
-      "divergence": -0.3,
-      "quadrant": "Confirmed strength",
+      "divergence": 14.7,
+      "quadrant": "Early warning",
       "status": "provisional_single_period",
       "alerts": [],
       "publication_eligible": false
@@ -3445,10 +3957,12 @@
       "ticker": "UCG",
       "bank_name": "UniCredit S.p.A.",
       "numeric_score": 49.6,
-      "language_score": 68.0,
+      "language_score": 43.3,
+      "absolute_language_score": 19.9,
+      "negative_pressure_score": 38.53,
       "language_drift_score": null,
-      "divergence": -18.4,
-      "quadrant": "Potential turnaround",
+      "divergence": 6.3,
+      "quadrant": "High-risk screen",
       "status": "provisional_single_period",
       "alerts": [],
       "publication_eligible": false
@@ -3457,10 +3971,12 @@
       "ticker": "NDA-FI",
       "bank_name": "Nordea Bank Abp",
       "numeric_score": 45.8,
-      "language_score": 50.1,
+      "language_score": 45.1,
+      "absolute_language_score": 22.2,
+      "negative_pressure_score": 35.05,
       "language_drift_score": null,
-      "divergence": -4.3,
-      "quadrant": "Potential turnaround",
+      "divergence": 0.7,
+      "quadrant": "High-risk screen",
       "status": "provisional_single_period",
       "alerts": [],
       "publication_eligible": false
@@ -3469,29 +3985,26 @@
       "ticker": "DBK",
       "bank_name": "Deutsche Bank AG",
       "numeric_score": 52.0,
-      "language_score": 76.5,
+      "language_score": 49.3,
+      "absolute_language_score": 27.4,
+      "negative_pressure_score": 30.28,
       "language_drift_score": null,
-      "divergence": -24.5,
-      "quadrant": "Confirmed strength",
+      "divergence": 2.7,
+      "quadrant": "Early warning",
       "status": "provisional_single_period",
-      "alerts": [
-        {
-          "type": "numeric_language_divergence",
-          "severity": "research_review",
-          "message": "Numeric-language gap reached -24.5 points.",
-          "review_status": "pending_human_review"
-        }
-      ],
+      "alerts": [],
       "publication_eligible": false
     },
     {
       "ticker": "GLE",
       "bank_name": "Société Générale S.A.",
       "numeric_score": 54.8,
-      "language_score": 74.1,
+      "language_score": 49.7,
+      "absolute_language_score": 27.9,
+      "negative_pressure_score": 45.12,
       "language_drift_score": null,
-      "divergence": -19.3,
-      "quadrant": "Confirmed strength",
+      "divergence": 5.1,
+      "quadrant": "Early warning",
       "status": "provisional_single_period",
       "alerts": [],
       "publication_eligible": false
@@ -3500,16 +4013,18 @@
       "ticker": "KBC",
       "bank_name": "KBC Group N.V.",
       "numeric_score": 38.8,
-      "language_score": 76.9,
+      "language_score": 69.8,
+      "absolute_language_score": 52.8,
+      "negative_pressure_score": 15.16,
       "language_drift_score": null,
-      "divergence": -38.1,
+      "divergence": -31.0,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
       "alerts": [
         {
           "type": "numeric_language_divergence",
           "severity": "research_review",
-          "message": "Numeric-language gap reached -38.1 points.",
+          "message": "Numeric-language gap reached -31.0 points.",
           "review_status": "pending_human_review"
         }
       ],
@@ -3519,16 +4034,18 @@
       "ticker": "CABK",
       "bank_name": "CaixaBank S.A.",
       "numeric_score": 41.1,
-      "language_score": 77.3,
+      "language_score": 83.6,
+      "absolute_language_score": 69.9,
+      "negative_pressure_score": 8.78,
       "language_drift_score": null,
-      "divergence": -36.2,
+      "divergence": -42.5,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
       "alerts": [
         {
           "type": "numeric_language_divergence",
           "severity": "research_review",
-          "message": "Numeric-language gap reached -36.2 points.",
+          "message": "Numeric-language gap reached -42.5 points.",
           "review_status": "pending_human_review"
         }
       ],
@@ -3538,9 +4055,11 @@
       "ticker": "ACA",
       "bank_name": "Crédit Agricole S.A.",
       "numeric_score": 50.1,
-      "language_score": 66.0,
+      "language_score": 57.3,
+      "absolute_language_score": 37.3,
+      "negative_pressure_score": 26.33,
       "language_drift_score": null,
-      "divergence": -15.9,
+      "divergence": -7.2,
       "quadrant": "Confirmed strength",
       "status": "provisional_single_period",
       "alerts": [],
@@ -3550,28 +4069,25 @@
       "ticker": "CBK",
       "bank_name": "Commerzbank AG",
       "numeric_score": 43.9,
-      "language_score": 74.1,
+      "language_score": 61.4,
+      "absolute_language_score": 42.4,
+      "negative_pressure_score": 23.43,
       "language_drift_score": null,
-      "divergence": -30.2,
+      "divergence": -17.5,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
-      "alerts": [
-        {
-          "type": "numeric_language_divergence",
-          "severity": "research_review",
-          "message": "Numeric-language gap reached -30.2 points.",
-          "review_status": "pending_human_review"
-        }
-      ],
+      "alerts": [],
       "publication_eligible": false
     },
     {
       "ticker": "EBS",
       "bank_name": "Erste Group Bank AG",
       "numeric_score": 45.2,
-      "language_score": 52.3,
+      "language_score": 53.5,
+      "absolute_language_score": 32.5,
+      "negative_pressure_score": 22.2,
       "language_drift_score": null,
-      "divergence": -7.1,
+      "divergence": -8.3,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
       "alerts": [],
@@ -3581,9 +4097,11 @@
       "ticker": "BIRG",
       "bank_name": "Bank of Ireland Group plc",
       "numeric_score": 55.1,
-      "language_score": 60.0,
+      "language_score": 61.8,
+      "absolute_language_score": 42.9,
+      "negative_pressure_score": 28.13,
       "language_drift_score": null,
-      "divergence": -4.9,
+      "divergence": -6.7,
       "quadrant": "Confirmed strength",
       "status": "provisional_single_period",
       "alerts": [],
@@ -3593,9 +4111,11 @@
       "ticker": "FBK",
       "bank_name": "FinecoBank S.p.A.",
       "numeric_score": 46.7,
-      "language_score": 50.1,
+      "language_score": 50.0,
+      "absolute_language_score": 28.2,
+      "negative_pressure_score": 24.42,
       "language_drift_score": null,
-      "divergence": -3.4,
+      "divergence": -3.3,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
       "alerts": [],
@@ -3605,16 +4125,18 @@
       "ticker": "ABN",
       "bank_name": "ABN AMRO Bank N.V.",
       "numeric_score": 46.5,
-      "language_score": 78.0,
+      "language_score": 73.7,
+      "absolute_language_score": 57.6,
+      "negative_pressure_score": 26.73,
       "language_drift_score": null,
-      "divergence": -31.5,
+      "divergence": -27.2,
       "quadrant": "Potential turnaround",
       "status": "provisional_single_period",
       "alerts": [
         {
           "type": "numeric_language_divergence",
           "severity": "research_review",
-          "message": "Numeric-language gap reached -31.5 points.",
+          "message": "Numeric-language gap reached -27.2 points.",
           "review_status": "pending_human_review"
         }
       ],
@@ -3624,47 +4146,39 @@
       "ticker": "BAMI",
       "bank_name": "Banco BPM S.p.A.",
       "numeric_score": 49.4,
-      "language_score": 73.6,
+      "language_score": 49.6,
+      "absolute_language_score": 27.8,
+      "negative_pressure_score": 32.17,
       "language_drift_score": null,
-      "divergence": -24.2,
-      "quadrant": "Potential turnaround",
+      "divergence": -0.2,
+      "quadrant": "High-risk screen",
       "status": "provisional_single_period",
-      "alerts": [
-        {
-          "type": "numeric_language_divergence",
-          "severity": "research_review",
-          "message": "Numeric-language gap reached -24.2 points.",
-          "review_status": "pending_human_review"
-        }
-      ],
+      "alerts": [],
       "publication_eligible": false
     },
     {
       "ticker": "SAB",
       "bank_name": "Banco de Sabadell S.A.",
       "numeric_score": 36.4,
-      "language_score": 65.6,
+      "language_score": 41.9,
+      "absolute_language_score": 18.2,
+      "negative_pressure_score": 37.99,
       "language_drift_score": null,
-      "divergence": -29.2,
-      "quadrant": "Potential turnaround",
+      "divergence": -5.5,
+      "quadrant": "High-risk screen",
       "status": "provisional_single_period",
-      "alerts": [
-        {
-          "type": "numeric_language_divergence",
-          "severity": "research_review",
-          "message": "Numeric-language gap reached -29.2 points.",
-          "review_status": "pending_human_review"
-        }
-      ],
+      "alerts": [],
       "publication_eligible": false
     },
     {
       "ticker": "AIBG",
       "bank_name": "AIB Group plc",
       "numeric_score": 58.9,
-      "language_score": 78.5,
+      "language_score": 56.2,
+      "absolute_language_score": 35.9,
+      "negative_pressure_score": 37.97,
       "language_drift_score": null,
-      "divergence": -19.6,
+      "divergence": 2.7,
       "quadrant": "Confirmed strength",
       "status": "provisional_single_period",
       "alerts": [],
@@ -3674,10 +4188,12 @@
       "ticker": "BKT",
       "bank_name": "Bankinter S.A.",
       "numeric_score": 49.3,
-      "language_score": 61.4,
+      "language_score": 38.4,
+      "absolute_language_score": 13.9,
+      "negative_pressure_score": 43.37,
       "language_drift_score": null,
-      "divergence": -12.1,
-      "quadrant": "Potential turnaround",
+      "divergence": 10.9,
+      "quadrant": "High-risk screen",
       "status": "provisional_single_period",
       "alerts": [],
       "publication_eligible": false
@@ -3686,31 +4202,35 @@
       "ticker": "BG",
       "bank_name": "BAWAG Group AG",
       "numeric_score": 45.0,
-      "language_score": 67.4,
+      "language_score": 36.3,
+      "absolute_language_score": 11.2,
+      "negative_pressure_score": 54.06,
       "language_drift_score": null,
-      "divergence": -22.4,
-      "quadrant": "Potential turnaround",
+      "divergence": 8.7,
+      "quadrant": "High-risk screen",
       "status": "provisional_single_period",
-      "alerts": [
-        {
-          "type": "numeric_language_divergence",
-          "severity": "research_review",
-          "message": "Numeric-language gap reached -22.4 points.",
-          "review_status": "pending_human_review"
-        }
-      ],
+      "alerts": [],
       "publication_eligible": false
     },
     {
       "ticker": "BPE",
       "bank_name": "BPER Banca S.p.A.",
       "numeric_score": 68.7,
-      "language_score": 67.3,
+      "language_score": 45.5,
+      "absolute_language_score": 22.6,
+      "negative_pressure_score": 45.77,
       "language_drift_score": null,
-      "divergence": 1.4,
-      "quadrant": "Confirmed strength",
+      "divergence": 23.2,
+      "quadrant": "Early warning",
       "status": "provisional_single_period",
-      "alerts": [],
+      "alerts": [
+        {
+          "type": "numeric_language_divergence",
+          "severity": "research_review",
+          "message": "Numeric-language gap reached +23.2 points.",
+          "review_status": "pending_human_review"
+        }
+      ],
       "publication_eligible": false
     }
   ]

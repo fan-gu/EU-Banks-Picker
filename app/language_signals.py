@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import re
+import statistics
 
 from dotenv import load_dotenv
 from pypdf import PdfReader
@@ -21,7 +22,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_REPORTS_DIR = BASE_DIR / "reports"
 DEFAULT_OUTPUT = BASE_DIR / "language_signals.json"
-RULE_VERSION = "management-language-v1.0"
+RULE_VERSION = "management-language-v2.0"
 
 LEXICONS = {
     "positive": {
@@ -32,7 +33,10 @@ LEXICONS = {
     "negative": {
         "challenging", "headwind", "headwinds", "deterioration", "deteriorated",
         "pressure", "pressures", "adverse", "decline", "declined", "weak",
-        "weaker", "downturn", "stress", "stressed",
+        "weaker", "downturn", "stress", "stressed", "downside",
+        "deteriorating", "softening", "slowdown", "contraction",
+        "below expectations", "lower guidance", "margin compression",
+        "higher impairments", "under pressure",
     },
     "uncertainty": {
         "uncertain", "uncertainty", "volatile", "volatility", "potentially",
@@ -48,7 +52,9 @@ LEXICONS = {
     },
     "caution_buffer": {
         "normalisation", "normalization", "prudent", "prudently", "one-off",
-        "temporary", "temporarily", "selective", "disciplined", "resilient",
+        "normalising", "cautious", "vigilant", "temporary", "temporarily",
+        "transitory", "selective", "broadly stable", "limited visibility",
+        "subject to", "assuming",
     },
     "confidence": {
         "momentum", "capital return", "share buyback", "buyback", "confident",
@@ -61,7 +67,9 @@ NARRATIVE_TERMS = re.compile(
     r"momentum|profitability|headwind|challenge|capital return|distribution|"
     r"dividend|buyback|management|we will|we aim|committed to|confident|"
     r"strong results|strong financial position|robust performance|"
-    r"resilient performance)\b",
+    r"resilient performance|uncertain|uncertainty|volatile|volatility|prudent|"
+    r"cautious|normalisation|normalization|pressure|downside|may|might|could|"
+    r"subject to)\b",
     flags=re.IGNORECASE,
 )
 EXCLUDED_CONTEXT = re.compile(
@@ -158,30 +166,111 @@ def score_features(counts: dict[str, int], word_count: int) -> dict:
     caution = counts["caution_buffer"]
     confidence = counts["confidence"]
 
-    tone_balance = (positive - negative) / max(positive + negative, 1)
-    commitment_balance = (strong - weak) / max(strong + weak, 1)
+    positive_rate = 1000 * positive / max(word_count, 1)
+    negative_rate = 1000 * negative / max(word_count, 1)
+    strong_rate = 1000 * strong / max(word_count, 1)
+    weak_rate = 1000 * weak / max(word_count, 1)
     uncertainty_rate = 1000 * uncertainty / max(word_count, 1)
     caution_rate = 1000 * caution / max(word_count, 1)
     confidence_rate = 1000 * confidence / max(word_count, 1)
 
-    # Transparent bounded heuristic for the MVP. It is not publication-eligible
-    # until its coefficients and thresholds pass a pre-registered backtest.
-    raw_score = (
-        50
-        + 20 * tone_balance
-        + 12 * commitment_balance
-        + min(confidence_rate, 8)
-        - min(uncertainty_rate * 1.5, 12)
-        - min(caution_rate, 8)
+    # Management disclosures have a positive base rate. Measure explicit
+    # downside pressure separately before peer calibration instead of allowing
+    # promotional wording to accumulate around an assumed neutral score of 50.
+    positive_signal = (
+        0.35 * positive_rate
+        + 0.65 * confidence_rate
+        + 0.80 * strong_rate
     )
-    language_score = round(max(0, min(100, raw_score)), 1)
+    negative_pressure = (
+        2.00 * negative_rate
+        + 1.35 * uncertainty_rate
+        + 1.75 * weak_rate
+        + 1.15 * caution_rate
+    )
+    raw_strength = positive_signal - negative_pressure
+    absolute_score = round(max(0, min(100, 50 + raw_strength)), 1)
     return {
-        "language_score": language_score,
-        "tone_balance": round(tone_balance, 4),
-        "commitment_balance": round(commitment_balance, 4),
+        "language_score": absolute_score,
+        "absolute_language_score": absolute_score,
+        "management_language_strength_raw": round(raw_strength, 4),
+        "positive_signal_score": round(positive_signal, 2),
+        "negative_pressure_score": round(negative_pressure, 2),
+        "positive_per_1000_words": round(positive_rate, 2),
+        "negative_per_1000_words": round(negative_rate, 2),
+        "strong_modal_per_1000_words": round(strong_rate, 2),
+        "weak_modal_per_1000_words": round(weak_rate, 2),
         "uncertainty_per_1000_words": round(uncertainty_rate, 2),
         "caution_per_1000_words": round(caution_rate, 2),
         "confidence_per_1000_words": round(confidence_rate, 2),
+    }
+
+
+def calibrate_peer_language_scores(records: list[dict]) -> dict:
+    """Center the current peer cohort with a robust median/MAD transform.
+
+    This corrects the positive base rate of management-authored documents.
+    It does not make the scores publication-eligible or replace a backtest.
+    """
+    eligible = [record for record in records if record["status"] != "insufficient"]
+    raw_values = [
+        record["features"]["management_language_strength_raw"]
+        for record in eligible
+    ]
+    if not raw_values:
+        return {"method": "not_available", "peer_count": 0}
+    median = statistics.median(raw_values)
+    mad = statistics.median(abs(value - median) for value in raw_values)
+    robust_scale = max(1.4826 * mad, 1.0)
+    for record in eligible:
+        raw = record["features"]["management_language_strength_raw"]
+        calibrated = max(15.0, min(85.0, 50 + 12 * (raw - median) / robust_scale))
+        record["features"]["language_score"] = round(calibrated, 1)
+        record["features"]["peer_centered_z"] = round((raw - median) / robust_scale, 4)
+    return {
+        "method": "robust_median_mad",
+        "peer_count": len(eligible),
+        "median_raw_strength": round(median, 4),
+        "mad_raw_strength": round(mad, 4),
+        "score_center": 50,
+        "score_points_per_robust_sigma": 12,
+        "score_floor": 15,
+        "score_ceiling": 85,
+    }
+
+
+def language_drift(current: dict, previous: dict) -> dict:
+    """Measure negative wording drift between comparable document periods."""
+    weak_change = (
+        current["weak_modal_per_1000_words"]
+        - previous["weak_modal_per_1000_words"]
+    )
+    uncertainty_change = (
+        current["uncertainty_per_1000_words"]
+        - previous["uncertainty_per_1000_words"]
+    )
+    caution_change = (
+        current["caution_per_1000_words"]
+        - previous["caution_per_1000_words"]
+    )
+    confidence_change = (
+        current["confidence_per_1000_words"]
+        - previous["confidence_per_1000_words"]
+    )
+    reversal = caution_change > 1.0 and confidence_change < -1.0
+    penalty = (
+        1.75 * max(weak_change, 0)
+        + 1.35 * max(uncertainty_change, 0)
+        + 1.15 * max(caution_change, 0)
+        + 0.65 * max(-confidence_change, 0)
+    )
+    return {
+        "weak_modal_change": round(weak_change, 2),
+        "uncertainty_change": round(uncertainty_change, 2),
+        "caution_change": round(caution_change, 2),
+        "confidence_change": round(confidence_change, 2),
+        "directional_reversal": reversal,
+        "drift_penalty": round(penalty, 2),
     }
 
 
@@ -268,6 +357,8 @@ def analyze_pdf(path: Path, source: dict) -> dict:
         "status": "provisional_single_period" if minimum_coverage else "insufficient",
         "history_periods": 1,
         "language_drift_score": None,
+        "directional_reversal": None,
+        "drift_status": "requires_comparable_history",
         "backtest_status": "not_run",
         "publication_eligible": False,
         "comparability_warning": (
@@ -332,6 +423,7 @@ def build_archive(reports_dir: Path, output_path: Path) -> dict:
             print(f"Skipping missing curated report: {path}", flush=True)
             continue
         analyzed[source["ticker"]] = analyze_pdf(path, source)
+    calibration = calibrate_peer_language_scores(list(analyzed.values()))
     signals = []
     for bank in load_universe():
         ticker = bank["ticker"]
@@ -344,6 +436,8 @@ def build_archive(reports_dir: Path, output_path: Path) -> dict:
                     "bank_name": bank["bank_name"],
                     "numeric_score": numeric_score,
                     "language_score": None,
+                    "absolute_language_score": None,
+                    "negative_pressure_score": None,
                     "language_drift_score": None,
                     "divergence": None,
                     "quadrant": None,
@@ -354,6 +448,8 @@ def build_archive(reports_dir: Path, output_path: Path) -> dict:
             )
             continue
         language_score = language["features"]["language_score"]
+        absolute_language_score = language["features"]["absolute_language_score"]
+        negative_pressure_score = language["features"]["negative_pressure_score"]
         divergence = round(numeric_score - language_score, 1) if numeric_score is not None else None
         alerts = []
         if divergence is not None and abs(divergence) >= 20:
@@ -371,6 +467,8 @@ def build_archive(reports_dir: Path, output_path: Path) -> dict:
                 "bank_name": bank["bank_name"],
                 "numeric_score": numeric_score,
                 "language_score": language_score,
+                "absolute_language_score": absolute_language_score,
+                "negative_pressure_score": negative_pressure_score,
                 "language_drift_score": None,
                 "divergence": divergence,
                 "quadrant": quadrant(numeric_score, language_score),
@@ -387,6 +485,17 @@ def build_archive(reports_dir: Path, output_path: Path) -> dict:
         "methodology": {
             "axes_are_independent": True,
             "language_model": "deterministic_financial_lexicon",
+            "language_score_calibration": calibration,
+            "negative_pressure_weights": {
+                "negative_terms": 2.0,
+                "uncertainty": 1.35,
+                "weak_modals": 1.75,
+                "caution_or_euphemism": 1.15,
+            },
+            "drift_penalty": (
+                "Weak-modal and uncertainty increases, caution increases, and "
+                "confidence declines are activated only for comparable history."
+            ),
             "minimum_history_for_preliminary_trend": 4,
             "minimum_history_for_drift_alerts": 8,
             "publication_gate": "backtest_and_human_review_required",

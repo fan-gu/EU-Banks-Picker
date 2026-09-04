@@ -146,7 +146,8 @@ with ranking_tab:
 with signals_tab:
     st.subheader("Independent numeric and management-language signals")
     st.warning(
-        "Research preview only: language history, document genre and reporting periods are not yet aligned. "
+        "Research preview only: the language score is peer-calibrated to correct management-document optimism, "
+        "but document genres and reporting periods are not yet aligned. "
         "No quadrant label is a buy or sell recommendation."
     )
     coverage = language_signals.get("coverage", {})
@@ -163,6 +164,7 @@ with signals_tab:
             "Bank": row["bank_name"],
             "Numeric score": row["numeric_score"],
             "Language score": row["language_score"],
+            "Negative pressure": row.get("negative_pressure_score"),
             "Gap": row["divergence"],
             "Research quadrant": row["quadrant"],
         }
@@ -185,7 +187,7 @@ with signals_tab:
         )
         y_axis = alt.Y(
             "Language score:Q",
-            title="Management-language score",
+            title="Peer-calibrated management-language score",
             scale=alt.Scale(domain=y_domain, nice=False, zero=False),
         )
         vertical = alt.Chart(pd.DataFrame({"cut": [50]})).mark_rule(
@@ -207,13 +209,13 @@ with signals_tab:
                 ),
                 legend=alt.Legend(title=None, orient="bottom", columns=4),
             ),
-            tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Gap:Q", "Research quadrant:N"],
+            tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Negative pressure:Q", "Gap:Q", "Research quadrant:N"],
         )
         logos = alt.Chart(signal_frame).mark_image(width=28, height=28).encode(
             x=x_axis,
             y=y_axis,
             url=alt.Url("Logo:N"),
-            tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Gap:Q", "Research quadrant:N"],
+            tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Negative pressure:Q", "Gap:Q", "Research quadrant:N"],
         )
         connectors = alt.Chart(signal_frame).mark_rule(
             color="#aeb8c8", opacity=0.55, strokeWidth=1
@@ -239,7 +241,8 @@ with signals_tab:
         )
         st.caption(
             "Upper-right: confirmed strength · upper-left: potential turnaround · "
-            "lower-right: early warning · lower-left: high-risk screen."
+            "lower-right: early warning · lower-left: high-risk screen. "
+            "The horizontal 50 line is the robust peer center, not generic sentiment neutrality."
         )
     else:
         st.info("No bank currently has sufficient language evidence for the matrix.")
@@ -250,6 +253,7 @@ with signals_tab:
             "Ticker": row["ticker"],
             "Numeric": row.get("numeric_score"),
             "Language": row.get("language_score"),
+            "Negative pressure": row.get("negative_pressure_score"),
             "Gap": row.get("divergence"),
             "Quadrant": row.get("quadrant") or "Not assigned",
             "Coverage status": row["status"],
@@ -263,6 +267,7 @@ with signals_tab:
         column_config={
             "Numeric": st.column_config.NumberColumn(format="%.1f"),
             "Language": st.column_config.NumberColumn(format="%.1f"),
+            "Negative pressure": st.column_config.NumberColumn(format="%.1f"),
             "Gap": st.column_config.NumberColumn(format="%+.1f"),
         },
     )
@@ -285,9 +290,14 @@ with signals_tab:
         )
         with st.container(horizontal=True):
             st.metric("Language score", language_signal["language_score"], border=True)
+            st.metric("Negative pressure", language_signal.get("negative_pressure_score"), border=True)
             st.metric("Numeric-language gap", f"{language_signal['divergence']:+.1f}", border=True)
             st.metric("History available", f"{language_document['history_periods']} period", border=True)
             st.metric("Review status", "Pending", border=True)
+        st.caption(
+            "Weak-modal and uncertainty increases plus confidence-to-caution reversals "
+            "will add drift penalties once comparable history is available."
+        )
         st.caption(
             f"{language_document['document_type'].replace('_', ' ').title()} · "
             f"{language_document['period']} · {language_document['analyzed_word_count']:,} analyzed words · "
@@ -445,7 +455,7 @@ with methodology_tab:
     st.subheader("Methodology and controls")
     st.markdown("**Common 23-bank score:** P/B 25%, P/E 15%, ROE 20%, ROA 10%, dividend yield 10%, earnings growth 10%, and revenue growth 10%. Lower valuation multiples score higher; higher returns, yield, and growth score higher. Percentile ranking limits the influence of extreme values.")
     st.markdown("**Official-report overlay:** CET1, leverage, LCR, NSFR, NPL ratio, NPL coverage, cost of risk, NIM, cost/income, loan/deposit ratio, and IRRBB sensitivities are included only when period-aligned evidence is available.")
-    st.markdown("**Independent language axis:** financial tone, uncertainty, commitment strength, cautious wording, and confidence expressions are calculated with deterministic versioned rules. The numeric and language axes are not combined.")
+    st.markdown("**Independent language axis:** negative terms, uncertainty, weak commitment and cautious or euphemistic wording create an explicit negative-pressure penalty. Positive wording is measured separately, then the net result is robustly centered against the 23-bank peer cohort to correct management-document optimism. The numeric and language axes are not combined.")
     st.markdown("**Language history gate:** four comparable periods enable a preliminary trend; eight enable drift alerts. Original sentence and PDF page, human approval, and an out-of-sample backtest are still required before a signal becomes validated research output.")
     st.markdown("**Controls:** common reporting dates, source evidence, freshness checks, sensitivity analysis, and publication gate.")
     st.markdown("**Scope:** this is a research screening tool, not personalized investment advice.")

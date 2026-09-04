@@ -10,7 +10,14 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app.language_signals import category_hits, quadrant, score_features, split_sentences
+from app.language_signals import (
+    calibrate_peer_language_scores,
+    category_hits,
+    language_drift,
+    quadrant,
+    score_features,
+    split_sentences,
+)
 
 
 class LanguageSignalTests(unittest.TestCase):
@@ -38,6 +45,47 @@ class LanguageSignalTests(unittest.TestCase):
             score_features(confident, 1000)["language_score"],
             score_features(cautious, 1000)["language_score"],
         )
+
+    def test_negative_pressure_penalizes_weak_and_uncertain_language(self):
+        features = score_features(
+            {
+                "positive": 4, "negative": 2, "uncertainty": 8,
+                "strong_modal": 2, "weak_modal": 7, "caution_buffer": 5,
+                "confidence": 2,
+            },
+            1000,
+        )
+        self.assertGreater(features["negative_pressure_score"], 20)
+        self.assertLess(features["management_language_strength_raw"], 0)
+
+    def test_peer_calibration_centers_management_optimism(self):
+        records = [
+            {"status": "provisional_single_period", "features": {"management_language_strength_raw": value}}
+            for value in (10, 20, 30, 40, 50)
+        ]
+        calibration = calibrate_peer_language_scores(records)
+        scores = [record["features"]["language_score"] for record in records]
+        self.assertEqual(calibration["method"], "robust_median_mad")
+        self.assertEqual(scores[2], 50.0)
+        self.assertTrue(any(score < 50 for score in scores))
+        self.assertTrue(any(score > 50 for score in scores))
+
+    def test_negative_drift_detects_confidence_to_caution_reversal(self):
+        previous = {
+            "weak_modal_per_1000_words": 2,
+            "uncertainty_per_1000_words": 3,
+            "caution_per_1000_words": 1,
+            "confidence_per_1000_words": 8,
+        }
+        current = {
+            "weak_modal_per_1000_words": 5,
+            "uncertainty_per_1000_words": 7,
+            "caution_per_1000_words": 4,
+            "confidence_per_1000_words": 4,
+        }
+        drift = language_drift(current, previous)
+        self.assertTrue(drift["directional_reversal"])
+        self.assertGreater(drift["drift_penalty"], 0)
 
     def test_quadrants_preserve_two_axes(self):
         self.assertEqual(quadrant(70, 70), "Confirmed strength")
@@ -84,6 +132,11 @@ class LanguageCoverageTests(unittest.TestCase):
         )
         self.assertTrue(
             all(row["publication_eligible"] is False for row in self.archive["signals"])
+        )
+        quadrants = {row["quadrant"] for row in self.archive["signals"]}
+        self.assertEqual(
+            quadrants,
+            {"Confirmed strength", "Potential turnaround", "Early warning", "High-risk screen"},
         )
 
 
