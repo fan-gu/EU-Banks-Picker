@@ -11,9 +11,12 @@ import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 
+from app.dashboard_visuals import image_data_url, layout_signal_labels, padded_domain
+
 load_dotenv(Path(__file__).with_name(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent
+LOGO_DIR = BASE_DIR / "assets" / "bank_logos"
 COUNTRY_INFO = {
     "Austria": ("AT", "at"), "Belgium": ("BE", "be"),
     "Finland": ("FI", "fi"), "France": ("FR", "fr"),
@@ -108,7 +111,7 @@ with ranking_tab:
         country_code, flag_code = COUNTRY_INFO.get(bank["country"], (bank["country"], ""))
         ranking_rows.append({
             "Rank": i,
-            "Flag": f"https://flagcdn.com/w40/{flag_code}.png" if flag_code else "",
+            "Flag": f"https://flagcdn.com/20x15/{flag_code}.png" if flag_code else "",
             "Country": country_code,
             "Bank": row["bank_name"],
             "Ticker": row["ticker"],
@@ -126,8 +129,9 @@ with ranking_tab:
         width="stretch",
         hide_index=True,
         height=845,
+        row_height=28,
         column_config={
-            "Flag": st.column_config.ImageColumn("", width="small"),
+            "Flag": st.column_config.ImageColumn("Flag", width=38),
             "Index weight": st.column_config.NumberColumn("Index wt.", format="%.2f%%"),
             "Current price": st.column_config.NumberColumn("Price", format="€%.2f"),
             "P/E": st.column_config.NumberColumn("P/E", format="%.2fx"),
@@ -166,30 +170,71 @@ with signals_tab:
         if row.get("numeric_score") is not None and row.get("language_score") is not None
     ]
     if plotted_rows:
-        signal_frame = pd.DataFrame(plotted_rows)
+        for row in plotted_rows:
+            logo_path = LOGO_DIR / f"{row['Ticker']}.png"
+            row["Logo"] = image_data_url(logo_path) if logo_path.exists() else ""
+        x_domain = padded_domain([row["Numeric score"] for row in plotted_rows])
+        y_domain = padded_domain([row["Language score"] for row in plotted_rows])
+        signal_frame = pd.DataFrame(
+            layout_signal_labels(plotted_rows, x_domain, y_domain)
+        )
+        x_axis = alt.X(
+            "Numeric score:Q",
+            title="Numeric relative-value score",
+            scale=alt.Scale(domain=x_domain, nice=False, zero=False),
+        )
+        y_axis = alt.Y(
+            "Language score:Q",
+            title="Management-language score",
+            scale=alt.Scale(domain=y_domain, nice=False, zero=False),
+        )
         vertical = alt.Chart(pd.DataFrame({"cut": [50]})).mark_rule(
             color="#7a8599", strokeDash=[6, 6]
-        ).encode(x=alt.X("cut:Q"))
+        ).encode(x=alt.X("cut:Q", scale=alt.Scale(domain=x_domain, nice=False, zero=False)))
         horizontal = alt.Chart(pd.DataFrame({"cut": [50]})).mark_rule(
             color="#7a8599", strokeDash=[6, 6]
-        ).encode(y=alt.Y("cut:Q"))
-        points = alt.Chart(signal_frame).mark_circle(size=420, opacity=0.85).encode(
-            x=alt.X("Numeric score:Q", scale=alt.Scale(domain=[0, 100])),
-            y=alt.Y("Language score:Q", scale=alt.Scale(domain=[0, 100])),
+        ).encode(y=alt.Y("cut:Q", scale=alt.Scale(domain=y_domain, nice=False, zero=False)))
+        halos = alt.Chart(signal_frame).mark_circle(
+            size=980, opacity=0.28, strokeWidth=2
+        ).encode(
+            x=x_axis,
+            y=y_axis,
             color=alt.Color(
                 "Research quadrant:N",
                 scale=alt.Scale(
                     domain=["Confirmed strength", "Potential turnaround", "Early warning", "High-risk screen"],
                     range=["#35c48d", "#4fa3ff", "#ffb347", "#ef6262"],
                 ),
+                legend=alt.Legend(title=None, orient="bottom", columns=4),
             ),
             tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Gap:Q", "Research quadrant:N"],
         )
+        logos = alt.Chart(signal_frame).mark_image(width=28, height=28).encode(
+            x=x_axis,
+            y=y_axis,
+            url=alt.Url("Logo:N"),
+            tooltip=["Bank:N", "Ticker:N", "Numeric score:Q", "Language score:Q", "Gap:Q", "Research quadrant:N"],
+        )
+        connectors = alt.Chart(signal_frame).mark_rule(
+            color="#aeb8c8", opacity=0.55, strokeWidth=1
+        ).encode(
+            x=x_axis,
+            y=y_axis,
+            x2=alt.X2("Label x:Q"),
+            y2=alt.Y2("Label y:Q"),
+        )
+        label_outline = alt.Chart(signal_frame).mark_text(
+            color="#10131a", fontWeight="bold", fontSize=12,
+            stroke="#10131a", strokeWidth=4,
+        ).encode(x="Label x:Q", y="Label y:Q", text="Ticker:N")
         labels = alt.Chart(signal_frame).mark_text(
-            dy=-18, color="#f4f6fb", fontWeight="bold"
-        ).encode(x="Numeric score:Q", y="Language score:Q", text="Ticker:N")
+            color="#f4f6fb", fontWeight="bold", fontSize=12,
+        ).encode(x="Label x:Q", y="Label y:Q", text="Ticker:N")
         st.altair_chart(
-            (vertical + horizontal + points + labels).properties(height=560),
+            (
+                vertical + horizontal + connectors + halos + logos
+                + label_outline + labels
+            ).properties(height=600, padding={"left": 4, "right": 4, "top": 8, "bottom": 4}),
             width="stretch",
         )
         st.caption(

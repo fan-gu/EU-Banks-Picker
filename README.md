@@ -23,6 +23,9 @@ The dark-mode dashboard presents all 23 ranking rows at once. It includes flag
 images, country codes, tickers, index weights, euro-denominated prices, P/E,
 P/B, ROE, dividend yield, scores, and concise comments. The Evidence tab is a
 complete 23-bank directory of official annual and quarterly-report links.
+Country flags use a compact fixed 20×15 size. The Signals matrix uses locally
+cached issuer-domain logo icons, close-fit score axes, and collision-aware
+ticker labels with leader lines so dense observations remain identifiable.
 
 ## Independent management-language axis
 
