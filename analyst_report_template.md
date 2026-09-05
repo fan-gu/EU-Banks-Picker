@@ -1,4 +1,4 @@
-# EuroSTOXX Bank Valuation Agent — Analyst Report
+# EuroBank Prism — Analyst report
 
 ## 1. Executive summary
 

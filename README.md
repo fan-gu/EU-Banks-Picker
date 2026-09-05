@@ -1,4 +1,12 @@
-# EuroSTOXX Bank Valuation Agent
+# EuroBank Prism
+
+**Three independent signals. One clearer view.**
+
+AI-powered European bank research intelligence designed around financial
+fundamentals, management language, and market confirmation. The current
+release has the fundamentals and management-language axes live; market
+confirmation is the next independent signal. Coverage is the 23-member
+EURO STOXX Banks index.
 
 ## Problem
 
@@ -100,16 +108,14 @@ Market prices ---------------------> comparable dataset
 ## Run
 
 ```powershell
-& "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\EU-Banks-Picker\run_pilot_pipeline.py"
-streamlit run "C:\FG\Roadmap to AI\EU-Banks-Picker\pilot_dashboard.py"
+& "C:\FG\.venv\Scripts\python.exe" run_pilot_pipeline.py
+& "C:\FG\.venv\Scripts\python.exe" -m streamlit run pilot_dashboard.py
 ```
 
 To monitor rollout coverage across all 23 constituents:
 
 ```powershell
-& "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\EU-Banks-Picker\coverage_report.py"
+& "C:\FG\.venv\Scripts\python.exe" coverage_report.py
 ```
 
 The curated language sources are recorded in `language_report_sources.json`.
@@ -117,10 +123,8 @@ To download and PDF-validate all 23 current-period documents, then rebuild the
 signal archive:
 
 ```powershell
-& "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\EU-Banks-Picker\download_language_reports.py"
-& "C:\FG\.venv\Scripts\python.exe" `
-  -m app.language_signals
+& "C:\FG\.venv\Scripts\python.exe" download_language_reports.py
+& "C:\FG\.venv\Scripts\python.exe" -m app.language_signals
 ```
 
 `language_download_manifest.json` records status, final URL, byte size, SHA-256
@@ -133,8 +137,7 @@ curated sources remain authoritative.
 To rebuild structured table evidence from all locally downloaded reports:
 
 ```powershell
-& "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\EU-Banks-Picker\app\table_evidence.py"
+& "C:\FG\.venv\Scripts\python.exe" app\table_evidence.py
 ```
 
 Use `--ticker BNP` to process one bank or `--no-images` for a faster diagnostic
@@ -144,8 +147,7 @@ run. Evidence screenshots are displayed in the dashboard separately from the
 To rebuild the independent management-language archive:
 
 ```powershell
-& "C:\FG\.venv\Scripts\python.exe" `
-  "C:\FG\Roadmap to AI\EU-Banks-Picker\app\language_signals.py"
+& "C:\FG\.venv\Scripts\python.exe" -m app.language_signals
 ```
 
 This is a research screening tool, not personalized investment advice.

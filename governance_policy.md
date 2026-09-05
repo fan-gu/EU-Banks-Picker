@@ -1,4 +1,4 @@
-# EuroSTOXX Bank Valuation Agent — Governance Policy
+# EuroBank Prism — Governance policy
 
 ## Purpose
 

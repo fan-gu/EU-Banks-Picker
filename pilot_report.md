@@ -1,4 +1,4 @@
-# EuroSTOXX Bank Valuation Agent — Pilot Report
+# EuroBank Prism — Pilot report
 
 Generated (UTC): 2026-09-03T07:50:34.363752+00:00
 

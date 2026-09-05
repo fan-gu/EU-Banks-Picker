@@ -41,7 +41,7 @@ def main() -> None:
         filename = record.get("filename") or f"{ticker}_report.pdf"
         destination = folder / filename
         try:
-            response = requests.get(url, timeout=TIMEOUT, headers={"User-Agent": "EU-Banks-Picker/1.0"})
+            response = requests.get(url, timeout=TIMEOUT, headers={"User-Agent": "EuroBank-Prism/1.0"})
             response.raise_for_status()
             content_type = response.headers.get("content-type", "").lower()
             if "pdf" not in content_type and not response.content.startswith(b"%PDF"):

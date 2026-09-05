@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).with_name(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent
-USER_AGENT = "EU-Banks-Picker/1.0 research-document-discovery"
+USER_AGENT = "EuroBank-Prism/1.0 research-document-discovery"
 TIMEOUT = (15, 45)
 MAX_BYTES = 30 * 1024 * 1024
 CURRENT_YEAR = datetime.now(timezone.utc).year

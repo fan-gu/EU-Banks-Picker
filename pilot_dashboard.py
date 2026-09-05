@@ -77,9 +77,13 @@ def short_comment(score):
     return "Weak relative screen"
 
 
-st.set_page_config(page_title="EU Banks Picker", page_icon="🏦", layout="wide")
-st.title("EU Banks Picker")
-st.caption("EuroSTOXX Bank Valuation Agent · relative-value research screening")
+st.set_page_config(page_title="EuroBank Prism", page_icon="🏦", layout="wide")
+st.title("EuroBank Prism")
+st.caption(
+    "Three independent signals. One clearer view. · "
+    "EURO STOXX Banks research intelligence"
+)
+st.caption("Current release: fundamentals + management language live · market confirmation next")
 
 if st.button("Refresh data"):
     with st.status("Refreshing all 23 banks...", expanded=False) as status:

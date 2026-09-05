@@ -1,6 +1,6 @@
 # Human Review Checklist
 
-Complete this checklist before distributing a EuroSTOXX Bank Valuation Agent
+Complete this checklist before distributing a EuroBank Prism
 report.
 
 - [ ] Confirm the constituent universe and as-of date.

@@ -18,7 +18,7 @@ def main() -> None:
         scores = json.load(handle)
 
     lines = [
-        "# EuroSTOXX Bank Valuation Agent — Pilot Report",
+        "# EuroBank Prism — Pilot report",
         "",
         f"Generated (UTC): {datetime.now(timezone.utc).isoformat()}",
         "",
